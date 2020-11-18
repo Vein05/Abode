@@ -31,6 +31,15 @@ class vein4(commands.Cog, name= "Admin"):
         await channel.purge(limit=None, check=check,)
         await ctx.send(f'All from {member} have been purged by an admin.')
 
+    @commands.command()
+    @commands.has_permissions(administrator=True)
+    async def purgemany(self,ctx, amount=100000000):
+
+        await ctx.channel.purge(limit=amount)
+        await ctx.send(f'**The higher-ups have purged alot of messages.**', delete_after=10)
+
+
+
 
     @commands.command()
     @commands.has_permissions(administrator=True)

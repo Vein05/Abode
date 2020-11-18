@@ -69,6 +69,9 @@ class vein(commands.Cog, name= "moderation"):
             await ctx.send("Please add a number smaller than 200")
 
 
+
+
+
     @commands.command()
     @commands.has_permissions(manage_roles=True)
     async def role(self , ctx, member: discord.Member, *,arg):
@@ -139,8 +142,11 @@ class vein(commands.Cog, name= "moderation"):
     @commands.command()
     @commands.has_permissions(kick_members=True)
     async def kick(self, ctx, member: discord.Member, *, reason=None):
-        await member.kick(reason=reason)
-        await ctx.send (f'User {member.mention} was kicked from the server for {reason}.')
+        if member is None:
+            await ctx.send(f'{ctx.message.author.display_name}, Please tag an user whom you want to be kicked from the server.')
+        else:
+            await member.kick(reason=reason)
+            await ctx.send (f'User {member.mention} was kicked from the server for {reason}.')
 
 
 
@@ -218,7 +224,7 @@ class vein(commands.Cog, name= "moderation"):
             embed2.add_field(name="yearfact", value= f' Make Abode send a random fact on a year', inline=False)
             embed2.add_field(name="clyde", value= f' Make clyde say something', inline=False)
             embed2.add_field(name="flip", value= f'Make Abode Flip a coin for you')
-            embed2.add_field(name="lovemeter", value=f'You know it (*бωб)')
+            embed2.add_field(name="lovemeter", value=f'You know it :eyes:')
             embed2.add_field(name="rps", value=f'Play Rock Scissors Paper with Abode', inline=False)
             embed2.set_footer(text=f"Requested by {ctx.message.author.name} ")
 
@@ -231,6 +237,7 @@ class vein(commands.Cog, name= "moderation"):
             embed3.add_field(name="f", value="Pay your repects, I paid mine")
             embed3.add_field(name='addnote',value= f'Add a note about something',inline=False)
             embed3.add_field(name='note', value= f'To view the added note.')
+            embed3.add_field(name='removenote', value=f'To remove the note that you added.', inline=False)
 
             embed3.set_footer(text=f"Requested by {ctx.message.author.name}")
 
