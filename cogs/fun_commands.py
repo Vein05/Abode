@@ -316,57 +316,6 @@ class vein2(commands.Cog, name= "fun"):
         await ctx.send(embed=embed)
 
 
-    @commands.command()
-    async def addnote (self, ctx, *, data):
-        print('test1')
-        author_id= str(ctx.message.author.id)
-
-        mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
-        cluster= MongoClient(mongo_url)
-        db = cluster['AbodeDB']
-        collection= db['Notes']
-
-        print('test2')
-
-        if (collection.find_one({"_id": author_id})== None):
-            user_data= {"_id": author_id, "note": data}
-            collection.insert_one(user_data)
-            await ctx.send(f'Just added a note for ``{ctx.message.author.display_name}``.')
-            print('test3')
-        else:
-            query= {"_id": author_id}
-            user = collection.find(query)
-            for note in user:
-
-                new_data= data
-                print('test4')
-            collection.update_one({"_id":author_id}, {"$set":{"note": new_data}})
-            print('test5')
-            await ctx.send(f"Just updated notes for ``{ctx.message.author.display_name}``.")
-
-
-    @commands.command()
-    async def note (self, ctx):
-        author_id= str(ctx.message.author.id)
-        mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
-        cluster= MongoClient(mongo_url)
-        db = cluster['AbodeDB']
-        collection= db['Notes']
-        user_id= {"_id": author_id}
-        dbnote = collection.find(user_id)
-
-
-        if (collection.count_documents({})== 0):
-            await ctx.send(f'Please add a note using ``.addnote``.')
-
-
-        for nte in dbnote:
-            cur_note = nte['note']
-            embed= discord.Embed(color= ctx.author.color)
-            embed.add_field(name='Note', value= f'``{cur_note}``')
-            embed.set_footer(text=f'Note of {ctx.author.display_name}')
-            embed.set_thumbnail(url=f'{ctx.author.avatar_url}')
-            await ctx.send(embed=embed)
 
 
     '''@commands.command()

@@ -10,14 +10,10 @@ import os
 import traceback
 import discord.utils
 import re
-
-
 import json
-
-
 import platform
 import jishaku
-import asyncpg
+
 
 client = commands.Bot(command_prefix = commands.when_mentioned_or('.'), case_insensitive=True, intents=intents)
 client.remove_command("help")
@@ -100,7 +96,8 @@ extensions= [
             'cogs.api_commands',
             'cogs.admin',
             'cogs.games',
-            'cogs.custom'
+            'cogs.custom',
+            'cogs.db'
 
 ]
 if __name__ == "__main__" :
