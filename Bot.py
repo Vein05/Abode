@@ -15,7 +15,8 @@ import platform
 import jishaku
 
 
-client = commands.Bot(command_prefix = commands.when_mentioned_or('.'), case_insensitive=True, intents=intents)
+client = commands.Bot(command_prefix = commands.when_mentioned_or('&'), case_insensitive=True, intents=intents)
+
 client.remove_command("help")
 
 #async def create_db_pool():

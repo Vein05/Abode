@@ -10,6 +10,8 @@ import os
 import traceback
 import re
 import json
+import pymongo
+from pymongo import MongoClient
 
 
 
@@ -207,6 +209,10 @@ class vein4(commands.Cog, name= "Admin"):
                                                 f'[Website](https://tatsu.gg/) | [Server](https://discord.com/invite/tatsu) \n\n')
 
             await ctx.send(embed=embed)
+
+
+
+
 
 
 

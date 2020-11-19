@@ -6,6 +6,8 @@ from pymongo import MongoClient
 import datetime
 import asyncio
 from discord.ext import tasks
+import disputils
+from disputils import BotConfirmation
 
 
 mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
@@ -71,25 +73,68 @@ class vein7(commands.Cog, name='db'):
             embed.add_field(name=f'ㅤ', value= f'{ctx.author.display_name}\'s Note: \n\n **{cur_note}**')
             embed.set_footer(text=f'Created on {time}')
 
-        def check(reaction,user):
-                return user == ctx.author and user == client.user
+        confirmation = BotConfirmation(ctx, 0xa100f2)
+        await confirmation.confirm(f"{ctx.author.name}, do you want me to DM you your note or show it here? \nReact with ✅ for the DM or react with ❌ if you want me to send it here.\n**Be quick!**")
+        if confirmation.confirmed:
+            try:
+                await ctx.author.send(embed=embed)
+
+
+            except:
+                await ctx.send(f'{ctx.author.name}, Your dms are off.')
+        else :
+            await ctx.send(embed=embed)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    '''def check(reaction,user):
+                return user == ctx.author and user.id != 759784064361299989
+
 
         msg = await ctx.send(f"{ctx.author.name}, do you want me to DM me your note or show it here? React with ✅ for the DM or react with ❌ if you want me to send it here.")
+
         await msg.add_reaction('✅')
         await msg.add_reaction('❌')
 
-
         reaction, user= await self.client.wait_for("reaction_add",timeout=30)
+
+
 
 
         if str(reaction.emoji) == '✅':
 
             try:
-                await user.send(embed=embed)
+                await ctx.author.send(embed=embed)
+                await msg.delete()
             except:
                 await ctx.send(f'You have your DMs closed.')
+                await msg.delete()
         elif str(reaction.emoji) == '❌':
             await ctx.send(embed=embed)
+            await msg.delete()'''
 
 
 
