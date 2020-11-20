@@ -15,7 +15,7 @@ import platform
 import jishaku
 
 
-client = commands.Bot(command_prefix = commands.when_mentioned_or('.'), case_insensitive=True, intents=intents)
+client = commands.Bot(command_prefix = commands.when_mentioned_or('&'), case_insensitive=True, intents=intents, paginator = True)
 
 client.remove_command("help")
 
@@ -33,8 +33,8 @@ async def on_ready():
 
 @client.event
 async def on_command_error(ctx, error):
-    if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send(f'{ctx.message.author.mention} <:xmark:773959363379462184> The mandator suggests sending the correct command.', delete_after=5)
+    #if isinstance(error, commands.MissingRequiredArgument):
+        #await ctx.send(f'{ctx.message.author.mention} <:xmark:773959363379462184> The mandator suggests sending the correct command.', delete_after=5)
     if isinstance(error, commands.MissingPermissions):
         await ctx.send(f"{ctx.message.author.mention} <:xmark:773959363379462184> You don't meet all the requirements to use this command.", delete_after=5)
     if isinstance(error, commands.CommandOnCooldown):
@@ -43,6 +43,11 @@ async def on_command_error(ctx, error):
     '''if isinstance(error, commands.CommandNotFound):
         emojy = '❓'
         await ctx.message.add_reaction(emojy)'''
+
+    if isinstance(error, commands.MissingRequiredArgument) or isinstance(error, commands.BadArgument):
+        helper = str(ctx.invoked_subcommand) if ctx.invoked_subcommand else str(ctx.command)
+        await ctx.send(f'{ctx.author.name} The correct way of using that commands is:')
+        await ctx.send_help(helper)
 
 
 

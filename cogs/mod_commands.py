@@ -21,20 +21,37 @@ class vein(commands.Cog, name= "moderation"):
     def __init__(self, client):
         self.client = client
 
-    @commands.command(alaises = ['Bot'])
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        if message.channel.id != 757109995178557511:
+            return
+        msg = message
+        await msg.add_reaction("<:check:773959361953267742>")
+        await msg.add_reaction("<:xmark:773959363379462184>")
+
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        if message.channel.id != 757110183800471572:
+            return
+        msg = message
+        await msg.add_reaction("<:check:773959361953267742>")
+        await msg.add_reaction("<:xmark:773959363379462184>")
+
+    @commands.command(alaises = ['Bot'],hidden=True)
     @commands.cooldown(1, 10, commands.BucketType.user)
     async def abode(self,ctx):
 
         embed= discord.Embed(color=color)
         embed.set_thumbnail(url=f'{ctx.me.avatar_url}')
         embed.set_author(name="Abode", icon_url=f'{ctx.me.avatar_url}')
-        embed.add_field(name="__Information__", value=f'**Abode mandator** or abode in short is a discord bot written python(discord.py). Abode is created by Vein ({ctx.guild.owner_id}) as a way to learn python but later on further continued as a fun-command based bot. I donot own any of the api used so read the footers for the api source.', inline=False )
-        embed.add_field(name="__Tips from Abode__", value= f"➣``.help``  is always there for you :D \n"
-                                                  f'➣ Want to earn a custom gif or role? You might earn them by reporting issues on more or the server on our suggestions channel. \n'
-                                                  f'➣ ``.welcome`` whenever a new user joins. It is a easy way to make them feel welcomed :D \n'
-                                                  f'➣ If you can contribute to the server you may bypass some rules and get a higher role. \n'
-                                                  f'➣ Altough you are free to use an @ to ping a user, it would be best if you can not use it the receiver is online(||you can use the quote funcation by removing the @||)\n'
-                                                  f'➣``.faq`` FAQ are available there, do not leave your mind wander.\n',inline=False)
+        embed.add_field(name="‎‎‎‏‏‎ ‎", value=f'**Abode mandator** or abode in short is a discord bot written python (discord.py).\n Abode is created by Vein, as a way to learn python but later on further continued as a fun-command based bot. Vein doesn\'t own any of the api used, so read the footers for the api source.', inline=False )
+        embed.add_field(name="Tips", value= f"``.help``  is always there for you :D \n\n"
+                                                  f'Want to earn a custom gif or role? You might earn them by reporting issues on more or the server on our suggestions channel. \n\n'
+                                                  f'``.welcome`` whenever a new user joins. It is a easy way to make them feel welcomed :D \n\n'
+                                                  f'If you can contribute to the server you may bypass some rules and get a higher role. \n\n'
+
+                                                  f'``.faq`` FAQ are available there, do not leave your mind wander.\n\n'
+                                                  f'Always check the pinned messages or the channel description to learn more about that channel.\n\n' , inline=False)
 
 
         embed.set_footer(text=f"Requested by {ctx.author}",  icon_url=ctx.author.avatar_url)
@@ -44,13 +61,14 @@ class vein(commands.Cog, name= "moderation"):
 
 
 
-    @commands.command(aliases=['frequent_questions'])
+    @commands.command(aliases=['frequent_questions'],
+        hidden=True)
     async def faq(self, ctx):
         embed= discord.Embed(color=color)
         embed.set_thumbnail(url=f'{ctx.guild.icon_url}')
-        embed.add_field(name="QnA", value=f'**Why is there a logo on every command?** \n = Because why not? <:GWcmeisterPeepoShrug:771605304520998942> \n'
-                                           f'**Can you remove the cooldown on images?** \n = No not anytime soon, maybe in future :)\n'
-                                           f'**Why aren not the image commands not working sometimes?**\n = Well, sometimes the requests are not received on time, so they donot work')
+        embed.add_field(name="QnA", value=f'**Why is there a logo on every command?** \n\n = Because why not? <:GWcmeisterPeepoShrug:771605304520998942> \n'
+                                           f'**Can you remove the cooldown on images?** \n\n = No not anytime soon, maybe in future :)\n'
+                                           f'**Why aren not the image commands not working sometimes?**\n\n = Well, sometimes the requests are not received on time, so they donot work')
 
 
 
@@ -59,7 +77,7 @@ class vein(commands.Cog, name= "moderation"):
         await ctx.send(embed=embed)
 
 
-    @commands.command(aliases=['purge'])
+    @commands.command(aliases=['purge'],hidden=True)
     @commands.has_permissions(manage_messages=True)
     async def clear(self,ctx, amount=3):
         if amount <= 200:
@@ -72,7 +90,7 @@ class vein(commands.Cog, name= "moderation"):
 
 
 
-    @commands.command()
+    @commands.command(hidden=True)
     @commands.has_permissions(manage_roles=True)
     async def role(self , ctx, member: discord.Member, *,arg):
         role = discord.utils.get(ctx.guild.roles, name=f"{arg}")
@@ -83,7 +101,7 @@ class vein(commands.Cog, name= "moderation"):
             await member.remove_roles(role)
             await ctx.send(f"{member} was removed from the role ``{arg}``.")
 
-    @commands.command()
+    @commands.command(hidden=True)
     @commands.has_permissions(manage_nicknames=True)
     async def cnick(self , ctx, member: discord.Member, *,arg):
         if ctx.guild.me.top_role < member.top_role:
@@ -103,6 +121,7 @@ class vein(commands.Cog, name= "moderation"):
         name='purge_user',
 
         aliases=['clearuser', 'purgeuser'],
+        hidden=True
     )
     async def purge_user(
         self, ctx,
@@ -123,7 +142,7 @@ class vein(commands.Cog, name= "moderation"):
 
 
 
-    @commands.command(aliases= ['pm'])
+    @commands.command(hidden=True)
     @commands.has_permissions(manage_messages=True)
     async def DM (self, ctx, *, arg ):
             await ctx.message.author.send(arg)
@@ -139,7 +158,7 @@ class vein(commands.Cog, name= "moderation"):
 
 
 
-    @commands.command()
+    @commands.command(hidden=True)
     @commands.has_permissions(kick_members=True)
     async def kick(self, ctx, member: discord.Member, *, reason=None):
         if member is None:
@@ -152,7 +171,7 @@ class vein(commands.Cog, name= "moderation"):
 
 
 
-    @commands.command()
+    @commands.command(hidden=True)
     @commands.has_permissions(ban_members=True)
     async def ban(self, ctx, member: discord.Member = None, reason: str = "You were banned from the server for not following the rules."):
         if member is not None:
@@ -276,8 +295,9 @@ class vein(commands.Cog, name= "moderation"):
             await ctx.send(f'{ctx.message.author.display_name}, Sent you a DM.')
         except:
             await ctx.send(f'{ctx.message.author.display_name}, You have your dms closed.')
+            await message.delete()
 
-    @commands.command()
+    @commands.command(hidden=True)
     @commands.has_permissions(kick_members=True)
     async def channelstats(self, ctx):
         channel = ctx.channel
@@ -305,6 +325,20 @@ class vein(commands.Cog, name= "moderation"):
         embed.timestamp= datetime.datetime.utcnow()
         await ctx.send(embed=embed)
 
+
+    @commands.command()
+    @commands.cooldown(1, 21600, commands.BucketType.user)
+    async def complaint(self, ctx, *,arg):
+        if ctx.channel.id != (757136905329442859 or 757136943149613076):
+            await ctx.send(f'{ctx.author.name}, It\'s good that you have complaints but please use this command on the Bots category.' )
+            return
+        channel = ctx.guild.get_channel(757110183800471572)
+        embed= discord.Embed(color=ctx.author.color, title= f'{arg}', timestamp= datetime.datetime.utcnow())
+        embed.set_author(name=f"{ctx.author.name}'s complaint ", icon_url=f'{ctx.author.avatar_url}')
+        embed.set_footer(text=f"Submitted on")
+        await ctx.message.delete()
+        await channel.send(embed=embed)
+        await ctx.send(f'{ctx.author.name}, Sent your complaint in <#757110183800471572>.')
 
 
 

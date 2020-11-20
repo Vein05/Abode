@@ -31,7 +31,7 @@ class vein2(commands.Cog, name= "fun"):
 
 
 
-    @commands.command(alaises=['ava'])
+    @commands.command(description='Show\'s mentioned users profile picture or if the user isn\'t mentioned the author\'s.')
     async def avatar (self, ctx , member: discord.Member=None):
         member =member or ctx.author
         embed= discord.Embed(color=0x529dff)
@@ -51,15 +51,15 @@ class vein2(commands.Cog, name= "fun"):
 
             uroles.reverse()
 
-        embed=discord.Embed(color=color, timestamp=ctx.message.created_at, title= f'{ctx.author}', type="rich")
+        embed=discord.Embed(color=color, timestamp=ctx.message.created_at, type="rich")
         embed.set_thumbnail(url= f"{member.avatar_url}")
-        embed.set_author(name=f"Abode",icon_url=f'{ctx.me.avatar_url}')
-        embed.add_field(name="General infomation",value=f'**➣Nickname:** {member.display_name}\n'
-                                                        f'**➣ID** {member.id}\n'
-                                                        f'**➣Account created:** {member.created_at.strftime("%a, %#d %B %Y, %I:%M %p ")}\n'
-                                                        f'**➣Server joined at:** {member.joined_at.strftime("%a, %#d %B %Y, %I:%M %p ")}\n'
-                                                        f'**➣Role(s):** {", ".join(uroles)}\n'
-                                                        f'**➣Highest role:** {member.top_role.mention}'
+        embed.set_author(name=f"{ctx.author.name}'s information",icon_url=f'{ctx.me.avatar_url}')
+        embed.add_field(name="ㅤ",value=f'**Nickname:** {member.display_name}\n\n'
+                                                        f'**ID** {member.id}\n\n'
+                                                        f'**Account created:** {member.created_at.strftime("%a, %#d %B %Y, %I:%M %p ")}\n\n'
+                                                        f'**Server joined at:** {member.joined_at.strftime("%a, %#d %B %Y, %I:%M %p ")}\n\n'
+                                                        f'**Role(s):** {", ".join(uroles)}\n\n'
+                                                        f'**Highest role:** {member.top_role.mention}'
                                                          , inline=False)
 
         embed.set_footer(text=f"Requested by {ctx.author}",  icon_url=ctx.author.avatar_url)

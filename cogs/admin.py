@@ -14,7 +14,7 @@ import pymongo
 from pymongo import MongoClient
 
 
-
+color = 0xa100f2
 server_invite= 'https://discord.gg/tA4PDtX'
 
 class vein4(commands.Cog, name= "Admin"):
@@ -211,8 +211,16 @@ class vein4(commands.Cog, name= "Admin"):
             await ctx.send(embed=embed)
 
 
-
-
+    @commands.command()
+    @commands.has_permissions(administrator=True)
+    async def key(self, ctx):
+        embed= discord.Embed(color = (color))
+        embed.add_field(name='ㅤ', value= f'<:check:773959361953267742> : Vote yes\n\n'
+                                            f'<:xmark:773959363379462184> : Vote no\n\n'
+                                            f':green_circle: : Arrpoved\n\n'
+                                            f':yellow_circle: : Maybe in the future\n\n'
+                                            f':red_circle: :  Denied', inline=False)
+        await ctx.send(embed=embed)
 
 
 
