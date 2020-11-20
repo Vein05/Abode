@@ -21,13 +21,7 @@ class vein(commands.Cog, name= "moderation"):
     def __init__(self, client):
         self.client = client
 
-    @commands.Cog.listener()
-    async def on_message(self, message):
-        if message.channel.id != 757109995178557511:
-            return
-        msg = message
-        await msg.add_reaction("<:check:773959361953267742>")
-        await msg.add_reaction("<:xmark:773959363379462184>")
+
 
     @commands.Cog.listener()
     async def on_message(self, message):
@@ -224,6 +218,7 @@ class vein(commands.Cog, name= "moderation"):
             embed1.add_field(name="whois", value="To make Abode get the general info on the user", inline=False)
             embed1.add_field(name="serverinfo", value="To get the general info of the server", inline=False)
             embed1.add_field(name="invite", value="Get invite link of Abode of Scholars.", inline=False)
+            embed1.add_field(name="complaint", value="Add an server complaint which will go into <#757110183800471572>.", inline=False)
             embed1.set_footer(text=f"Requested by {ctx.message.author.name}" )
 
 

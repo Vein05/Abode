@@ -18,14 +18,14 @@ import urllib
 
 class vein3(commands.Cog, name= "APIs"):
     def __init__(self, client):
-        self.client = client 
+        self.client = client
 
     account=  praw.Reddit(client_id = "0H3JtzbIXbtZNw",
                          client_secret = "XKE_G2TxnXZY3nZQb8pOI17b10o",
                          username= "LordVein05",
                          passowrd= "vein6969",
                          user_agent= "Abode")
-                     
+
 
 
     @commands.command()
@@ -38,7 +38,7 @@ class vein3(commands.Cog, name= "APIs"):
         embed.add_field(name="cat and catfact", value=  f' Make Abode send a woof picture ', inline=False)
         embed.add_field(name="dog and dogfact", value=   f' Make Abode send a meow picture ', inline=False)
         embed.add_field(name="panda and pandafact", value= f' Make Abode send cutuest pands', inline=False)
-        embed.add_field(name="pikachu", value= f' Make Abode send a pikachu gif or an image', inline=False)                                  
+        embed.add_field(name="pikachu", value= f' Make Abode send a pikachu gif or an image', inline=False)
         embed.add_field(name="yearfact", value= f' Make Abode send a random fact on the mentioned year', inline=False)
         embed.add_field(name="clyde", value= f' Make clyde say something', inline=False)
 
@@ -51,78 +51,78 @@ class vein3(commands.Cog, name= "APIs"):
     @commands.command()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def dankmemes(self,ctx):
-       
+
         account=  praw.Reddit(client_id = "_AhvH0lWxXDJhg",
                          client_secret = "n73tfGobbpfrhSrAXb4RmDoPH6U",
                          username= "LordVein05",
                          passowrd= "vein6969",
                          user_agent= "Abode")
-        
+
         subreddit = account.subreddit("dankmemes")
         all_subs = []
-    
+
         top= subreddit.top (limit=70)
         for submission in top:
             all_subs.append(submission)
 
-        random_sub = random.choice(all_subs)  
+        random_sub = random.choice(all_subs)
 
         name= random_sub.title
-        url= random_sub.url 
+        url= random_sub.url
 
         embed= discord.Embed(title= name, colour=0x529dff)
         embed.set_image(url=url)
         embed.set_footer(text=f"Requested by {ctx.author}, Source: DankMemes")
-        await ctx.send(embed=embed)  
-    
-    
+        await ctx.send(embed=embed)
+
+
     @commands.command(alaises=['pmeme'])
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def Pmemes(self,ctx):
-       
+
         account=  praw.Reddit(client_id = "_AhvH0lWxXDJhg",
                          client_secret = "n73tfGobbpfrhSrAXb4RmDoPH6U",
                          username= "LordVein05",
                          passowrd= "vein6969",
                          user_agent= "Abode")
-        
+
         subreddit = account.subreddit("ProgrammerHumor")
         all_subs = []
-    
+
         top= subreddit.top (limit=50)
         for submission in top:
             all_subs.append(submission)
 
-        random_sub = random.choice(all_subs)  
+        random_sub = random.choice(all_subs)
 
         name= random_sub.title
-        url= random_sub.url 
+        url= random_sub.url
 
         embed= discord.Embed(title= name, colour=0x529dff)
         embed.set_image(url=url)
         embed.set_footer(text=f"Requested by {ctx.author}, Source : ProgrammerHumor", icon_url=ctx.author.avatar_url)
-        await ctx.send(embed=embed)  
-    
-      
+        await ctx.send(embed=embed)
+
+
     @commands.command()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def dog(self, ctx):
-        try: 
+        try:
             async with ctx.channel.typing():
                 async with aiohttp.ClientSession() as cs:
                     async with cs.get("https://dog.ceo/api/breeds/image/random") as r:
                         data = await r.json()
-            
+
                         embed = discord.Embed(title="Woof", colour=0x529dff)
                         embed.set_image(url=data['message'])
                         embed.set_footer(text=f"Requested by {ctx.author}, Source: Thedogapi", icon_url=ctx.author.avatar_url)
 
                         await ctx.send(embed=embed)
-        except:            
+        except:
                 await ctx.send(f'Command on cooldown for some seconds.', delete_after=5)
 
-    
-    
+
+
 
     @commands.command()
     @commands.has_permissions(manage_messages=True)
@@ -133,29 +133,29 @@ class vein3(commands.Cog, name= "APIs"):
                 res = await r.json()
                 embed = discord.Embed(
                     color=0x529dff
-                    
+
                 )
                 embed.set_image(url=res['message'])
                 embed.set_footer(text=f'Requested by {ctx.author.name}, Source : Nekobot.xyz',icon_url=ctx.author.avatar_url)
 
-                await ctx.send(embed=embed)  
-                await ctx.message.delete()  
+                await ctx.send(embed=embed)
+                await ctx.message.delete()
 
-   
+
     @commands.command()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def yearfact (self, ctx):
-        
+
         async with aiohttp.ClientSession() as cs:
-        
+
             async with cs.get(f"http://numbersapi.com/random/year?json") as r:
                 data = await r.json()
-                
+
                 embed = discord.Embed(title= data['number'], description=data['text'], colour=0x529dff)
-                
+
                 embed.set_footer(text=f"Requested by {ctx.author}, Fact from numbersapi.com", icon_url=ctx.author.avatar_url)
                 await ctx.send(embed=embed)
-                
+
 
     @commands.command()
     @commands.cooldown(1, 15, commands.BucketType.user)
@@ -168,9 +168,9 @@ class vein3(commands.Cog, name= "APIs"):
                     embed = discord.Embed(title="Panda fact", colour=0x529dff)
                     embed.set_author(name=data['fact'])
                     embed.set_footer(text=f"Requested by {ctx.author}, Source: Some-random-api", icon_url=ctx.author.avatar_url)
-                    
+
                     await ctx.send(embed=embed)
-                   
+
 
     @commands.command()
     @commands.cooldown(1, 15, commands.BucketType.user)
@@ -184,7 +184,7 @@ class vein3(commands.Cog, name= "APIs"):
                  embed.set_author (name=data['fact'])
                  embed.set_footer(text=f"Requested by {ctx.author}, Source : Some-random-api", icon_url=ctx.author.avatar_url)
                  await ctx.send(embed=embed)
-    
+
 
     @commands.command()
     @commands.cooldown(1, 15, commands.BucketType.user)
@@ -199,7 +199,7 @@ class vein3(commands.Cog, name= "APIs"):
                  embed.set_footer(text=f"Requested by {ctx.author}, Source : Some-random-api", icon_url=ctx.author.avatar_url)
 
                  await ctx.send(embed=embed)
-                
+
 
     @commands.command()
     @commands.cooldown(1, 15, commands.BucketType.user)
@@ -214,7 +214,7 @@ class vein3(commands.Cog, name= "APIs"):
                     embed.set_footer(text=f"Requested by {ctx.author}, source : Aws.randam.cat/meow", icon_url=ctx.author.avatar_url)
 
                     await ctx.send(embed=embed)
-                    
+
 
     @commands.command()
     @commands.cooldown(1, 15, commands.BucketType.user)
@@ -243,13 +243,13 @@ class vein3(commands.Cog, name= "APIs"):
                     embed.set_footer(text=f"Requested by {ctx.author}, Source : Some-random-api", icon_url=ctx.author.avatar_url)
 
                     await ctx.send(embed=embed)
-                    
+
 
 
     @commands.command()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def pikachu(self,ctx):
-            
+
             async with aiohttp.ClientSession() as cs:
                 async with cs.get("https://some-random-api.ml/img/pikachu") as r:
                     data = await r.json()
@@ -258,7 +258,7 @@ class vein3(commands.Cog, name= "APIs"):
                     embed.set_image(url=data['link'])
                     embed.set_footer(text=f"Requested by {ctx.author}, source some random api", icon_url=ctx.author.avatar_url)
                     await ctx.send(embed=embed)
-                      
+
 
 
     @commands.command()
@@ -272,7 +272,7 @@ class vein3(commands.Cog, name= "APIs"):
                 embed.set_footer(text=f"Requested by {ctx.author}, Fact from numbersapi.com", icon_url=ctx.author.avatar_url)
                 await ctx.send(embed=embed)
 
-    
+
     @commands.command()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def advice(self, ctx):
@@ -281,33 +281,30 @@ class vein3(commands.Cog, name= "APIs"):
         embed = discord.Embed(title=advice ,colour=0x529dff)
         embed.set_footer(text=f"Requested by {ctx.author}, adviceslip.com", icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
-                
-    @advice.error
-    async def command_name_here_error(self,ctx, e):
-        tb = '\n'.join(traceback.format_exception(type(e), e, e.__traceback__))
-        await ctx.send(tb[:2000])
-                
-               
+
+
+
+
     @commands.command()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def aquote(self, ctx):
        async with aiohttp.ClientSession() as cs:
            async with cs.get(f'https://some-random-api.ml/animu/quote') as r:
-                
+
                 data = await r.json()
                 by = data['characther']
                 anime= data['anime']
                 quote= data['sentence']
-                
+
                 embed = discord.Embed(title=f'"{quote}"', colour=0x529dff)
                 embed.set_author(name=f'By {by} from {anime}')
                 embed.set_footer(text=f'Requested by {ctx.author}, Quote from some-random-api')
                 await ctx.send(embed=embed)
-                
+
     @commands.command()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def headpat(self,ctx):
-            
+
             async with aiohttp.ClientSession() as cs:
                 async with cs.get("https://some-random-api.ml/animu/pat") as r:
                     data = await r.json()
@@ -316,11 +313,11 @@ class vein3(commands.Cog, name= "APIs"):
                     embed.set_image(url=data['link'])
                     embed.set_footer(text=f"Requested by {ctx.author}, source some random api", icon_url=ctx.author.avatar_url)
                     await ctx.send(embed=embed)
-   
+
     @commands.command()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def wink(self,ctx):
-            
+
             async with aiohttp.ClientSession() as cs:
                 async with cs.get("https://some-random-api.ml/animu/wink") as r:
                     data = await r.json()
@@ -333,7 +330,7 @@ class vein3(commands.Cog, name= "APIs"):
     @commands.command()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def hug(self,ctx):
-            
+
             async with aiohttp.ClientSession() as cs:
                 async with cs.get("https://some-random-api.ml/animu/hug") as r:
                     data = await r.json()
@@ -346,7 +343,7 @@ class vein3(commands.Cog, name= "APIs"):
     @commands.command()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def facepalm(self,ctx):
-            
+
             async with aiohttp.ClientSession() as cs:
                 async with cs.get("https://some-random-api.ml/animu/face-palm") as r:
                     data = await r.json()

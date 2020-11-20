@@ -10,9 +10,7 @@ import disputils
 from disputils import BotConfirmation
 
 
-mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
-cluster= MongoClient(mongo_url)
-db = cluster['AbodeDB']
+
 
 class vein7(commands.Cog, name='db'):
     def __init__(self,client):
@@ -58,6 +56,9 @@ class vein7(commands.Cog, name='db'):
     @commands.command()
     async def note (self, ctx):
         author_id= str(ctx.message.author.id)
+        mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
+        cluster= MongoClient(mongo_url)
+        db = cluster['AbodeDB']
         collection= db['Notes']
         user_id= {"_id": author_id}
         dbnote = collection.find(user_id)

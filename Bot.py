@@ -46,7 +46,7 @@ async def on_command_error(ctx, error):
 
     if isinstance(error, commands.MissingRequiredArgument) or isinstance(error, commands.BadArgument):
         helper = str(ctx.invoked_subcommand) if ctx.invoked_subcommand else str(ctx.command)
-        await ctx.send(f'{ctx.author.name} The correct way of using that commands is:')
+        await ctx.send(f'{ctx.author.name} The correct way of using that commands is: ')
         await ctx.send_help(helper)
 
 

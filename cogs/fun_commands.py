@@ -20,6 +20,7 @@ from discord.ext.commands import clean_content
 from random import choice as randchoice
 import pymongo
 from pymongo import MongoClient
+import request
 
 color = 0xa100f2
 
@@ -342,6 +343,8 @@ class vein2(commands.Cog, name= "fun"):
             embed.set_author(name=f'Note for {ctx.message.author.display_name}', icon_url=ctx.author.avatar_url)
             embed.add_field(name=f'Details', value= user['usernote'])
             await ctx.send(embed=embed)'''
+
+
 
 
 def setup (client):
