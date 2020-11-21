@@ -72,6 +72,7 @@ class vein7(commands.Cog, name='db'):
 
         else:
             for nte in dbnote:
+                print(nte)
                 cur_note = nte['note']
                 time= nte['time']
                 embed= discord.Embed(color= ctx.author.color, timestamp= time, description= f'{cur_note}' )
@@ -123,8 +124,6 @@ class vein7(commands.Cog, name='db'):
 
 
 
-
-
     @commands.command()
     @commands.guild_only()
     async def removenote (self, ctx):
@@ -140,6 +139,14 @@ class vein7(commands.Cog, name='db'):
         collection.delete_one(user_id)
 
         await ctx.send(f'{ctx.message.author.display_name}, Just removed your note. To add a new note just ``.addnote <note>``.')
+
+
+
+
+
+
+
+
 
 
 

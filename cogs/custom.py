@@ -1,10 +1,81 @@
 import discord
 from discord.ext import commands
+import pymongo
+from pymongo import MongoClient
+
 
 
 class vein6(commands.Cog, name= "custom"):
     def __init__(self, client):
-        self.client = client 
+        self.client = client
+
+
+    @commands.command()
+    async def a(self, ctx, *, arg: str):
+
+            mongo_url= "mongodb://Abode:sap6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
+            cluster= MongoClient(mongo_url)
+            db = cluster['AbodeDB']
+            collection= db['Gifs']
+
+
+
+            vein = (arg)
+
+            user_id= {"_id": vein}
+            dbnote = collection.find((user_id))
+
+            for nte in dbnote:
+
+
+
+
+                giflink = nte['link']
+                print(gifname)
+                await ctx.send(f'{giflink}')
+
+
+
+
+
+
+
+    @commands.command()
+    @commands.guild_only()
+    @commands.has_permissions(manage_roles=True)
+    async def addcommand(self, ctx, name ,*, arg):
+        author_id = str(ctx.message.author.id)
+        mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
+        cluster= MongoClient(mongo_url)
+        db = cluster['AbodeDB']
+        collection= db['Gifs']
+        user_id= {"_id": name}
+        cmd_name = {"user_id": author_id}
+        link = arg
+
+        if (collection.find_one({"name": cmd_name})== True):
+            await ctx.send(f'``{ctx.message.author.name}``, this command already exists please try another name.')
+
+        else:
+            gif_data= {"_id": name, "Mod": ctx.author.name, "user_id": author_id, "link": link}
+            collection.insert_one(gif_data)
+            await ctx.send(f'Just added a new command ``{name}``.')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     @commands.command()
