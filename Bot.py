@@ -15,7 +15,7 @@ import platform
 import jishaku
 
 
-client = commands.Bot(command_prefix = commands.when_mentioned_or('.'), case_insensitive=True, intents=intents, paginator = True)
+client = commands.Bot(command_prefix = commands.when_mentioned_or('.'), case_insensitive=True, intents=intents )
 
 client.remove_command("help")
 
@@ -54,6 +54,7 @@ async def on_command_error(ctx, error):
 
 
 @client.command(aliases=['Hi', 'Namaste'])
+@commands.guild_only()
 async def hello(ctx):
     greetings = ['Hello', 'Hiya', 'nĭ hăo', 'Namaste', 'Konichiwa', 'Zdravstvuyte', 'Bonjour', 'Guten tag',
                  'Anyoung haseyo', 'Asalaam alaikum', 'Goddag', 'Selamat siang','hola', 'marhabaan	', 'hyālō',
@@ -67,6 +68,7 @@ async def hello(ctx):
 
 
 @client.command()
+@commands.guild_only()
 async def ping (ctx):
 
         latency = round(client.latency *1000)
@@ -78,6 +80,7 @@ async def ping (ctx):
 
 
 @client.command(aliases= ['pmuser'])
+@commands.guild_only()
 @commands.has_permissions(manage_messages=True)
 async def DMuser (ctx, user: discord.User, *, msg ):
     try:

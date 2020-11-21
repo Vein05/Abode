@@ -19,6 +19,7 @@ class vein7(commands.Cog, name='db'):
 
 
     @commands.command()
+    @commands.guild_only()
     async def addnote (self, ctx, *, data):
         await ctx.message.delete()
         author_id= str(ctx.message.author.id)
@@ -54,6 +55,7 @@ class vein7(commands.Cog, name='db'):
 
 
     @commands.command()
+    @commands.guild_only()
     async def note (self, ctx):
         author_id= str(ctx.message.author.id)
         mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
@@ -124,6 +126,7 @@ class vein7(commands.Cog, name='db'):
 
 
     @commands.command()
+    @commands.guild_only()
     async def removenote (self, ctx):
         author_id= str(ctx.message.author.id)
         mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"

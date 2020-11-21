@@ -20,7 +20,7 @@ from discord.ext.commands import clean_content
 from random import choice as randchoice
 import pymongo
 from pymongo import MongoClient
-import request
+import requests
 
 color = 0xa100f2
 
@@ -41,6 +41,7 @@ class vein2(commands.Cog, name= "fun"):
 
 
     @commands.command(aliases=['whois', 'ui'])
+    @commands.guild_only()
     async def userinfo(self,ctx, member: discord.Member=None):
         member = member or ctx.author
 
@@ -103,10 +104,12 @@ class vein2(commands.Cog, name= "fun"):
 
 
     @commands.command(aliases=['wel'])
+    @commands.guild_only()
     async def welcome(self,ctx):
         await ctx.send(f'<:Cuppedfist:769143163414773760> Welcome to Abode of Scholars, enjoy your stay here.')
 
     @commands.command(alaises=['servercount','membercount'])
+    @commands.guild_only()
     async def members(self,ctx):
         embed=discord.Embed(color=0x529dff)
         embed.add_field(name="Total members", value=f"{ctx.guild.member_count}", inline=False)
@@ -114,6 +117,7 @@ class vein2(commands.Cog, name= "fun"):
         await ctx.send(embed=embed)
 
     @commands.command(alaises=['si'])
+    @commands.guild_only()
     async def serverinfo(self, ctx):
         guild= ctx.guild
         emojis = str(len(guild.emojis))
@@ -181,6 +185,8 @@ class vein2(commands.Cog, name= "fun"):
 
     @commands.command()
     @commands.has_permissions(manage_messages=True)
+    @commands.guild_only()
+
     async def echo(self, ctx,*, arg):
         await ctx.send(arg)
         await ctx.message.delete()
@@ -188,6 +194,9 @@ class vein2(commands.Cog, name= "fun"):
 
 
     @commands.command(alaises=['lennyface'])
+    @commands.guild_only()
+
+
     async def lenny( self, ctx):
         lennys= ['( ͡° ͜ʖ ͡°)', 'ಠ_ಠ', '( ͡ʘ ͜ʖ ͡ʘ)', '(▀̿Ĺ̯▀̿ ̿)', '( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)', '( ͡ᵔ ͜ʖ ͡ᵔ )',
                  '(╯ ͠° ͟ʖ ͡°)╯┻━┻', 'ᕙ(▀̿̿Ĺ̯̿̿▀̿ ̿) ᕗ', '(✿╹◡╹)', 'щ（ﾟДﾟщ） < "Dear god why‽ )', '(人◕ω◕)', '(*бωб)', 'ヽ(͡◕ ͜ʖ ͡◕)ﾉ',
@@ -196,6 +205,8 @@ class vein2(commands.Cog, name= "fun"):
         await ctx.message.delete()
 
     @commands.command(alaises=['coin'])
+    @commands.guild_only()
+
     async def flip(self,ctx):
         value=['Heads', 'Tails']
         await ctx.send (random.choice(value))
@@ -206,6 +217,7 @@ class vein2(commands.Cog, name= "fun"):
 
 
     @commands.command()
+    @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def lovemeter(self, ctx, name1: clean_content, name2: clean_content ):
         percentage = random.randint(0, 100)
@@ -290,27 +302,32 @@ class vein2(commands.Cog, name= "fun"):
 
 
     @commands.command()
+    @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def happy(self, ctx):
         await ctx.send(f'https://media1.tenor.com/images/3419ea3da202cf42d6c7ab37a7fcd44e/tenor.gif')
 
     @commands.command()
+    @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def sad(self, ctx):
         await ctx.send(f'https://media1.tenor.com/images/09b085a6b0b33a9a9c8529a3d2ee1914/tenor.gif')
 
     @commands.command()
+    @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def angry(self, ctx):
         await ctx.send(f'https://tenor.com/view/anime-angry-evil-plan-gif-14086662')
 
     @commands.command()
+    @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def f(self, ctx):
         await ctx.send(f'{ctx.author.display_name} paid their respects.')
 
 
     @commands.command()
+    @commands.guild_only()
     @commands.has_permissions(manage_messages=True)
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def embed(self, ctx, *, string):

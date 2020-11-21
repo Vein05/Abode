@@ -29,6 +29,7 @@ class vein3(commands.Cog, name= "APIs"):
 
 
     @commands.command()
+    @commands.guild_only()
     async def helpimages(self, ctx):
         embed= discord.Embed(title='Image commands or API commands ||commands have cooldowns||', colour=0x529dff)
         embed.set_author(name="Abode", icon_url=f'{ctx.me.avatar_url}')
@@ -49,6 +50,7 @@ class vein3(commands.Cog, name= "APIs"):
 
 
     @commands.command()
+    @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def dankmemes(self,ctx):
 
@@ -77,6 +79,7 @@ class vein3(commands.Cog, name= "APIs"):
 
 
     @commands.command(alaises=['pmeme'])
+    @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def Pmemes(self,ctx):
 
@@ -105,6 +108,7 @@ class vein3(commands.Cog, name= "APIs"):
 
 
     @commands.command()
+    @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def dog(self, ctx):
         try:
@@ -125,6 +129,7 @@ class vein3(commands.Cog, name= "APIs"):
 
 
     @commands.command()
+    @commands.guild_only()
     @commands.has_permissions(manage_messages=True)
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def clyde(self, ctx, *, text):
@@ -143,6 +148,7 @@ class vein3(commands.Cog, name= "APIs"):
 
 
     @commands.command()
+    @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def yearfact (self, ctx):
 
@@ -158,6 +164,7 @@ class vein3(commands.Cog, name= "APIs"):
 
 
     @commands.command()
+    @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def pandafact(self, ctx):
         async with ctx.channel.typing():
@@ -173,6 +180,7 @@ class vein3(commands.Cog, name= "APIs"):
 
 
     @commands.command()
+    @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def catfact(self, ctx):
         async with ctx.channel.typing():
@@ -187,6 +195,7 @@ class vein3(commands.Cog, name= "APIs"):
 
 
     @commands.command()
+    @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def dogfact(self, ctx):
         async with ctx.channel.typing():
@@ -202,6 +211,7 @@ class vein3(commands.Cog, name= "APIs"):
 
 
     @commands.command()
+    @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def cat(self, ctx):
 
@@ -217,6 +227,7 @@ class vein3(commands.Cog, name= "APIs"):
 
 
     @commands.command()
+    @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def panda(self, ctx):
 
@@ -231,6 +242,7 @@ class vein3(commands.Cog, name= "APIs"):
                     await ctx.send(embed=embed)
 
     @commands.command()
+    @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def koala(self, ctx):
 
@@ -247,6 +259,7 @@ class vein3(commands.Cog, name= "APIs"):
 
 
     @commands.command()
+    @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def pikachu(self,ctx):
 
@@ -262,6 +275,7 @@ class vein3(commands.Cog, name= "APIs"):
 
 
     @commands.command()
+    @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def numberfact(self, ctx):
         async with aiohttp.ClientSession() as cs:
@@ -274,6 +288,7 @@ class vein3(commands.Cog, name= "APIs"):
 
 
     @commands.command()
+    @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def advice(self, ctx):
         r = requests.get("https://api.adviceslip.com/advice").json()
@@ -286,6 +301,7 @@ class vein3(commands.Cog, name= "APIs"):
 
 
     @commands.command()
+    @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def aquote(self, ctx):
        async with aiohttp.ClientSession() as cs:
@@ -302,6 +318,7 @@ class vein3(commands.Cog, name= "APIs"):
                 await ctx.send(embed=embed)
 
     @commands.command()
+    @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def headpat(self,ctx):
 
@@ -315,6 +332,7 @@ class vein3(commands.Cog, name= "APIs"):
                     await ctx.send(embed=embed)
 
     @commands.command()
+    @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def wink(self,ctx):
 
@@ -341,6 +359,7 @@ class vein3(commands.Cog, name= "APIs"):
                     await ctx.send(embed=embed)
 
     @commands.command()
+    @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def facepalm(self,ctx):
 

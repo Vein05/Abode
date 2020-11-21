@@ -13,6 +13,7 @@ from io import BytesIO
 import re
 from disputils import BotEmbedPaginator
 from discord import Embed
+from disputils import BotMultipleChoice
 
 color = 0xa100f2
 
@@ -33,6 +34,7 @@ class vein(commands.Cog, name= "moderation"):
 
     @commands.command(alaises = ['Bot'],hidden=True)
     @commands.cooldown(1, 10, commands.BucketType.user)
+    @commands.guild_only()
     async def abode(self,ctx):
 
         embed= discord.Embed(color=color)
@@ -57,6 +59,7 @@ class vein(commands.Cog, name= "moderation"):
 
     @commands.command(aliases=['frequent_questions'],
         hidden=True)
+    @commands.guild_only()
     async def faq(self, ctx):
         embed= discord.Embed(color=color)
         embed.set_thumbnail(url=f'{ctx.guild.icon_url}')
@@ -72,6 +75,7 @@ class vein(commands.Cog, name= "moderation"):
 
 
     @commands.command(aliases=['purge'],hidden=True)
+    @commands.guild_only()
     @commands.has_permissions(manage_messages=True)
     async def clear(self,ctx, amount=3):
         if amount <= 200:
@@ -86,6 +90,7 @@ class vein(commands.Cog, name= "moderation"):
 
     @commands.command(hidden=True)
     @commands.has_permissions(manage_roles=True)
+    @commands.guild_only()
     async def role(self , ctx, member: discord.Member, *,arg):
         role = discord.utils.get(ctx.guild.roles, name=f"{arg}")
         if role not in member.roles:
@@ -96,6 +101,7 @@ class vein(commands.Cog, name= "moderation"):
             await ctx.send(f"{member} was removed from the role ``{arg}``.")
 
     @commands.command(hidden=True)
+    @commands.guild_only()
     @commands.has_permissions(manage_nicknames=True)
     async def cnick(self , ctx, member: discord.Member, *,arg):
         if ctx.guild.me.top_role < member.top_role:
@@ -117,6 +123,7 @@ class vein(commands.Cog, name= "moderation"):
         aliases=['clearuser', 'purgeuser'],
         hidden=True
     )
+    @commands.guild_only()
     async def purge_user(
         self, ctx,
         user: User,
@@ -137,6 +144,7 @@ class vein(commands.Cog, name= "moderation"):
 
 
     @commands.command(hidden=True)
+    @commands.guild_only()
     @commands.has_permissions(manage_messages=True)
     async def DM (self, ctx, *, arg ):
             await ctx.message.author.send(arg)
@@ -153,6 +161,7 @@ class vein(commands.Cog, name= "moderation"):
 
 
     @commands.command(hidden=True)
+    @commands.guild_only()
     @commands.has_permissions(kick_members=True)
     async def kick(self, ctx, member: discord.Member, *, reason=None):
         if member is None:
@@ -166,6 +175,7 @@ class vein(commands.Cog, name= "moderation"):
 
 
     @commands.command(hidden=True)
+    @commands.guild_only()
     @commands.has_permissions(ban_members=True)
     async def ban(self, ctx, member: discord.Member = None, reason: str = "You were banned from the server for not following the rules."):
         if member is not None:
@@ -201,6 +211,7 @@ class vein(commands.Cog, name= "moderation"):
 
 
     @commands.command()
+    @commands.guild_only()
     async def help(self, ctx):
         ch = 757136905329442859
         ch1= 757136943149613076
@@ -269,31 +280,41 @@ class vein(commands.Cog, name= "moderation"):
 
 
     @commands.command(alaises=['moderationcommands'])
+    @commands.guild_only()
     @commands.has_permissions(kick_members=True)
     async def helpmod(self,ctx):
         try:
-            embed= discord.Embed(title="Commands for moderators", description="The main commands of the bot", color=color)
+            embed= discord.Embed( color=color)
             embed.set_thumbnail(url=f'{ctx.guild.icon_url}')
-            embed.set_author(name="Abode", icon_url=f'{ctx.me.avatar_url}')
-            embed.add_field(name="DM", value="To make Abode DM you something, ``.dm Abode``", inline=False)
-            embed.add_field(name="DMuser", value="To make Abode DM a specific Use, ``.dm @Vein#8177 Abode`` ", inline=False)
-            embed.add_field(name="clear/purge", value="To clear messages sent ``.purge 3``, default no of message that bot clears is 3", inline=False)
-            embed.add_field(name="kick ", value= "To kick a user, make sure to have a reason in the command ``Kick @Vein#8177 being too cool``", inline=False)
-            embed.add_field(name="ban", value= "To ban a user, make sure to have a reason in the command ``ban @Vein#8177 being too annoying, as always``", inline=False)
-            embed.add_field(name='clearuser', value= 'To clear messages of a specific user, be carefull while using this ``.clearuser @Vein38177 10``', inline=False)
-            embed.add_field(name="channelstats", value= 'To show the stats/info of the channel the command is used on ``.channelstats``', inline=False)
-            embed.add_field(name='cnick', value= f'To change the server nickname of the meantioned user ``.cnick @Vein#8177 Waifu``', inline=False)
-            embed.add_field(name='role', value= f'To add a role to an user ``.role @Vein#8177 Civilian`` note : the spellings should not be wrong.', inline=False)
+            embed.set_author(name="Main commands of Abode.", icon_url=f'{ctx.me.avatar_url}')
+            embed.add_field(name="‎‎‎‏‏‎‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ㅤModeration", value=f"**DM** \nTo make Abode DM you something, ``.dm Abode``\n"
+                                                        f'**DMuser** \nTo make Abode DM a specific Use, ``.dm @Vein#8177 Abode\n\n``'
+                                                        f"**clear ** \nTo clear messages sent ``.purge 3``, default no of message that bot clears is ``3``.\n"
+                                                        f'**clearuser** \nTo clear messages of a specific user, be carefull while using this ``.clearuser @Vein38177 10``'
+                                                        , inline=False)
+
+            embed.add_field(name="‎‎‎‏‏‎ ‎ ", value= "**Kick** \nTo kick a user, make sure to have a reason in the command ``Kick @Vein#8177 being too cool``\n\n"
+                                                        "**ban** \nTo ban a user, make sure to have a reason in the command ``ban @Vein#8177 being too annoying, as always``\n\n"
+                                                        "**cnick** \nTo change the server nickname of the meantioned user ``.cnick @Vein#8177 Waifu``\n\n"
+                                                        "**role** \nTo add a role to an user ``.role @Vein#8177 Civilian`` note : the spellings or the letter case should not be wrong. \n\n"
+                                                            , inline=False)
+
+
+            embed.add_field(name="‎‎‎‏‏ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤUtility", value= '**channelstats** \nTo show the stats/info of the channel the command is used on ``.channelstats``\n\n'\
+                                                    '**poll** \nTo make a poll about things. ``.poll "Poll title here" "option 1" "option2" "option3" "option4"`` if you don\'t get it just see the pinned message on <#757128532789821490>', inline=False)
+
             embed.set_footer(text=f"Requested by {ctx.message.author.name}", icon_url=(ctx.author.avatar_url))
             embed.timestamp= datetime.datetime.utcnow()
             await ctx.message.author.send(embed=embed)
-            await ctx.send(f'{ctx.message.author.display_name}, Sent you a DM.')
+            await ctx.send(f'{ctx.message.author.display_name}, Sent you a DM.', delete_after=10)
+            await ctx.message.delete()
         except:
-            await ctx.send(f'{ctx.message.author.display_name}, You have your dms closed.')
-            await message.delete()
+            await ctx.send(f'{ctx.message.author.display_name}, You have your dms closed.', delete_after=10)
+            await ctx.message.delete()
 
     @commands.command(hidden=True)
-    @commands.has_permissions(kick_members=True)
+    @commands.guild_only()
+    @commands.has_permissions(manage_channels=True)
     async def channelstats(self, ctx):
         channel = ctx.channel
         tmembers= str(len(channel.members))
@@ -322,6 +343,7 @@ class vein(commands.Cog, name= "moderation"):
 
 
     @commands.command()
+    @commands.guild_only()
     @commands.cooldown(1, 21600, commands.BucketType.user)
     async def complaint(self, ctx, *,arg):
         if ctx.channel.id != (757136905329442859 or 757136943149613076):
@@ -337,6 +359,32 @@ class vein(commands.Cog, name= "moderation"):
 
 
 
+    @commands.command()
+    @commands.guild_only()
+    @commands.has_permissions(manage_messages=True)
+    async def poll(self, ctx, question, *options: str):
+        if len(options) <= 1:
+            await ctx.send('Weird you want to make a poll with less than 1 option?')
+            return
+        if len(options) > 10:
+            await ctx.send('Bruh! you can\'t make a poll with more than 7 options.')
+            return
+
+        if len(options) == 2 and options[0] == 'yes' and options[1] == 'no':
+            reactions = ['✅', '❌']
+        else:
+            reactions = ['1️⃣' , '2⃣', '3⃣', '4⃣', '5⃣', '6⃣', '7⃣']
+
+        description = []
+        for x, option in enumerate(options):
+            description += f'\n\n {reactions[x]} {option}'
+        embed = discord.Embed(title=question, description=''.join(description), color=color, timestamp= datetime.datetime.utcnow())
+        embed.set_footer(text=f'Elder responsible for the poll : {ctx.message.author.name}')
+        msg = await ctx.send(embed=embed)
+        for reaction in reactions[:len(options)]:
+            await msg.add_reaction(reaction)
+
+        await ctx.edit_message(react_message, embed=embed)
 
 
 
