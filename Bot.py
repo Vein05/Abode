@@ -13,7 +13,8 @@ import re
 import json
 import platform
 import jishaku
-
+import pymongo
+from pymongo import MongoClient
 
 client = commands.Bot(command_prefix = commands.when_mentioned_or('.'), case_insensitive=True, intents=intents )
 
@@ -99,6 +100,15 @@ async def DMuser (ctx, user: discord.User, *, msg ):
 
 
 
+
+
+
+
+
+
+
+
+
 extensions= [
             'cogs.mod_commands',
             'cogs.fun_commands',
@@ -106,7 +116,8 @@ extensions= [
             'cogs.admin',
             'cogs.games',
             'cogs.custom',
-            'cogs.db'
+            'cogs.db',
+            'cogs.leveling'
 
 ]
 if __name__ == "__main__" :

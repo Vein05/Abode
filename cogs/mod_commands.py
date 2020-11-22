@@ -391,7 +391,7 @@ class vein(commands.Cog, name= "moderation"):
 
 
 def setup (client):
-     client.add_cog (vein(client))
+     client.add_cog(vein(client))
      print("Mod cog is working.")
 
 
