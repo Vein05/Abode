@@ -331,7 +331,7 @@ class vein2(commands.Cog, name= "fun"):
     @commands.has_permissions(manage_messages=True)
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def embed(self, ctx, *, string):
-        embed=discord.Embed(description=f'{string}', color=author.color)
+        embed=discord.Embed(description=f'{string}', color=ctx.author.color)
         await ctx.send(embed=embed)
 
 

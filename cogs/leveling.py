@@ -16,14 +16,14 @@ class vein8(commands.Cog, name='leveling'):
             return
         if message.author.bot:
             return
-        '''bot1= 757136905329442859
+        bot1= 757136905329442859
         bot2=757136943149613076
         music= 768684108770574366
         testing = 757941959796195484
         if message.channel.id == (bot1) or (bot2):
             return
         elif message.channel.id == (music) or (testing):
-            return'''
+            return
         author_id= str(message.author.id)
 
         mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
