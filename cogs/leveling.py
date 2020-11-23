@@ -2,7 +2,11 @@ import discord
 from discord.ext import commands
 import pymongo
 from pymongo import MongoClient
+import datetime
 
+
+color = 0xa100f2
+guild = 757098499836739594
 
 class vein8(commands.Cog, name='leveling'):
     def __init__(self, client):
@@ -72,10 +76,12 @@ class vein8(commands.Cog, name='leveling'):
 
 
 
-    @commands.command()
+    @commands.command(aliases=['apoints'])
     @commands.guild_only()
     @commands.has_permissions(manage_roles=True)
     async def addpoints(self, ctx, member:discord.Member, *,amount):
+        if ctx.guild.id != (guild):
+            return await ctx.send('<:WeirdChamp:757112297096216627> Come to the main server if you dare.')
         if int(amount) <= 2000:
             memeber_id= str(member.id)
 
@@ -104,10 +110,12 @@ class vein8(commands.Cog, name='leveling'):
             await ctx.send(f"<:WeirdChamp:757112297096216627> {ctx.author.name}, 2000 is the limit for now.")
 
 
-    @commands.command()
+    @commands.command(aliases=['rpoints'])
     @commands.guild_only()
     @commands.has_permissions(manage_roles=True)
     async def removepoints(self, ctx, member:discord.Member, *,amount):
+        if ctx.guild.id != 757098499836739594:
+            return await ctx.send('<:WeirdChamp:757112297096216627> Come to the main server if you dare.')
         if ctx.author.top_role < member.top_role:
             return await ctx.send("You can't remove points of someone higher than you.")
 
@@ -134,9 +142,163 @@ class vein8(commands.Cog, name='leveling'):
                 new_p = (int(old_p) - int(amount_n))
 
                 collection.update_one({"_id" : memeber_id}, {"$set" : {"points" : new_p}} )
-                await ctx.send(f"Sucessfully removed ``{amount}`` points to {member.name}. Now {member.name} has ``{new_p}`` in total.")
+                await ctx.send(f"Sucessfully removed ``{amount}`` points from {member.name}. Now {member.name} has ``{new_p}`` in total.")
         if int(amount) > 2000:
             await ctx.send(f"{ctx.author.name}, you can't remove more than 2000 points. <:WeirdChamp:757112297096216627>")
+
+
+
+
+    '''@commands.command(aliases=["lb"])
+    @commands.guild_only()
+    async def leaderboard (self, ctx):
+        member = discord.Member or ctx.author
+
+        memeber_id= str(member.id)
+        mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
+
+        cluster= MongoClient(mongo_url)
+        db = cluster['AbodeDB']
+
+        collection= db['Levels']
+
+        users = collection.find()
+        embed =discord.Embed(title="Leaderboard",color = color)
+        embed.set_thumbnail(url=f'{ctx.guild.icon_url}')
+        for i in users:
+
+            _id= i['_id']
+
+            points = i['points']
+            medal = i['Leauge']
+            qi = i['Qi']
+
+
+
+
+
+
+            embed.add_field(name=f'<@{_id}>', value='**Points**\n'
+                                f'{str(points)}\n\n'
+                                f'**Qi** \n'
+                                f'{str(qi)}\n\n'
+                                f'**Leauge** \n'
+                                f'{str(medal)} \n', inline=False)
+
+
+        await ctx.send(embed=embed)'''
+
+
+
+
+
+    @commands.command(aliases=["points", "qi"])
+    @commands.guild_only()
+    async def point (self, ctx):
+        if ctx.guild.id != (guild):
+            return
+        member= ctx.author
+
+
+        member_id= str(member.id)
+        mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
+
+        cluster= MongoClient(mongo_url)
+        db = cluster['AbodeDB']
+
+        collection= db['Levels']
+        qurey = {"_id" : member_id}
+        users = collection.find(qurey)
+
+        hm = collection.find().sort("points" , -1)
+        a = 0
+        for x in hm:
+
+
+            idd = x["_id"]
+
+
+            if idd == member_id:
+                break
+            else:
+                a += 1
+                print(a)
+        for i in users:
+            _id= i['_id']
+
+            points = i['points']
+            medal = i['Leauge']
+            qi = i['Qi']
+
+            embed= discord.Embed(color = color, timestamp=datetime.datetime.utcnow())
+            embed.set_thumbnail(url = f'{ctx.guild.icon_url}')
+
+            embed.set_author(name=f'{member.name} ', icon_url=f'{member.avatar_url}')
+            embed.add_field(name=f'Rank', value=f'#{int(a) +1}', inline=False)
+            embed.add_field(name='Points', value=f'{str(points)}')
+            embed.add_field(name='Qi', value=f'{str(qi)}')
+            embed.add_field(name='Medal', value=f'{str(medal)}', inline=False)
+            embed.set_footer(text=f"Contribution Points")
+            await ctx.send(embed=embed)
+
+
+
+
+    @commands.command(aliases=["p", "puser"])
+    @commands.guild_only()
+    async def pointinfo (self, ctx, member:discord.Member):
+        if ctx.guild.id != (guil):
+            return
+
+
+
+        member_id= str(member.id)
+        mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
+
+        cluster= MongoClient(mongo_url)
+        db = cluster['AbodeDB']
+
+        collection= db['Levels']
+        qurey = {"_id" : member_id}
+        users = collection.find(qurey)
+
+        hm = collection.find().sort("points" , -1)
+        a = 0
+        for x in hm:
+
+
+            idd = x["_id"]
+
+
+            if idd == member_id:
+                break
+            else:
+                a += 1
+                print(a)
+        for i in users:
+            _id= i['_id']
+
+            points = i['points']
+            medal = i['Leauge']
+            qi = i['Qi']
+
+            embed= discord.Embed(color = color, timestamp=datetime.datetime.utcnow())
+            embed.set_thumbnail(url = f'{ctx.guild.icon_url}')
+
+            embed.set_author(name=f'{member.name} ', icon_url=f'{member.avatar_url}')
+            embed.add_field(name=f'Rank', value=f'#{int(a) +1}', inline=False)
+            embed.add_field(name='Points', value=f'{str(points)}')
+            embed.add_field(name='Qi', value=f'{str(qi)}')
+            embed.add_field(name='Medal', value=f'{str(medal)}', inline=False)
+            embed.set_footer(text=f"Contribution Points")
+            await ctx.send(embed=embed)
+
+
+
+
 def setup (client):
     client.add_cog(vein8(client))
     print("Leveling cog is working.")
+
+
+

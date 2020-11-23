@@ -224,8 +224,8 @@ class vein(commands.Cog, name= "moderation"):
             embed1.add_field(name="8ball", value="To ask Abode an 8ball question", inline=False)
             embed1.add_field(name="echo", value="To make Abode repeat something \n"
                                                             "``.hi`` To get a random gretting from over 50 languages.", inline=False)
-            embed1.add_field(name="lenny", value="To make Abode send a lenny face", inline=False)
-            embed1.add_field(name="welcome", value="To make Abode welcome a new user", inline=False)
+            embed1.add_field(name="points/p ", value="To see your contribution points for the server. ``p @Vein#8177`` to see points of a specific user.", inline=False)
+
             embed1.add_field(name="whois", value="To make Abode get the general info on the user", inline=False)
             embed1.add_field(name="serverinfo", value="To get the general info of the server", inline=False)
             embed1.add_field(name="invite", value="Get invite link of Abode of Scholars.", inline=False)
@@ -263,7 +263,8 @@ class vein(commands.Cog, name= "moderation"):
             embed3.add_field(name='addnote',value= f'Add a note about something',inline=False)
             embed3.add_field(name='note', value= f'To view the added note.')
             embed3.add_field(name='removenote', value=f'To remove the note that you added.', inline=False)
-
+            embed3.add_field(name="lenny", value="To make Abode send a lenny face", inline=False)
+            embed3.add_field(name="welcome", value="To make Abode welcome a new user", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.message.author.name}")
 
 
@@ -290,7 +291,7 @@ class vein(commands.Cog, name= "moderation"):
             embed.add_field(name="‎‎‎‏‏‎‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ㅤModeration", value=f"**DM** \nTo make Abode DM you something, ``.dm Abode``\n"
                                                         f'**DMuser** \nTo make Abode DM a specific Use, ``.dm @Vein#8177 Abode\n\n``'
                                                         f"**clear ** \nTo clear messages sent ``.purge 3``, default no of message that bot clears is ``3``.\n"
-                                                        f'**clearuser** \nTo clear messages of a specific user, be carefull while using this ``.clearuser @Vein38177 10``'
+                                                        f'**clearuser** \nTo clear messages of a specific user, be carefull while using this ``.clearuser @Vein#8177 10``'
                                                         , inline=False)
 
             embed.add_field(name="‎‎‎‏‏‎ ‎ ", value= "**Kick** \nTo kick a user, make sure to have a reason in the command ``Kick @Vein#8177 being too cool``\n\n"
