@@ -301,7 +301,8 @@ class vein(commands.Cog, name= "moderation"):
 
 
             embed.add_field(name="‎‎‎‏‏ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤUtility", value= '**channelstats** \nTo show the stats/info of the channel the command is used on ``.channelstats``\n\n'\
-                                                    '**poll** \nTo make a poll about things. ``.poll "Poll title here" "option 1" "option2" "option3" "option4"`` if you don\'t get it just see the pinned message on <#757128532789821490>', inline=False)
+                                                    '**poll** \nTo make a poll about things. ``.poll "Poll title here" "option 1" "option2" "option3" "option4"`` if you don\'t get it just see the pinned message on <#757128532789821490>'
+                                                    '**(add / remove)points** \nTo add or remove points on users ``.addpoints @Vein#8177 2000`` also the limit is 2000.', inline=False)
 
             embed.set_footer(text=f"Requested by {ctx.message.author.name}", icon_url=(ctx.author.avatar_url))
             embed.timestamp= datetime.datetime.utcnow()
