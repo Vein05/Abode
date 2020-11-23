@@ -14,14 +14,16 @@ class vein8(commands.Cog, name='leveling'):
             return
         if message.author.id == 759784064361299989:
             return
-        bot1= 757136905329442859
+        if message.author.bot:
+            return
+        '''bot1= 757136905329442859
         bot2=757136943149613076
         music= 768684108770574366
         testing = 757941959796195484
         if message.channel.id == (bot1) or (bot2):
             return
         elif message.channel.id == (music) or (testing):
-            return
+            return'''
         author_id= str(message.author.id)
 
         mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
@@ -69,10 +71,64 @@ class vein8(commands.Cog, name='leveling'):
 
 
 
+    @commands.command()
+    @commands.has_permissions(manage_roles=True)
+    async def addpoints(self, ctx, member:discord.Member, *,amount):
+        memeber_id= str(member.id)
+
+        mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
+
+        cluster= MongoClient(mongo_url)
+        db = cluster['AbodeDB']
+        collection= db['Levels']
+        user_id = {"_id": memeber_id}
+
+        query = {"_id": memeber_id}
+        points = collection.find(query)
+
+        if collection.find_one({"_id" : memeber_id} == None):
+            await ctx.send(f"{ctx.author.name}, No such user by the name {member.name} exists. ")
+        for point in points:
+            old_p = point['points']
+
+            amount_n = int(amount)
+
+            new_p = (int(old_p) + int(amount_n))
+
+            collection.update_one({"_id" : memeber_id}, {"$set" : {"points" : new_p}} )
+            await ctx.send(f"Sucessfully added {amount} points to {member.name}. Now {member.name} has {new_p} in total.")
 
 
+    @commands.command()
+    @commands.has_permissions(manage_roles=True)
+    async def removepoints(self, ctx, member:discord.Member, *,amount):
+        if ctx.author.top_role < member.top_role:
+            return await ctx.send("You can't remove points of someone higher or equal to you.")
 
+        memeber_id= str(member.id)
+
+        mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
+
+        cluster= MongoClient(mongo_url)
+        db = cluster['AbodeDB']
+        collection= db['Levels']
+        user_id = {"_id": memeber_id}
+
+        query = {"_id": memeber_id}
+        points = collection.find(query)
+
+        if collection.find_one({"_id" : memeber_id} == None):
+            await ctx.send(f"{ctx.author.name}, No such user by the name {member.name} exists. ")
+        for point in points:
+            old_p = point['points']
+
+            amount_n = int(amount)
+
+            new_p = (int(old_p) - int(amount_n))
+
+            collection.update_one({"_id" : memeber_id}, {"$set" : {"points" : new_p}} )
+            await ctx.send(f"Sucessfully removed {amount} points to {member.name}. Now {member.name} has {new_p} in total.")
 
 def setup (client):
     client.add_cog(vein8(client))
-    print("Leveing cog is working.")
+    print("Leveling cog is working.")
