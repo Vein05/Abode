@@ -20,6 +20,7 @@ Hp = random.randint(50, 350)
 color = 0xa100f2
 guild = 757098499836739594
 
+
 class vein8(commands.Cog, name='leveling'):
     def __init__(self, client):
         self.client= client
@@ -139,6 +140,7 @@ class vein8(commands.Cog, name='leveling'):
     @commands.guild_only()
     @commands.has_permissions(manage_roles=True)
     async def addpoints(self, ctx, member:discord.Member, *,amount):
+        channel = ctx.guild.get_channel(780785741101137926)
         if ctx.guild.id != (guild):
             return await ctx.send('<:WeirdChamp:757112297096216627> Come to the main server if you dare.')
         if int(amount) <= 2000:
@@ -165,6 +167,7 @@ class vein8(commands.Cog, name='leveling'):
 
                 collection.update_one({"_id" : memeber_id}, {"$set" : {"points" : new_p}} )
                 await ctx.send(f"Sucessfully added ``{amount}`` points to {member.name}. Now {member.name} has ``{new_p}`` in total.")
+                await channel.send(f'{ctx.author.mention} added ``{amount}`` points to {member.mention}')
         elif int(amount) >= 2000:
             await ctx.send(f"<:WeirdChamp:757112297096216627> {ctx.author.name}, 2000 is the limit for now.")
 
@@ -173,6 +176,7 @@ class vein8(commands.Cog, name='leveling'):
     @commands.guild_only()
     @commands.has_permissions(manage_roles=True)
     async def removepoints(self, ctx, member:discord.Member, *,amount):
+        channel = ctx.guild.get_channel(780785741101137926)
         if ctx.guild.id != 757098499836739594:
             return await ctx.send('<:WeirdChamp:757112297096216627> Come to the main server if you dare.')
         if ctx.author.top_role < member.top_role:
@@ -202,6 +206,7 @@ class vein8(commands.Cog, name='leveling'):
 
                 collection.update_one({"_id" : memeber_id}, {"$set" : {"points" : new_p}} )
                 await ctx.send(f"Sucessfully removed ``{amount}`` points from {member.name}. Now {member.name} has ``{new_p}`` in total.")
+                await channel.send(f'{ctx.author.mention} removed  ``{amount}`` from {member.mention} and now {member.name} has ``{new_p}`` in total')
         if int(amount) > 2000:
             await ctx.send(f"{ctx.author.name}, you can't remove more than 2000 points. <:WeirdChamp:757112297096216627>")
 

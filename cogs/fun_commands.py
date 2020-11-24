@@ -21,7 +21,11 @@ from random import choice as randchoice
 import pymongo
 from pymongo import MongoClient
 import requests
+from datetime import timedelta
+import ago
+from ago import human
 
+guild = 757098499836739594
 color = 0xa100f2
 
 class vein2(commands.Cog, name= "fun"):
@@ -44,29 +48,93 @@ class vein2(commands.Cog, name= "fun"):
     @commands.guild_only()
     async def userinfo(self,ctx, member: discord.Member=None):
         member = member or ctx.author
+        if ctx.guild.id != (guild):
+            uroles = []
+            for role in member.roles[1:]:
+                if role.is_default():
+                    continue
+                uroles.append(role.mention)
 
-        uroles = []
-        for role in member.roles[1:]:
-            if role.is_default():
-                continue
-            uroles.append(role.mention)
+                uroles.reverse()
 
-            uroles.reverse()
+            time = member.created_at
+            time1= member.joined_at
 
-        embed=discord.Embed(color=color, timestamp=ctx.message.created_at, type="rich")
-        embed.set_thumbnail(url= f"{member.avatar_url}")
-        embed.set_author(name=f"{ctx.author.name}'s information",icon_url=f'{ctx.me.avatar_url}')
-        embed.add_field(name="ㅤ",value=f'**Nickname:** {member.display_name}\n\n'
-                                                        f'**ID** {member.id}\n\n'
-                                                        f'**Account created:** {member.created_at.strftime("%a, %#d %B %Y, %I:%M %p ")}\n\n'
-                                                        f'**Server joined at:** {member.joined_at.strftime("%a, %#d %B %Y, %I:%M %p ")}\n\n'
-                                                        f'**Role(s):** {", ".join(uroles)}\n\n'
-                                                        f'**Highest role:** {member.top_role.mention}'
-                                                         , inline=False)
+            embed=discord.Embed(color=color, timestamp=ctx.message.created_at, type="rich")
+            embed.set_thumbnail(url= f"{member.avatar_url}")
+            embed.set_author(name=f"{ctx.author.name}'s information",icon_url=f'{ctx.me.avatar_url}')
+            embed.add_field(name="ㅤ",value=f'**Nickname:** {member.display_name}\n\n'
+                                                            f'**ID** {member.id}\n\n'
+                                                            f'**Account created:** {human(time, 4)}\n\n'
+                                                            f'**Server joined at:** {human(time1, 3)}\n\n'
+                                                            f'**Role(s):** {", ".join(uroles)}\n\n'
+                                                            f'**Highest role:** {member.top_role.mention}'
+                                                             , inline=False)
 
-        embed.set_footer(text=f"Requested by {ctx.author}",  icon_url=ctx.author.avatar_url)
+            embed.set_footer(text=f"Requested by {ctx.author}",  icon_url=ctx.author.avatar_url)
+            await ctx.send(embed=embed)
+        elif ctx.guild.id == (guild):
+            member_id= str(member.id)
 
-        await ctx.send(embed=embed)
+            mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
+
+            cluster= MongoClient(mongo_url)
+            db = cluster['AbodeDB']
+
+            collection= db['Levels']
+            qurey = {"_id" : member_id}
+            users = collection.find(qurey)
+            for user in users:
+                realm = user['Realm']
+                pth = user['Path']
+                specy = user['Species']
+
+
+            uroles = []
+            for role in member.roles[1:]:
+                if role.is_default():
+                    continue
+                uroles.append(role.mention)
+
+                uroles.reverse()
+
+            time = member.created_at
+            time1= member.joined_at
+            if member.status == discord.Status.online:
+                status= '<:online:769826555073003521>'
+            elif member.status == discord.Status.idle:
+                status= '<:idle:769826555479588864>'
+            elif member.status== discord.Status.dnd:
+                status = '<:dnd:769826555865989153>'
+            else:
+                status = '<:offline:769826555643691041>'
+            if member.activity == None:
+                activity = 'None'
+            else:
+                activity = member.activities[-1].name
+                timestamp = member.activities[0].details
+            embed=discord.Embed(color=color, timestamp=ctx.message.created_at, type="rich")
+            embed.set_thumbnail(url= f"{member.avatar_url}")
+            embed.set_author(name=f"{ctx.author.name}'s information",icon_url=f'{ctx.me.avatar_url}')
+            embed.add_field(name="__General information__",value=f'**Nickname :** {member.display_name}\n'
+                                                            f'**ID :** {member.id}\n'
+                                                            f'**Account created :** {human(time, 4)}\n'
+                                                            f'**Server joined :** {human(time1, 3)}\n'
+                                                            ,inline=False)
+            embed.add_field(name="__Cultivation info__", value= f'**Realm :** {realm} realm\n'
+                                            f'**Species :** {specy} \n'
+                                            f'**Path : ** {pth} \n')
+            embed.add_field(name="__Role info__", value= f'**Highest role :** {member.top_role.mention}\n'
+                                                        f'**Color** : {member.color}\n'
+                                                        f'**Role(s) :** {", ".join(uroles)}\n'
+                                               , inline=False)
+            embed.add_field(name="__Presence__", value =f'**Status : ** {status}\n'
+                                                        f'**Activity : ** {activity}  \nㅤㅤㅤㅤ{timestamp}')
+            embed.set_footer(text=f"Requested by {ctx.author.name}",  icon_url=ctx.author.avatar_url)
+            await ctx.send(embed=embed)
+
+
+
 
 
 
@@ -116,7 +184,7 @@ class vein2(commands.Cog, name= "fun"):
         embed.timestamp = datetime.datetime.utcnow()
         await ctx.send(embed=embed)
 
-    @commands.command(alaises=['si'])
+    @commands.command(aliases=['si'])
     @commands.guild_only()
     async def serverinfo(self, ctx):
         guild= ctx.guild
