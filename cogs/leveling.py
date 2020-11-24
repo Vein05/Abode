@@ -3,7 +3,19 @@ from discord.ext import commands
 import pymongo
 from pymongo import MongoClient
 import datetime
+import random
+from random import randint
 
+data= ['Water', 'Air' , 'Earth', 'Fire', 'Destruction', 'Illusion' , 'Time', 'Space', 'Karma', 'Chaos']
+paths = random.choice(data)
+luck = random.randint(1, 100)
+data1= ['Demon', 'Human', 'Dragon', 'Beast', 'Phoenix', 'Spirit', 'Giant', 'Fey']
+race = random.choice(data1)
+strength= random.randint(1,10)
+speed = random.randint(1, 10)
+defense = random.randint(1, 10)
+soul = random.randint(1, 10)
+Hp = random.randint(50, 350)
 
 color = 0xa100f2
 guild = 757098499836739594
@@ -15,6 +27,7 @@ class vein8(commands.Cog, name='leveling'):
     @commands.Cog.listener()
     @commands.guild_only()
     async def on_message(self, message):
+        #remove the unnecessay things
         if message.guild.id != 757098499836739594:
             return
         if message.author.id == 759784064361299989:
@@ -37,11 +50,17 @@ class vein8(commands.Cog, name='leveling'):
         db = cluster['AbodeDB']
         collection= db['Levels']
         user_id = {"_id": author_id}
+        #checks if user is in the db or not
 
         if (collection.find_one({"_id": author_id})== None):
 
             leauge = "Novice scholar"
-            user_data= {"_id" : author_id, "points": 1, "Leauge": leauge,"Qi": 0}
+            Realm = "Mortal"
+            Path = paths
+
+
+
+            user_data= {"_id" : author_id, "points": 1, "Leauge": leauge,"Qi": 0, "Daos": 0, "Path": Path, "Realm" : Realm , "Luck": luck, "Species" : race, "Strength": strength, "Speed": speed, "Defense" : defense, "Soul" :soul, "Health": Hp }
             collection.insert_one(user_data)
 
 
@@ -54,22 +73,62 @@ class vein8(commands.Cog, name='leveling'):
                 cur_p= lvl['points']
                 new_p= cur_p + 1
 
-
+                #this is a mess
                 cur_q = lvl['Qi']
                 new_q = cur_q + 0.25
                 Leauge = lvl['Leauge']
+                dao = lvl['Daos']
+                stre = lvl['Strength']
+                sped = lvl['Speed']
+                defen = lvl['Defense']
+                sol = lvl['Soul']
+                health = lvl['Health']
+
 
                 if (new_q % 200) == 0:
-                    await ctx.send(f'<:Cuppedfist:757112296094040104> {message.author.mention}, you Qi just got to {new_q}. ')
+                    await message.channel.send(f'<:Cuppedfist:757112296094040104> Congragulations! {message.author.mention}, your Qi just reached. ``{new_q}``.')
+                elif (new_q % 600) == 0:
+                    await message.channel.send(f'{message.author}, you now have comprehendded ``{dao}`` heavenly dao(s).')
+                    collection.update_one({"_id":author_id},  {"$set":{"Daos" : +1 }})
+
                 if (new_q == 500):
-                    await ctx.send(f'<:Cuppedfist:757112296094040104> {message.author.mention}, Congragulations you earned the ``intermediate scholar`` medal.')
+                    ok = 'Star'
+                    collection.update_one({"_id":author_id},  {"$set":{"Realm" : ok }})
+                    await message.channel.send(f'<:Cuppedfist:757112296094040104> {message.author.mention} Congragulations! you just brokethrough to become a ``Star realm`` expert.\nAnd also, you earned the ``intermediate scholar`` medal.')
                     new_medal1 = 'Intermediate scholar'
-                    collection.upate_one({"_id" : author_id}, {"$set":{"Leauge" : new_medal1}})
+                    collection.update_one({"_id" : author_id}, {"$set":{"Leauge" : new_medal1}})
 
                 elif (new_q == 1500):
-                    await ctx.send(f'<:Cuppedfist:757112296094040104> {member.author.mention}, Congragulations you earned the ``Expert scholar`` medal.')
+                    await message.channel.send(f'<:Cuppedfist:757112296094040104> {member.author.mention}, Congragulations you earned the ``Expert scholar`` medal.')
                     new_medal2= 'Expert scholar'
                     collection.upate_one({"_id" : author_id}, {"$set": {"Leauge" : new_medal2}})
+                elif (new_q % 10) == 0:
+                    collection.update_one({"_id":author_id},  {"$set":{"Strength" : +10}})
+                    collection.update_one({"_id":author_id},  {"$set":{"Attack" : +2}})
+                    collection.update_one({"_id":author_id},  {"$set":{"Defense" : +1}})
+                    collection.update_one({"_id":author_id},  {"$set":{"Soul": +0.25}})
+                    collection.update_one({"_id":author_id},  {"$set":{"Health" : +3}})
+
+                if (new_q == 1100):
+                    ok = 'Transcendent'
+                    collection.update_one({"_id":author_id},  {"$set":{"Realm" : ok}})
+                    await message.channel.send(f'{message.author.mention},<:Cuppedfist:757112296094040104> Congragulations! you just brokethrough to become a ``Transcendent realm`` expert.')
+                if (new_q == 2500):
+                    ok = 'Saint'
+                    collection.update_one({"_id":author_id},  {"$set":{"Realm" : ok}})
+                    await message.channel.send(f'<:Cuppedfist:757112296094040104> {message.author.mention} Congragulations! you just brokethrough to become a ``Saint realm`` expert.')
+                if (new_q == 5100):
+                    ok = 'God'
+                    collection.update_one({"_id":author_id},  {"$set":{"Realm" : ok}})
+                    await message.channel.send(f'<:Cuppedfist:757112296094040104> {message.author.mention} Congragulations! you just brokethrough to become a ``God realm``expert.')
+                if (new_q == 10001):
+                    ok ='Chaotic'
+                    collection.update_one({"_id":author_id},  {"$set":{"Realm" : ok}})
+                    await message.channel.send(f'<:Cuppedfist:757112296094040104> {message.author.mention} Congragulations! you just brokethrough to become a ``Chaotic realm`` expert.')
+
+
+
+
                 collection.update_one({"_id":author_id}, {"$set":{'points':new_p}})
                 collection.update_one({"_id":author_id},  {"$set":{"Qi": new_q}})
 
@@ -222,23 +281,43 @@ class vein8(commands.Cog, name='leveling'):
                 break
             else:
                 a += 1
-                print(a)
-        for i in users:
-            _id= i['_id']
 
-            points = i['points']
-            medal = i['Leauge']
-            qi = i['Qi']
+        for lvl in users:
+            _id= lvl['_id']
+
+            points = lvl['points']
+            medal = lvl['Leauge']
+            dao = lvl['Daos']
+            stre = lvl['Strength']
+            sped = lvl['Speed']
+            defen = lvl['Defense']
+            sol = lvl['Soul']
+            health = lvl['Health']
+            luk = lvl['Luck']
+            qi = lvl['Qi']
+            realm = lvl['Realm']
+            speci = lvl['Species']
+            pth= lvl['Path']
 
             embed= discord.Embed(color = color, timestamp=datetime.datetime.utcnow())
             embed.set_thumbnail(url = f'{ctx.guild.icon_url}')
 
             embed.set_author(name=f'{member.name} ', icon_url=f'{member.avatar_url}')
-            embed.add_field(name=f'Rank', value=f'#{int(a) +1}', inline=False)
-            embed.add_field(name='Points', value=f'{str(points)}')
-            embed.add_field(name='Qi', value=f'{str(qi)}')
-            embed.add_field(name='Medal', value=f'{str(medal)}', inline=False)
-            embed.set_footer(text=f"Contribution Points")
+            embed.add_field(name=f'Rank', value=f'``#{int(a) +1}``', inline=False)
+            embed.add_field(name=f'Realm', value=f'``{str(realm)}``')
+            embed.add_field(name='Path', value=f'``{str(pth)}``')
+            embed.add_field(name='Qi', value=f'``{str(qi)}``',inline=False)
+            embed.add_field(name='Points', value=f'``{str(points)}``')
+            embed.add_field(name='Medal', value=f'``{str(medal)}``', inline=False)
+            embed.add_field(name='Strength', value=f'``{str(stre)}``')
+            embed.add_field(name='Defense', value= f'``{str(defen)}``')
+            embed.add_field(name='Speed', value= f'``{str(sped)}``')
+
+            embed.add_field(name='‎‎‎‏‏‎Soul', value=f'``{str(sol)}``')
+            embed.add_field(name='Health', value=f'``{str(health)}``')
+            embed.add_field(name='Luck', value=f' ``{str(luk)}``')
+
+            embed.set_footer(text=f"Abode of Scholars")
             await ctx.send(embed=embed)
 
 
@@ -247,7 +326,7 @@ class vein8(commands.Cog, name='leveling'):
     @commands.command(aliases=["p", "puser"])
     @commands.guild_only()
     async def pointinfo (self, ctx, member:discord.Member):
-        if ctx.guild.id != (guil):
+        if ctx.guild.id != (guild):
             return
 
 
@@ -274,23 +353,43 @@ class vein8(commands.Cog, name='leveling'):
                 break
             else:
                 a += 1
-                print(a)
-        for i in users:
-            _id= i['_id']
 
-            points = i['points']
-            medal = i['Leauge']
-            qi = i['Qi']
+        for lvl in users:
+            _id= lvl['_id']
+
+            points = lvl['points']
+            medal = lvl['Leauge']
+            dao = lvl['Daos']
+            stre = lvl['Strength']
+            sped = lvl['Speed']
+            defen = lvl['Defense']
+            sol = lvl['Soul']
+            health = lvl['Health']
+            luk = lvl['Luck']
+            qi = lvl['Qi']
+            realm = lvl['Realm']
+            speci = lvl['Species']
+            pth= lvl['Path']
 
             embed= discord.Embed(color = color, timestamp=datetime.datetime.utcnow())
             embed.set_thumbnail(url = f'{ctx.guild.icon_url}')
 
             embed.set_author(name=f'{member.name} ', icon_url=f'{member.avatar_url}')
-            embed.add_field(name=f'Rank', value=f'#{int(a) +1}', inline=False)
-            embed.add_field(name='Points', value=f'{str(points)}')
-            embed.add_field(name='Qi', value=f'{str(qi)}')
-            embed.add_field(name='Medal', value=f'{str(medal)}', inline=False)
-            embed.set_footer(text=f"Contribution Points")
+            embed.add_field(name=f'Rank', value=f'``#{int(a) +1}``', inline=False)
+            embed.add_field(name=f'Realm', value=f'``{str(realm)}``')
+            embed.add_field(name='Path', value=f'``{str(pth)}``')
+            embed.add_field(name='Qi', value=f'``{str(qi)}``',inline=False)
+            embed.add_field(name='Points', value=f'``{str(points)}``')
+            embed.add_field(name='Medal', value=f'``{str(medal)}``', inline=False)
+            embed.add_field(name='Strength', value=f'``{str(stre)}``')
+            embed.add_field(name='Defense', value= f'``{str(defen)}``')
+            embed.add_field(name='Speed', value= f'``{str(sped)}``')
+
+            embed.add_field(name='‎‎‎‏‏‎Soul', value=f'``{str(sol)}``')
+            embed.add_field(name='Health', value=f'``{str(health)}``')
+            embed.add_field(name='Luck', value=f' ``{str(luk)}``')
+
+            embed.set_footer(text=f"Abode of Scholars")
             await ctx.send(embed=embed)
 
 
