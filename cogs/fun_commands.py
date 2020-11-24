@@ -97,7 +97,7 @@ class vein2(commands.Cog, name= "fun"):
                 uroles.append(role.mention)
 
                 uroles.reverse()
-
+            timestamp = 'ㅤ'
             time = member.created_at
             time1= member.joined_at
             if member.status == discord.Status.online:
@@ -112,7 +112,10 @@ class vein2(commands.Cog, name= "fun"):
                 activity = 'None'
             else:
                 activity = member.activities[-1].name
-                timestamp = member.activities[0].details
+                try:
+                    timestamp = member.activities[0].details
+                except:
+                    timestamp ='ㅤ'
             embed=discord.Embed(color=color, timestamp=ctx.message.created_at, type="rich")
             embed.set_thumbnail(url= f"{member.avatar_url}")
             embed.set_author(name=f"{ctx.author.name}'s information",icon_url=f'{ctx.me.avatar_url}')
