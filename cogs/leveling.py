@@ -29,11 +29,12 @@ class vein8(commands.Cog, name='leveling'):
     @commands.guild_only()
     async def on_message(self, message):
         #remove the unnecessay things
-        if message.guild.id != 757098499836739594:
-            return
+
         if message.author.id == 759784064361299989:
             return
         if message.author.bot:
+            return
+        if message.guild.id != 757098499836739594:
             return
         bot1= message.guild.get_channel(757136905329442859)
         bot2= message.guild.get_channel(757136943149613076)
@@ -167,7 +168,8 @@ class vein8(commands.Cog, name='leveling'):
 
                 collection.update_one({"_id" : memeber_id}, {"$set" : {"points" : new_p}} )
                 await ctx.send(f"Sucessfully added ``{amount}`` points to {member.name}. Now {member.name} has ``{new_p}`` in total.")
-                await channel.send(f'{ctx.author.mention} added ``{amount}`` points to {member.mention}')
+                embed = discord.Embed(title= f'Addpoints' , color = color, description=f'{ctx.author.mention} added ``{amount}`` points to {member.mention}')
+                await channel.send(embed=embed)
         elif int(amount) >= 2000:
             await ctx.send(f"<:WeirdChamp:757112297096216627> {ctx.author.name}, 2000 is the limit for now.")
 
@@ -206,7 +208,8 @@ class vein8(commands.Cog, name='leveling'):
 
                 collection.update_one({"_id" : memeber_id}, {"$set" : {"points" : new_p}} )
                 await ctx.send(f"Sucessfully removed ``{amount}`` points from {member.name}. Now {member.name} has ``{new_p}`` in total.")
-                await channel.send(f'{ctx.author.mention} removed  ``{amount}`` from {member.mention} and now {member.name} has ``{new_p}`` in total')
+                embed= discord.Embed(title = '**Removepoints**', color = color, description= f'{ctx.author.mention} removed  ``{amount}`` from {member.mention} and now {member.name} has ``{new_p}`` in total')
+                await channel.send(embed=embed)
         if int(amount) > 2000:
             await ctx.send(f"{ctx.author.name}, you can't remove more than 2000 points. <:WeirdChamp:757112297096216627>")
 
@@ -256,7 +259,7 @@ class vein8(commands.Cog, name='leveling'):
 
 
 
-    @commands.command(aliases=["points", "qi"])
+    @commands.command(aliases=["points", "qi", "p"])
     @commands.guild_only()
     async def point (self, ctx):
         if ctx.guild.id != (guild):
@@ -328,9 +331,9 @@ class vein8(commands.Cog, name='leveling'):
 
 
 
-    @commands.command(aliases=["p", "puser"])
+    @commands.command(aliases=["puser"])
     @commands.guild_only()
-    async def pointinfo (self, ctx, member:discord.Member):
+    async def pu (self, ctx, member:discord.Member):
         if ctx.guild.id != (guild):
             return
 
