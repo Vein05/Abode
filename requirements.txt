@@ -28,3 +28,4 @@ motor
 dnspython
 ago
 disputils
+pymongo
