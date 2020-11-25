@@ -2,10 +2,12 @@ import discord
 from discord.ext import commands
 import pymongo
 from pymongo import MongoClient
+import datetime
 
 import disputils
 from disputils import BotEmbedPaginator
 color = 0xa100f2
+nomasti = 'https://pbs.twimg.com/media/EUqVvbQUcAAtL1H.jpg'
 
 class vein9(commands.Cog, name='Help'):
         def __init__(self, client):
@@ -86,36 +88,71 @@ class vein9(commands.Cog, name='Help'):
         @commands.guild_only()
         @commands.has_permissions(kick_members=True)
         async def helpmod(self,ctx):
-            try:
-                embed= discord.Embed( color=color)
-                embed.set_thumbnail(url=f'{ctx.guild.icon_url}')
-                embed.set_author(name="Main commands of Abode.", icon_url=f'{ctx.me.avatar_url}')
-                embed.add_field(name="‎‎‎‏‏‎‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ‎‎‎‏‏‎ ㅤModeration", value=f"**DM** \nTo make Abode DM you something, ``.dm Abode``\n"
-                                                            f'**DMuser** \nTo make Abode DM a specific Use, ``.dm @Vein#8177 Abode``\n\n'
-                                                            f"**clear ** \nTo clear messages sent ``.purge 3``, default no of message that bot clears is ``3``.\n"
-                                                            f'**clearuser** \nTo clear messages of a specific user, be carefull while using this ``.clearuser @Vein#8177 10``'
-                                                            , inline=False)
 
-                embed.add_field(name="‎‎‎‏‏‎ ‎ ", value= "**Kick** \nTo kick a user, make sure to have a reason in the command ``Kick @Vein#8177 being too cool``\n\n"
-                                                            "**ban** \nTo ban a user, make sure to have a reason in the command ``ban @Vein#8177 being too annoying, as always``\n\n"
-                                                            "**cnick** \nTo change the server nickname of the meantioned user ``.cnick @Vein#8177 Waifu``\n\n"
-                                                            "**role** \nTo add a role to an user ``.role @Vein#8177 Civilian`` note : the spellings or the letter case should not be wrong. \n\n"
-                                                                , inline=False)
+                embed1= discord.Embed(color=color)
+                embed1.set_author(name="Mod Commands", icon_url=f'{ctx.me.avatar_url}')
+                embed1.add_field(name="Clear", value= "**Aliases** : Purge\n"
+                                                        "**Limit** : 200 \n"
+                                                        "**Default value** : 3 \n"
+                                                        "**Permission** : Manage messages \n"
+                                                        "**Roles** : Elder or higher\n"
+                                                        "**Usage**\n ```.clear 10```\n\n"
+                                                        )
+                embed1.add_field(name="Clearuser", value= "**Aliases** : Purgeuser, Clearuser\n"
+
+                                                        "**Permission** : Manage messages\n"
+                                                        "**Roles** : Elder or higher\n"
+                                                        "**Usage**\n ```.clearuser @Vein#8177 10```\n\n")
+                embed1.add_field(name="‎‎‎‏‏‎ ", value='‎‎‎‏‏‎ ')
+                embed1.add_field(name="DM", value = f"**Aliases** : PM\n"
+
+                                                        "**Permission** : Manage messages\n"
+                                                        "**Roles** : Elder or higher\n"
+                                                        "**Usage**\n ```.dm Idek why this is a command.```\n\n")
+                embed1.add_field(name="Dmuser", value = f"**Aliases** : Pmuser\n"
+
+                                                        "**Permission** : Manage messages\n"
+                                                        "**Roles** : Elder or higher\n"
+                                                        "**Usage**\n ```.dmuser @Vein#8177 why this is a command.```\n\n")
+                embed1.set_footer(text=f"Tip : All the command names are case insensitive.")
 
 
-                embed.add_field(name="‎‎‎‏‏ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤUtility", value= '**channelstats** \nTo show the stats/info of the channel the command is used on ``.channelstats``\n\n'\
-                                                        '**poll** \nTo make a poll about things. ``.poll "Poll title here" "option 1" "option2" "option3" "option4"`` if you don\'t get it just see the pinned message on <#757128532789821490>\n\n'
-                                                        '**(add / remove)points** \nTo add or remove points on users ``.addpoints @Vein#8177 2000`` also the limit is 2000.\n\n'
-                                                        '**slowmode** To add slowmode on a channel, ``.slowmode 10`` to remove the slowmode ``.slowmode remove``.', inline=False)
+                embed2 = discord.Embed(color=color)
+                embed2.add_field(name="Kick", value=f"**Aliases** : None\n"
 
-                embed.set_footer(text=f"Requested by {ctx.message.author.name}", icon_url=(ctx.author.avatar_url))
-                embed.timestamp= datetime.datetime.utcnow()
-                await ctx.message.author.send(embed=embed)
-                await ctx.send(f'{ctx.message.author.display_name}, Sent you a DM.', delete_after=10)
-                await ctx.message.delete()
-            except:
-                await ctx.send(f'{ctx.message.author.display_name}, You have your dms closed.', delete_after=10)
-                await ctx.message.delete()
+                                                        "**Permission** : Kick users\n"
+                                                        "**Roles** : Outer elder or higher\n"
+                                                        "**Usage**\n ```.kick <user> <Reason>```\n")
+                embed2.add_field(name="Ban", value=f"**Aliases** : None\n"
+
+                                                        "**Permission** : Ban users\n"
+                                                        "**Roles** : Inner elder or higher\n"
+                                                        "**Usage**\n ```.ban <user> <Reason>```\n")
+                embed2.add_field(name="Unban", value=f"**Aliases** : None\n"
+
+                                                        "**Permission** : Administrator\n"
+                                                        "**Roles** : Admin\n"
+                                                        "**Usage**\n ```.uban Vein#6003```\n"
+                                                        "**Example :** \n\n", inline=False)
+                embed2.set_image(url=f'{nomasti}')
+                embed2.set_footer(text=f"Tip : If you are a new elder feel free to bug your seniors. ")
+                embed3= discord.Embed(color=color)
+                embed3.add_field(name="cnick", value=f"**Aliases** : None\n"
+
+                                                        "**Permission** : Change nickname\n"
+                                                        "**Roles** : Outer elder or higher\n"
+                                                        "**Usage**\n ```.cnick @Vein#8177 Waifu ```\n"
+                                                        "**Example :** \n\n")
+                embed3.set_image(url=f'{nomasti}')
+                embed3.set_footer(text=f"Tip : Altough the commands are insensitive the role names aren't be carefull.")
+                embeds = [embed1, embed2,embed3]
+                paginator = BotEmbedPaginator(ctx, embeds)
+                await paginator.run()
+
+
+
+
+
 
 
 

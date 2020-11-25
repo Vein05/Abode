@@ -61,7 +61,7 @@ class vein4(commands.Cog, name= "Admin"):
 
             if (user.name, user.discriminator) == (member_name, member_discriminator):
                 await ctx.guild.unban(user)
-                await ctx.send('User {user} was unbanned from the server by an Admin.')
+                await ctx.send(f'User {member} was unbanned from the server by an Admin.')
 
     ''' Commands like load unload reload is already defined by jsk.'''
 

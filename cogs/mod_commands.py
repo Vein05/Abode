@@ -33,7 +33,7 @@ class vein(commands.Cog, name= "moderation"):
         await msg.add_reaction("<:check:773959361953267742>")
         await msg.add_reaction("<:xmark:773959363379462184>")
 
-    @commands.command(alaises = ['Bot'],hidden=True)
+    @commands.command(aliases = ['Bot'],hidden=True)
     @commands.cooldown(1, 10, commands.BucketType.user)
     @commands.guild_only()
     async def abode(self,ctx):
@@ -79,15 +79,32 @@ class vein(commands.Cog, name= "moderation"):
     @commands.guild_only()
     @commands.has_permissions(manage_messages=True)
     async def clear(self,ctx, amount=3):
+        channel = ctx.guild.get_channel(780785741101137926)
         if amount <= 200:
             await ctx.channel.purge(limit=amount)
             await ctx.send(f'**The higher-ups have purged some messages.**', delete_after=10)
+            embed = discord.Embed(title= f'Purge' , color =color, description=f'{ctx.author.mention} cleared {amount} messages from {ctx.channel.mention}')
+            await channel.send(embed=embed)
         else:
             await ctx.send("Please add a number smaller than 200")
 
 
 
+    @commands.command(aliases=['clearuser'])
+    @commands.guild_only()
+    @commands.has_permissions(manage_messages=True)
+    async def purgeuser(self, ctx, user: User,
+        num_messages: typing.Optional[int] = 100,
+    ):
 
+        channel = ctx.message.channel
+
+        def check(msg):
+            return msg.author.id == user.id
+
+        await ctx.message.delete()
+        await channel.purge(limit=num_messages, check=check, before=None)
+        await ctx.send (f'**The higher-ups have purged someones messsages.**', delete_after=10)
 
     @commands.command(hidden=True)
     @commands.has_permissions(manage_roles=True)
@@ -118,33 +135,13 @@ class vein(commands.Cog, name= "moderation"):
 
 
 
-    @commands.command(
-        name='purge_user',
-
-        aliases=['clearuser', 'purgeuser'],
-        hidden=True
-    )
-    @commands.guild_only()
-    async def purge_user(
-        self, ctx,
-        user: User,
-        num_messages: typing.Optional[int] = 100,
-    ):
-
-        channel = ctx.message.channel
-
-        def check(msg):
-            return msg.author.id == user.id
-
-        await ctx.message.delete()
-        await channel.purge(limit=num_messages, check=check, before=None)
-        await ctx.send (f'**The higher-ups have purged someones messsages.**', delete_after=10)
 
 
 
 
 
-    @commands.command(hidden=True)
+
+    @commands.command(hidden=True, aliases =['PM'])
     @commands.guild_only()
     @commands.has_permissions(manage_messages=True)
     async def DM (self, ctx, *, arg ):
