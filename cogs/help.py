@@ -8,6 +8,11 @@ import disputils
 from disputils import BotEmbedPaginator
 color = 0xa100f2
 nomasti = 'https://pbs.twimg.com/media/EUqVvbQUcAAtL1H.jpg'
+ban = 'https://cdn.discordapp.com/attachments/759796216044978239/781453844269367306/ban.gif'
+slowmode = 'https://cdn.discordapp.com/attachments/759796216044978239/781453902582513674/Slowmode.gif'
+role = 'https://cdn.discordapp.com/attachments/759796216044978239/781453873469980672/Role.gif'
+nickname = 'https://cdn.discordapp.com/attachments/759796216044978239/781453847854972928/Nickname.gif'
+poll = 'https://cdn.discordapp.com/attachments/759796216044978239/781453866029154304/poll.gif'
 
 class vein9(commands.Cog, name='Help'):
         def __init__(self, client):
@@ -132,9 +137,9 @@ class vein9(commands.Cog, name='Help'):
 
                                                         "**Permission** : Administrator\n"
                                                         "**Roles** : Admin\n"
-                                                        "**Usage**\n ```.uban Vein#6003```\n"
+                                                        "**Usage**\n ```.unban Vein#6003```\n"
                                                         "**Example :** \n\n", inline=False)
-                embed2.set_image(url=f'{nomasti}')
+                embed2.set_image(url=f'{ban}')
                 embed2.set_footer(text=f"Tip : If you are a new elder feel free to bug your seniors. ")
                 embed3= discord.Embed(color=color)
 
@@ -144,7 +149,7 @@ class vein9(commands.Cog, name='Help'):
                                                         "**Roles** : Outer elder or higher\n"
                                                         "**Usage**\n ```.cnick @Vein#8177 Waifu ```\n"
                                                         "**Example :** \n\n", inline= False)
-                embed3.set_image(url=f'{nomasti}')
+                embed3.set_image(url=f'{nickname}')
 
                 embed3.set_footer(text=f"Tip : Altough the commands are insensitive the role names aren't be carefull.")
                 embed4 = discord.Embed(color = color)
@@ -154,7 +159,7 @@ class vein9(commands.Cog, name='Help'):
                                                         "**Roles** : Inner elder or higher\n"
                                                         "**Usage**\n ```.role @Vein#8177 Head Insturctor ```\n"
                                                         "**Example :** \n\n", inline= False)
-                embed4.set_image(url=f'{nomasti}')
+                embed4.set_image(url=f'{role}')
                 embed4.set_footer(text='Tip : Is used on the user who already has the role the bot will remove the role.')
                 embed5 = discord.Embed (color = color)
                 embed5.add_field(name='Channelstats', value= f"**Aliases** : cstats\n"
@@ -169,7 +174,8 @@ class vein9(commands.Cog, name='Help'):
                                                         "**Roles** : Inner or higher\n"
                                                         "**Usage**\n ```.Slowmode 10 ```\n\n"
                                                         "**Example **:")
-                embed5.set_footer(text='Tip : Only read mods use Channelstats. \n Tip2 : .Slowmode remove will remove the slowmode. ')
+                embed5.set_footer(text='Tip : Only read mods use Channelstats. \nTip2 : ".Slowmode remove" will remove the slowmode. ')
+                embed5.set_image(url=f'{slowmode}')
                 embed6= discord.Embed(color=color)
                 embed6.add_field(name='Poll', value=f"**Aliases** : None\n"
                                                         "**Limit** : 7\n"
@@ -178,7 +184,7 @@ class vein9(commands.Cog, name='Help'):
                                                         '**Usage**\n ```.poll "Poll title here" "Option1" "Option2" ```\n'
                                                         "**Example :** \n\n", inline= False)
                 embed6.set_footer(text=f'Tip : If your options are "yes" and "no", Abode will react with a tick and a cross.')
-                embed6.set_image(url=f'{nomasti}')
+                embed6.set_image(url=f'{poll}')
 
                 embeds = [embed1, embed2,embed3, embed4, embed5, embed6]
                 paginator = BotEmbedPaginator(ctx, embeds)
