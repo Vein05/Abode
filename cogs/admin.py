@@ -209,9 +209,9 @@ class vein4(commands.Cog, name= "Admin"):
                                         f'**[t!] Tatsu** \n\n')
 
 
-            embed.add_field(name='ㅤㅤㅤㅤInfo', value=f'Fun and moderation commands.\n\n'
-                                                f'Logs and moderation commands. \n\n'
-                                                f'Leveling and roles of the server. \n\n'
+            embed.add_field(name='ㅤㅤㅤㅤInfo', value=f'Leveling and moderation.\n\n'
+                                                f'Logs and moderation. \n\n'
+                                                f'Leveling and roles. \n\n'
                                                 f'Bumping server to disboard.\n\n'
                                                 f'Reaction roles. \n\n'
                                                 f'Music and lyrics bot.\n\n'
@@ -230,6 +230,7 @@ class vein4(commands.Cog, name= "Admin"):
                                                 f'[Website](https://carl.gg/) | [Server](https://discord.com/invite/DSg744v)\n\n'
                                                 f'[Website](https://tatsu.gg/) | [Server](https://discord.com/invite/tatsu) \n\n')
 
+            embed.set_footer(text=f"Note these bots may do different things on other servers.")
             await ctx.send(embed=embed)
 
 
