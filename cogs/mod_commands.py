@@ -178,6 +178,7 @@ class vein(commands.Cog, name= "moderation"):
     async def ban(self, ctx, member: discord.Member = None, reason: str = "You were banned from the server for not following the rules."):
         if member is not None:
             await ctx.guild.ban(member, reason=reason)
+            await ctx.send(f'{member.mention} was banned from the server.')
         else:
             await ctx.send("Please specify an user to ban with a reason.")
 

@@ -16,7 +16,11 @@ speed = random.randint(1, 10)
 defense = random.randint(1, 10)
 soul = random.randint(1, 10)
 Hp = random.randint(50, 350)
-
+strength1= random.randint(1,15)
+speed1 = random.randint(1, 10)
+defense1 = random.randint(1, 25)
+soul1 = random.randint(1, 5)
+Hp1 = random.randint(1, 20)
 color = 0xa100f2
 guild = 757098499836739594
 
@@ -105,11 +109,11 @@ class vein8(commands.Cog, name='leveling'):
                     new_medal2= 'Expert scholar'
                     collection.upate_one({"_id" : author_id}, {"$set": {"Leauge" : new_medal2}})
                 elif (new_q % 10) == 0:
-                    collection.update_one({"_id":author_id},  {"$set":{"Strength" : +10}})
-                    collection.update_one({"_id":author_id},  {"$set":{"Attack" : +2}})
-                    collection.update_one({"_id":author_id},  {"$set":{"Defense" : +1}})
-                    collection.update_one({"_id":author_id},  {"$set":{"Soul": +0.25}})
-                    collection.update_one({"_id":author_id},  {"$set":{"Health" : +3}})
+                    collection.update_one({"_id":author_id},  {"$set":{"Strength" : +(strength1)}})
+                    collection.update_one({"_id":author_id},  {"$set":{"Speed" : +(speed1)}})
+                    collection.update_one({"_id":author_id},  {"$set":{"Defense" : +(defense1)}})
+                    collection.update_one({"_id":author_id},  {"$set":{"Soul": +(soul1)}})
+                    collection.update_one({"_id":author_id},  {"$set":{"Health" : +(Hp1)}})
 
                 if (new_q == 1100):
                     ok = 'Transcendent'
@@ -259,7 +263,7 @@ class vein8(commands.Cog, name='leveling'):
 
 
 
-    @commands.command(aliases=["points", "qi", "p"])
+    @commands.command(aliases=["points", "qi", "p",'stats'])
     @commands.guild_only()
     async def point (self, ctx):
         if ctx.guild.id != (guild):
@@ -276,7 +280,7 @@ class vein8(commands.Cog, name='leveling'):
         collection= db['Levels']
         qurey = {"_id" : member_id}
         users = collection.find(qurey)
-
+        total = collection.count()
         hm = collection.find().sort("points" , -1)
         a = 0
         for x in hm:
@@ -311,19 +315,21 @@ class vein8(commands.Cog, name='leveling'):
             embed.set_thumbnail(url = f'{ctx.guild.icon_url}')
 
             embed.set_author(name=f'{member.name} ', icon_url=f'{member.avatar_url}')
-            embed.add_field(name=f'Rank', value=f'``#{int(a) +1}``', inline=False)
-            embed.add_field(name=f'Realm', value=f'``{str(realm)}``')
-            embed.add_field(name='Path', value=f'``{str(pth)}``')
-            embed.add_field(name='Qi', value=f'``{str(qi)}``',inline=False)
-            embed.add_field(name='Points', value=f'``{str(points)}``')
-            embed.add_field(name='Medal', value=f'``{str(medal)}``', inline=False)
-            embed.add_field(name='Strength', value=f'``{str(stre)}``')
-            embed.add_field(name='Defense', value= f'``{str(defen)}``')
-            embed.add_field(name='Speed', value= f'``{str(sped)}``')
+            embed.add_field(name=f'__Main__', value=f'**Rank** : #{int(a) +1}/{total}\n'
+                                                f'**Realm** :  {str(realm)}')
+            embed.add_field(name="__Legacy__", value=f'**Path** : {str(pth)}\n'
+                                                f'**Medals** :  {str(medal)}')
 
-            embed.add_field(name='‎‎‎‏‏‎Soul', value=f'``{str(sol)}``')
-            embed.add_field(name='Health', value=f'``{str(health)}``')
-            embed.add_field(name='Luck', value=f' ``{str(luk)}``')
+            embed.add_field(name='__Accomplishments__', value=f'**Qi : ** {str(qi)}\n'
+                                                            f'**Points : ** {str(points)}\n'
+                                                            f' **Luck : ** {str(luk)}', inline=False)
+
+            embed.add_field(name='__Stats__', value=f'**Stregngth :** {str(stre)}\n'
+                                                f'**Defense :** {str(defen)}\n'
+                                                f'**Speed** : {str(sped)}\n'
+                                                f'**Soul : **{str(sol)}\n'
+                                                f'**Health : ** {str(health)}')
+
 
             embed.set_footer(text=f"Abode of Scholars")
             await ctx.send(embed=embed)
@@ -348,7 +354,7 @@ class vein8(commands.Cog, name='leveling'):
         collection= db['Levels']
         qurey = {"_id" : member_id}
         users = collection.find(qurey)
-
+        total = collection.count()
         hm = collection.find().sort("points" , -1)
         a = 0
         for x in hm:
@@ -383,19 +389,20 @@ class vein8(commands.Cog, name='leveling'):
             embed.set_thumbnail(url = f'{ctx.guild.icon_url}')
 
             embed.set_author(name=f'{member.name} ', icon_url=f'{member.avatar_url}')
-            embed.add_field(name=f'Rank', value=f'``#{int(a) +1}``', inline=False)
-            embed.add_field(name=f'Realm', value=f'``{str(realm)}``')
-            embed.add_field(name='Path', value=f'``{str(pth)}``')
-            embed.add_field(name='Qi', value=f'``{str(qi)}``',inline=False)
-            embed.add_field(name='Points', value=f'``{str(points)}``')
-            embed.add_field(name='Medal', value=f'``{str(medal)}``', inline=False)
-            embed.add_field(name='Strength', value=f'``{str(stre)}``')
-            embed.add_field(name='Defense', value= f'``{str(defen)}``')
-            embed.add_field(name='Speed', value= f'``{str(sped)}``')
+            embed.add_field(name=f'__Main__', value=f'**Rank** : #{int(a) +1}/{total}\n'
+                                                f'**Realm** :  {str(realm)}')
+            embed.add_field(name="__Legacy__", value=f'**Path** : {str(pth)}\n'
+                                                f'**Medals** :  {str(medal)}')
 
-            embed.add_field(name='‎‎‎‏‏‎Soul', value=f'``{str(sol)}``')
-            embed.add_field(name='Health', value=f'``{str(health)}``')
-            embed.add_field(name='Luck', value=f' ``{str(luk)}``')
+            embed.add_field(name='__Accomplishments__', value=f'**Qi : ** {str(qi)}\n'
+                                                            f'**Points : ** {str(points)}\n'
+                                                            f' **Luck : ** {str(luk)}', inline=False)
+
+            embed.add_field(name='__Stats__', value=f'**Stregngth :** {str(stre)}\n'
+                                                f'**Defense :** {str(defen)}\n'
+                                                f'**Speed** : {str(sped)}\n'
+                                                f'**Soul : **{str(sol)}\n'
+                                                f'**Health : ** {str(health)}')
 
             embed.set_footer(text=f"Abode of Scholars")
             await ctx.send(embed=embed)

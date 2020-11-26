@@ -73,14 +73,29 @@ class vein4(commands.Cog, name= "Admin"):
         embed.set_thumbnail(url =f'{ctx.guild.icon_url}')
         embed.add_field(name='Welcome!', value='Welcome to Abode of Scholars. This may be your first time at the server, I and the staff team thanks you for joining our community server.\n\nPlease read the following sets of information before heading off to the chat section to share us stuffs about your favorite novel. Also be sure to suggest us about the things we can improve on, only then we can grow together :)')
         embed.add_field(name='Introduction!', value= f'Adobe of Scholars is a chat-server based on the combination of various fictional worlds from their respective **Chinese Novels**. \n\n The server allows almost everthing which is within the restrictions of [Discord TOS](https://discord.com/terms). \n\nThe server doesnot have any fixed location, it is a global server which accepts all types of readers. \n\nAbode of Scholars is made for those who are fond reading various types of chinese webnovels, to interact with each other and also to promote the fantasy genre.',inline=False )
-        embed.add_field(name='Aspects!', value=f'➤ Custom roles for members with enough contribution.\n'
+        embed.add_field(name='Aspects!', value=
                                             f'➤ Custom bot, The Abode Mandator\n'
-                                            f'➤ Helpfull community\n'
+
+                                            f'➤ Contribution points-system \n'
+                                            f'➤ Qi and stats system with alot of unique paths and species.\n'
+                                            f'➤ Custom roles, commands, and more for members with enough contribution points.\n'
+                                            f'➤ Helpful community\n'
                                             f'➤ Good staff members\n'
                                             f'➤ Organized server \n'
                                             f'➤ Alot of fantasy talks \n'
-                                            f'➤ Contribution points-system \n', inline=False)
+                                            , inline=False)
         await ctx.send(embed=embed)
+
+    @commands.command()
+    @commands.has_permissions(administrator=True)
+    async def pointsystem(self, ctx):
+        color = 0xa100f2
+        embed == discord.Embed(color=color, totle=f'ㅤㅤㅤㅤㅤㅤㅤㅤㅤCultivation System')
+
+
+
+
+
 
     @commands.command()
     @commands.has_permissions(administrator=True)
@@ -227,6 +242,7 @@ class vein4(commands.Cog, name= "Admin"):
                                             f':green_circle: : Arrpoved\n\n'
                                             f':yellow_circle: : Maybe in the future\n\n'
                                             f':red_circle: :  Denied', inline=False)
+
         await ctx.send(embed=embed)
 
 
