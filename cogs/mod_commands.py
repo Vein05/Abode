@@ -210,9 +210,9 @@ class vein(commands.Cog, name= "moderation"):
 
 
 
-    @commands.command(hidden=True)
+    @commands.command(hidden=True, aliases=['cstats'])
     @commands.guild_only()
-    @commands.has_permissions(manage_channels=True)
+    @commands.has_permissions(kick_members=True)
     async def channelstats(self, ctx):
         channel = ctx.channel
         tmembers= str(len(channel.members))
@@ -264,12 +264,12 @@ class vein(commands.Cog, name= "moderation"):
         if len(options) <= 1:
             await ctx.send('Weird you want to make a poll with less than 1 option?')
             return
-        if len(options) > 10:
+        if len(options) > 7:
             await ctx.send('Bruh! you can\'t make a poll with more than 7 options.')
             return
 
         if len(options) == 2 and options[0] == 'yes' and options[1] == 'no':
-            reactions = ['✅', '❌']
+            reactions = ['<:check:773959361953267742>', ' <:xmark:773959363379462184>']
         else:
             reactions = ['1️⃣' , '2⃣', '3⃣', '4⃣', '5⃣', '6⃣', '7⃣']
 
@@ -288,7 +288,7 @@ class vein(commands.Cog, name= "moderation"):
 
     @commands.command()
     @commands.guild_only()
-    @commands.has_permissions(manage_channels=True)
+    @commands.has_permissions(manage_roles=True)
     async def slowmode(self, ctx , time):
         channel = ctx.guild.get_channel(780785741101137926)
         if time == 'remove':

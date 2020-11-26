@@ -137,15 +137,50 @@ class vein9(commands.Cog, name='Help'):
                 embed2.set_image(url=f'{nomasti}')
                 embed2.set_footer(text=f"Tip : If you are a new elder feel free to bug your seniors. ")
                 embed3= discord.Embed(color=color)
+
                 embed3.add_field(name="cnick", value=f"**Aliases** : None\n"
 
                                                         "**Permission** : Change nickname\n"
                                                         "**Roles** : Outer elder or higher\n"
                                                         "**Usage**\n ```.cnick @Vein#8177 Waifu ```\n"
-                                                        "**Example :** \n\n")
+                                                        "**Example :** \n\n", inline= False)
                 embed3.set_image(url=f'{nomasti}')
+
                 embed3.set_footer(text=f"Tip : Altough the commands are insensitive the role names aren't be carefull.")
-                embeds = [embed1, embed2,embed3]
+                embed4 = discord.Embed(color = color)
+                embed4.add_field(name='role', value=f"**Aliases** : None\n"
+                                                    f'**What for** : To add or remvoe roles to the mentioned user.\n'
+                                                        "**Permission** : Manage roles\n"
+                                                        "**Roles** : Inner elder or higher\n"
+                                                        "**Usage**\n ```.role @Vein#8177 Head Insturctor ```\n"
+                                                        "**Example :** \n\n", inline= False)
+                embed4.set_image(url=f'{nomasti}')
+                embed4.set_footer(text='Tip : Is used on the user who already has the role the bot will remove the role.')
+                embed5 = discord.Embed (color = color)
+                embed5.add_field(name='Channelstats', value= f"**Aliases** : cstats\n"
+
+
+                                                        "**Roles** : Outer elder or higher\n"
+                                                        "**Usage**\n ```.Channelstats ```\n"
+                                                        , inline= False)
+                embed5.add_field(name='Slowmode', value= f"**Aliases** : smode\n"
+                                                        "**Permission** : Manage channel"
+
+                                                        "**Roles** : Inner or higher\n"
+                                                        "**Usage**\n ```.Slowmode 10 ```\n\n"
+                                                        "**Example **:")
+                embed5.set_footer(text='Tip : Only read mods use Channelstats. \n Tip2 : .Slowmode remove will remove the slowmode. ')
+                embed6= discord.Embed(color=color)
+                embed6.add_field(name='Poll', value=f"**Aliases** : None\n"
+                                                        "**Limit** : 7\n"
+                                                        "**Atleast** : 2\n"
+                                                        "**Roles** : Outer elder or higher\n"
+                                                        '**Usage**\n ```.poll "Poll title here" "Option1" "Option2" ```\n'
+                                                        "**Example :** \n\n", inline= False)
+                embed6.set_footer(text=f'Tip : If your options are "yes" and "no", Abode will react with a tick and a cross.')
+                embed6.set_image(url=f'{nomasti}')
+
+                embeds = [embed1, embed2,embed3, embed4, embed5, embed6]
                 paginator = BotEmbedPaginator(ctx, embeds)
                 await paginator.run()
 
