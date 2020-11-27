@@ -47,8 +47,8 @@ class vein2(commands.Cog, name= "fun"):
     @commands.command(aliases=['whois', 'ui'])
     @commands.guild_only()
     async def userinfo(self,ctx, member: discord.Member=None):
-        ch = 757136905329442859
-        ch1= 757136943149613076
+        ch = 757941959796195484
+        ch1= 781535649843904562
         if ctx.channel.id != ((ch) or (ch1) ):
 
             msg = ctx.message
@@ -216,22 +216,22 @@ class vein2(commands.Cog, name= "fun"):
 
         embed.set_thumbnail(url=ctx.guild.icon_url)
         embed.set_author(name=f"Information for  {ctx.guild.name}")
-        embed.add_field(name="__General information__\n", value= f'**Server name: ** {guild.name}\n'
-                                                               f'**Server region: ** {guild.region}\n'
-                                                               f'**Server ID: ** {guild.id}\n'
-                                                               f'**Created at: ** {time}\n'
-                                                               f'**Verification level: ** {guild.verification_level} \n'
-                                                               f'**Server owner: ** Vein \n'
-                                                               f'**Server bot: ** Abode(by Vein)', inline=False)
+        embed.add_field(name="__General information__\n", value= f'**Server name : ** {guild.name}\n'
+                                                               f'**Server region : ** {guild.region}\n'
+                                                               f'**Server ID : ** {guild.id}\n'
+                                                               f'**Created at : ** {time}\n'
+                                                               f'**Verification level : ** {guild.verification_level} \n'
+                                                               f'**Server owner : ** Vein \n'
+                                                               f'**Server bot : ** Abode (by Vein)', inline=False)
 
 
-        embed.add_field(name="\n\n\n__Statistics__", value= f'**Member count: ** {ctx.guild.member_count}\n'
-                                                 f'**Role count: ** {roles} \n'
-                                                 f'**Channel count: ** {channels}\n'
-                                                 f'**Text channels:** {text}\n'
-                                                 f'**Voice channels:** {voice}\n'
-                                                 f'**Emoji count: ** {emojis}\n'
-                                                 f'**Server boosters: ** {guild.premium_subscription_count}\n')
+        embed.add_field(name="\n\n\n__Statistics__", value= f'**Member count : ** {ctx.guild.member_count}\n'
+                                                 f'**Role count : ** {roles} \n'
+                                                 f'**Channel count : ** {channels}\n'
+                                                 f'**Text channels :** {text}\n'
+                                                 f'**Voice channels :** {voice}\n'
+                                                 f'**Emoji count : ** {emojis}\n'
+                                                 f'**Server boosters : ** {guild.premium_subscription_count}\n')
 
         embed.add_field(name="__Activity__", value= f'<:online:769826555073003521>{online}\n'
                                                     f'<:idle:769826555479588864>{idel}\n'

@@ -51,7 +51,8 @@ class vein7(commands.Cog, name='db'):
             collection.update_one({"_id":author_id}, {"$set":{"note": new_data}})
             collection.update_one({"_id":author_id},  {"$set":{"time": new_time}})
 
-            await ctx.send(f"Just updated notes for {ctx.message.author.display_name}. To see you note just ``.note``")
+            await ctx.send(f"Just updated notes for {ctx.message.author.display_name}. To see you note just ``.note``", delete_after=15)
+
 
 
     @commands.command()
@@ -67,7 +68,7 @@ class vein7(commands.Cog, name='db'):
 
 
         if (collection.find_one({"_id": author_id})== None):
-            await ctx.send(f'{ctx.message.author.display_name}, Please add a note using ``.addnote``.')
+            await ctx.send(f'{ctx.message.author.display_name}, Please add a note using ``.addnote``.' , delete_after=15)
 
 
         else:
