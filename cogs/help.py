@@ -21,70 +21,71 @@ class vein9(commands.Cog, name='Help'):
         @commands.command()
         @commands.guild_only()
         async def help(self, ctx):
-                ch = 757136905329442859
+                ch = 781535649843904562
                 ch1= 757136943149613076
 
-                if ctx.channel.id != ((ch) or (ch1) ):
+                if ctx.channel.id == ((ch)):
+                    embed1= discord.Embed(title="Commands #1", description="Basic fun commands on the server", color=color)
+                    embed1.set_thumbnail(url=f'{ctx.guild.icon_url}')
+                    embed1.set_author(name="Abode",icon_url=f'{ctx.me.avatar_url}')
+                    embed1.add_field(name="ping", value="To check Abode's latency", inline=False)
+                    embed1.add_field(name="8ball", value="To ask Abode an 8ball question", inline=False)
+                    embed1.add_field(name="echo", value="To make Abode repeat something \n"
+                                                                    "``.hi`` To get a random gretting from over 50 languages.", inline=False)
+                    embed1.add_field(name="points/p ", value="To see your contribution points for the server. ``p @Vein#8177`` to see points of a specific user.", inline=False)
+
+                    embed1.add_field(name="whois", value="To make Abode get the general info on the user", inline=False)
+                    embed1.add_field(name="serverinfo", value="To get the general info of the server", inline=False)
+                    embed1.add_field(name="invite", value="Get invite link of Abode of Scholars.", inline=False)
+                    embed1.add_field(name="complaint", value="Add an server complaint which will go into <#757110183800471572>.", inline=False)
+                    embed1.set_footer(text=f"Requested by {ctx.message.author.name}" )
+
+
+                    embed2=discord.Embed(title='Commands #2', colour=color)
+                    embed2.set_author(name="Abode", icon_url=f'{ctx.me.avatar_url}')
+                    embed2.add_field(name="dankmemes", value=f' Make Abode send a meme from Dankmemes subreddit', inline=False)
+                    embed2.set_thumbnail(url=ctx.guild.icon_url)
+                    embed2.add_field(name="pmemes", value= f'Make Abode send a meme from ProgrammerHumor subreddit', inline=False)
+                    embed2.add_field(name="cat", value=  f' Make Abode send a woof picture ', inline=False)
+                    embed2.add_field(name="catfact", value=  f' A random woof fact ')
+                    embed2.add_field(name="dog", value=   f' Make Abode send a meow picture ', inline=False)
+                    embed2.add_field(name="dogfact", value=  f' A random meow fact ')
+                    embed2.add_field(name="panda ", value= f' Make Abode send cutest pandas', inline=False)
+                    embed2.add_field(name="pandafact", value=  f' A random panda fact ')
+                    embed2.add_field(name="pikachu", value= f' Make Abode send a pikachu gif or an image', inline=False)
+                    embed2.add_field(name="numberfact", value= f'Make abode send a random fact on numbers')
+                    embed2.add_field(name="yearfact", value= f' Make Abode send a random fact on a year', inline=False)
+                    embed2.add_field(name="clyde", value= f' Make clyde say something', inline=False)
+                    embed2.add_field(name="flip", value= f'Make Abode Flip a coin for you')
+                    embed2.add_field(name="lovemeter", value=f'You know it :eyes:')
+                    embed2.add_field(name="rps", value=f'Play Rock Scissors Paper with Abode', inline=False)
+                    embed2.set_footer(text=f"Requested by {ctx.message.author.name} ")
+
+                    embed3= discord.Embed(title='Commands #3', color=color)
+                    embed3.set_author(name="Abode", icon_url=f'{ctx.me.avatar_url}')
+                    embed3.add_field(name="aquote", value="Fetch some good anime quotes.", inline=False)
+                    embed3.add_field(name="sad, happy, angry", value=":D", inline=False )
+                    embed3.add_field(name='facepalm, wink, hug, pat', value="Anime gifs on the mentioned situations.", inline=False)
+                    embed3.add_field(name="koala", value= "koala pictures :D")
+                    embed3.add_field(name="f", value="Pay your repects, I paid mine")
+                    embed3.add_field(name='addnote',value= f'Add a note about something',inline=False)
+                    embed3.add_field(name='note', value= f'To view the added note.')
+                    embed3.add_field(name='removenote', value=f'To remove the note that you added.', inline=False)
+                    embed3.add_field(name="lenny", value="To make Abode send a lenny face", inline=False)
+                    embed3.add_field(name="welcome", value="To make Abode welcome a new user", inline=False)
+                    embed3.set_footer(text=f"Requested by {ctx.message.author.name}")
+
+
+                    embed3.set_thumbnail(url=f'{ctx.guild.icon_url}')
+
+
+
+                    embeds= [embed1, embed2, embed3]
+                    paginator = BotEmbedPaginator(ctx, embeds)
+                    await paginator.run()
+                else:
                     msg = ctx.message
-                    return await msg.add_reaction('<:xmark:773959363379462184>')
-                embed1= discord.Embed(title="Commands #1", description="Basic fun commands on the server", color=color)
-                embed1.set_thumbnail(url=f'{ctx.guild.icon_url}')
-                embed1.set_author(name="Abode",icon_url=f'{ctx.me.avatar_url}')
-                embed1.add_field(name="ping", value="To check Abode's latency", inline=False)
-                embed1.add_field(name="8ball", value="To ask Abode an 8ball question", inline=False)
-                embed1.add_field(name="echo", value="To make Abode repeat something \n"
-                                                                "``.hi`` To get a random gretting from over 50 languages.", inline=False)
-                embed1.add_field(name="points/p ", value="To see your contribution points for the server. ``p @Vein#8177`` to see points of a specific user.", inline=False)
-
-                embed1.add_field(name="whois", value="To make Abode get the general info on the user", inline=False)
-                embed1.add_field(name="serverinfo", value="To get the general info of the server", inline=False)
-                embed1.add_field(name="invite", value="Get invite link of Abode of Scholars.", inline=False)
-                embed1.add_field(name="complaint", value="Add an server complaint which will go into <#757110183800471572>.", inline=False)
-                embed1.set_footer(text=f"Requested by {ctx.message.author.name}" )
-
-
-                embed2=discord.Embed(title='Commands #2', colour=color)
-                embed2.set_author(name="Abode", icon_url=f'{ctx.me.avatar_url}')
-                embed2.add_field(name="dankmemes", value=f' Make Abode send a meme from Dankmemes subreddit', inline=False)
-                embed2.set_thumbnail(url=ctx.guild.icon_url)
-                embed2.add_field(name="pmemes", value= f'Make Abode send a meme from ProgrammerHumor subreddit', inline=False)
-                embed2.add_field(name="cat", value=  f' Make Abode send a woof picture ', inline=False)
-                embed2.add_field(name="catfact", value=  f' A random woof fact ')
-                embed2.add_field(name="dog", value=   f' Make Abode send a meow picture ', inline=False)
-                embed2.add_field(name="dogfact", value=  f' A random meow fact ')
-                embed2.add_field(name="panda ", value= f' Make Abode send cutest pandas', inline=False)
-                embed2.add_field(name="pandafact", value=  f' A random panda fact ')
-                embed2.add_field(name="pikachu", value= f' Make Abode send a pikachu gif or an image', inline=False)
-                embed2.add_field(name="numberfact", value= f'Make abode send a random fact on numbers')
-                embed2.add_field(name="yearfact", value= f' Make Abode send a random fact on a year', inline=False)
-                embed2.add_field(name="clyde", value= f' Make clyde say something', inline=False)
-                embed2.add_field(name="flip", value= f'Make Abode Flip a coin for you')
-                embed2.add_field(name="lovemeter", value=f'You know it :eyes:')
-                embed2.add_field(name="rps", value=f'Play Rock Scissors Paper with Abode', inline=False)
-                embed2.set_footer(text=f"Requested by {ctx.message.author.name} ")
-
-                embed3= discord.Embed(title='Commands #3', color=color)
-                embed3.set_author(name="Abode", icon_url=f'{ctx.me.avatar_url}')
-                embed3.add_field(name="aquote", value="Fetch some good anime quotes.", inline=False)
-                embed3.add_field(name="sad, happy, angry", value=":D", inline=False )
-                embed3.add_field(name='facepalm, wink, hug, pat', value="Anime gifs on the mentioned situations.", inline=False)
-                embed3.add_field(name="koala", value= "koala pictures :D")
-                embed3.add_field(name="f", value="Pay your repects, I paid mine")
-                embed3.add_field(name='addnote',value= f'Add a note about something',inline=False)
-                embed3.add_field(name='note', value= f'To view the added note.')
-                embed3.add_field(name='removenote', value=f'To remove the note that you added.', inline=False)
-                embed3.add_field(name="lenny", value="To make Abode send a lenny face", inline=False)
-                embed3.add_field(name="welcome", value="To make Abode welcome a new user", inline=False)
-                embed3.set_footer(text=f"Requested by {ctx.message.author.name}")
-
-
-                embed3.set_thumbnail(url=f'{ctx.guild.icon_url}')
-
-
-
-                embeds= [embed1, embed2, embed3]
-                paginator = BotEmbedPaginator(ctx, embeds)
-                await paginator.run()
+                    await msg.add_reaction('<:xmark:773959363379462184>')
 
 
 

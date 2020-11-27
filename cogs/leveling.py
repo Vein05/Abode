@@ -40,7 +40,7 @@ class vein8(commands.Cog, name='leveling'):
             return
         if message.guild.id != 757098499836739594:
             return
-        bot1= message.guild.get_channel(757136905329442859)
+        bot1= message.guild.get_channel(781535649843904562)
         bot2= message.guild.get_channel(757136943149613076)
         music= message.guild.get_channel(768684108770574366)
         testing=message.guild.get_channel(757941959796195484)
