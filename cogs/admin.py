@@ -118,7 +118,10 @@ class vein4(commands.Cog, name= "Admin"):
                                                 ,inline=False)
         embed.add_field(name='‎‎‎‏‏‎ ', value= '**13.** Altough it\'s not prohibited on using Abode\'s command in chat channels, it\'s wise to not do so.\n\n\n'
                                         'Thanks to [Skyfarrow](https://discordapp.com/invite/nWU3qMK) for letting me use and mofify his rules.', inline=False)
-        await ctx.send(embed=embed)
+        emojy = '<:PepeHmm:757202636029034526>'
+        embed.set_footer(text=f'Give me a hmm if you read through everything.')
+        msg= await ctx.send(embed=embed)
+        await msg.add_reaction(f"{emojy}")
 
 
     @commands.command()

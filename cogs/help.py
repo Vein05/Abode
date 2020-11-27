@@ -21,10 +21,12 @@ class vein9(commands.Cog, name='Help'):
         @commands.command()
         @commands.guild_only()
         async def help(self, ctx):
-            ch = 757136905329442859
-            ch1= 757136943149613076
+                ch = 757136905329442859
+                ch1= 757136943149613076
 
-            if ctx.channel.id == ((ch) or (ch1) ):
+                if ctx.channel.id != ((ch) or (ch1) ):
+                    msg = ctx.message
+                    return await msg.add_reaction('<:xmark:773959363379462184>')
                 embed1= discord.Embed(title="Commands #1", description="Basic fun commands on the server", color=color)
                 embed1.set_thumbnail(url=f'{ctx.guild.icon_url}')
                 embed1.set_author(name="Abode",icon_url=f'{ctx.me.avatar_url}')
@@ -83,8 +85,7 @@ class vein9(commands.Cog, name='Help'):
                 embeds= [embed1, embed2, embed3]
                 paginator = BotEmbedPaginator(ctx, embeds)
                 await paginator.run()
-            else:
-                await ctx.send(f"{ctx.message.author.display_name}, This command only works on Bots category.")
+
 
 
 

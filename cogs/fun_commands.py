@@ -47,6 +47,12 @@ class vein2(commands.Cog, name= "fun"):
     @commands.command(aliases=['whois', 'ui'])
     @commands.guild_only()
     async def userinfo(self,ctx, member: discord.Member=None):
+        ch = 757136905329442859
+        ch1= 757136943149613076
+        if ctx.channel.id != ((ch) or (ch1) ):
+
+            msg = ctx.message
+            return await msg.add_reaction('<:xmark:773959363379462184>')
         member = member or ctx.author
         if ctx.guild.id != (guild):
             uroles = []
@@ -248,9 +254,9 @@ class vein2(commands.Cog, name= "fun"):
 
 
 
-    '''@commands.command(alaises=['serverinvite'])
+    @commands.command(alaises=['serverinvite'])
     async def invite(self,ctx):
-        await ctx.send(f'https://discord.gg/tA4PDtX')'''
+        await ctx.send(f'https://discord.gg/tA4PDtX')
 
 
 
