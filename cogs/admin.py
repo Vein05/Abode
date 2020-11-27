@@ -243,11 +243,16 @@ class vein4(commands.Cog, name= "Admin"):
         embed= discord.Embed(color = (color))
         embed.add_field(name='ㅤ', value= f'<:check:773959361953267742> : Vote yes\n\n'
                                             f'<:xmark:773959363379462184> : Vote no\n\n'
-                                            f':green_circle: : Arrpoved\n\n'
+                                            f':green_circle: : Approved\n\n'
                                             f':yellow_circle: : Maybe in the future\n\n'
                                             f':red_circle: :  Denied', inline=False)
 
         await ctx.send(embed=embed)
+        channel =ctx.guild.get_channel(757110183800471572)
+        msg = await channel.fetch_message(779279015089143868)
+
+        print(msg.content)
+        await msg.edit(embed=embed)
 
 
 
