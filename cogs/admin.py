@@ -1,7 +1,7 @@
 import discord
 import random
 from discord.ext import commands
-
+import pathlib
 intents = discord.Intents.all()
 import asyncio
 from datetime import datetime
@@ -264,8 +264,41 @@ class vein4(commands.Cog, name= "Admin"):
         await msg.edit(embed=embed)
 
 
+    @commands.command()
+    @commands.guild_only()
+    @commands.has_permissions(kick_members=True)
+    async def count(self, ctx):
+        p = pathlib.Path('./')
+        cm = cr = fn = cl = ls = fc = 0
+        for f in p.rglob('*.py'):
+            if str(f).startswith("venv"):
+                continue
+            fc += 1
+            with f.open(encoding = 'utf-8') as of:
+                for l in of.readlines():
+                    l = l.strip()
+                    if l.startswith('class'):
+                        cl += 1
+                    if l.startswith('def'):
+                        fn += 1
+                    if l.startswith('async def'):
+                        cr += 1
+                    if '#' in l:
+                        cm += 1
+                    ls += 1
+        embed=discord.Embed(color = color, timestamp=datetime.utcnow() )
+        embed.set_thumbnail(url=f'{ctx.me.avatar_url}')
+        embed.add_field(name='Abode\'s code info ', value=f'**Language** : Python\n'
 
-
+                                                                f'**File count** : {fc} \n'
+                                                                f'**Line count** : {ls:,} \n'
+                                                                f'**Class count** : {cl} \n'
+                                                                f'**Function count ** : {fn}\n'
+                                                                f'**Coroutine count** : {cr}\n'
+                                                                f'**Comments count** : {cm}')
+        await ctx.send(embed=embed)
+        #await ctx.send(f"file: {fc}\nline: {ls:,}\nclass: {cl}\nfunction: {fn}\ncoroutine: {cr}\ncomment: {cm:,}")
+        return
 
 
 '''Supreme Elder role can\'t be earned for chat users unless one of the Supreme Elders is permanently inactive. Clan Leader role is only for those who contributes the most.```'''
