@@ -47,9 +47,9 @@ class vein2(commands.Cog, name= "fun"):
     @commands.command(aliases=['whois', 'ui'])
     @commands.guild_only()
     async def userinfo(self,ctx, member: discord.Member=None):
-        ch = 757941959796195484
-        ch1= 781535649843904562
-        if ctx.channel.id != ((ch) or (ch1) ):
+        ch = 781535649843904562
+
+        if ctx.channel.id != (ch):
 
             msg = ctx.message
             return await msg.add_reaction('<:xmark:773959363379462184>')

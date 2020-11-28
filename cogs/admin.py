@@ -72,7 +72,7 @@ class vein4(commands.Cog, name= "Admin"):
         embed= discord.Embed(color=color, title=f'ㅤㅤㅤㅤㅤㅤㅤㅤㅤ{ctx.guild.name}')
         embed.set_thumbnail(url =f'{ctx.guild.icon_url}')
         embed.add_field(name='Welcome!', value='Welcome to Abode of Scholars. This may be your first time at the server, I and the staff team thanks you for joining our community server.\n\nPlease read the following sets of information before heading off to the chat section to share us stuffs about your favorite novel. Also be sure to suggest us about the things we can improve on, only then we can grow together :)')
-        embed.add_field(name='Introduction!', value= f'Adobe of Scholars is a chat-server based on the combination of various fictional worlds from their respective **Chinese Novels**. \n\n The server allows almost everthing which is within the restrictions of [Discord TOS](https://discord.com/terms). \n\nThe server doesnot have any fixed location, it is a global server which accepts all types of readers. \n\nAbode of Scholars is made for those who are fond reading various types of chinese webnovels, to interact with each other and also to promote the fantasy genre.',inline=False )
+        embed.add_field(name='Introduction!', value= f'Adobe of Scholars is a chat-server based on the combination of various fictional worlds from their respective **Chinese Novels**. \n\n The server allows almost everthing which is within the restrictions of [Discord TOS](https://discord.com/terms). \n\nThe server doesnot have any fixed location, it is a global server which accepts all types of readers. \n\nAbode of Scholars is made for those who are fond of reading various types of chinese webnovels, to interact with each other and also to promote the fantasy genre.',inline=False )
         embed.add_field(name='Aspects!', value=
                                             f'➤ Custom bot, The Abode Mandator\n'
 
@@ -145,7 +145,7 @@ class vein4(commands.Cog, name= "Admin"):
 
         embed= discord.Embed(color=(color), title='‎‎‎‏‏‎ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ__Server Roles!__')
 
-        embed.add_field(name='‎‎‎‏‏‎ ', value=f'**{admin_mention}** \nClan leader is the highest role in the server, clan leaders handle most of the superviser work, server management, etc all the major things within the server.\n\n'
+        embed.add_field(name='‎‎‎‏‏‎ ', value=f'**{admin_mention}** \nClan leader is the highest role in the server, clan leaders handle most of the supervision work, server management, etc all the major things within the server.\n\n'
                                                     f'**{smention}** \nSupreme elders are the founding  leaders of the server.\n'
                                                     ,inline=False)
 
@@ -192,7 +192,16 @@ class vein4(commands.Cog, name= "Admin"):
 
 
 
-        await ctx.send(embed=embed)
+        emojy = '<:PepeHmm:757202636029034526>'
+        embed.set_footer(text=f'Give me a hmm if you read through everything.')
+        msg= await ctx.send(embed=embed)
+        await msg.add_reaction(f"{emojy}")
+
+        channel =ctx.guild.get_channel(757464183183769600)
+        msg1 = await channel.fetch_message(782095794391613451)
+
+        print(msg.content)
+        await msg1.edit(embed=embed)
 
 
 
