@@ -302,7 +302,24 @@ class vein4(commands.Cog, name= "Admin"):
         return'''
 
 
-'''Supreme Elder role can\'t be earned for chat users unless one of the Supreme Elders is permanently inactive. Clan Leader role is only for those who contributes the most.```'''
+    '''Supreme Elder role can\'t be earned for chat users unless one of the Supreme Elders is permanently inactive. Clan Leader role is only for those who contributes the most.```'''
+
+
+    @commands.command(aliases=['pinfo'])
+    @commands.has_permissions(administrator=True)
+    async def pointsinfo(self, ctx):
+        embed= discord.Embed(color= (color))
+        embed.add_field(name='Overall system', value=f'As you have seen or will see there are quite a few things going on here for eg :- Contribution points, Cultivation QI, Realms, Stats, Medals, etc. Everything shall be explained below.', inline=False)
+        embed.add_field(name='Contribution points', value=f'If you are new to our server or discord in general you may wonder what are these contribution points about.\n'
+                                                            f'Contibution points like like in your fav novel are points given to a sect member on completion of certain missions, trials, etc.\n'
+                                                            f' In Abode of Scholars one can earn contribution points from chatting, giving suggestions, complaints or anything that contributes to the server.' , inline=False)
+        embed.add_field(name='Cultivation Qi', value=f'At this point no is stranger to Qi, Qi here in this server will be increased ``.25`` for every message you send on ofcourse allowed channels. As you make progress on your Qi your stats along with realm with increase slowly but surely. To be more specific for every ``10`` Qi you get your stats will increase.')
+        embed.add_field(name='Realm', value=f'Realms are actually take from my [favorite novel](https://lord-xue-ying.fandom.com/wiki/Cultivation_Levels), Relams will take you some time to make improvement on but it won\'t be that hard if you are active enough ;).', inline=False)
+        embed.add_field(name='Stats', value=f'Stats are as you know attributes of someone, you can see your stats by ``.stats``. To begin with stats are given in a random order so your luck attribute will play some part in it. As I previously said for every 10Qi one gets, his/her stats will also increase.', inline=False)
+        embed.add_field(name='Species, Paths and Medals', value=f'Species are also given at random from a list of bunch of unique and exciting spicies from wuxia genre and same with paths but do keep in mind that your path may help you with some things :)\n As medals are the honourable possesion one can have after reaching a certain realm or amount of Qi, do keep in mind that you can only have one medal at one time for now', inline=False)
+        embed.add_field(name='What\'s the purpose?', value=f'Ok so you got a ton of points now what to do with them? There are some things you could do with them, you could buy potions, custom commands, custom roles, custom medals, increase stats, or even change your path, species and alot more ``.shop`` should help you :)')
+        await ctx.send(embed=embed)
+
 
 def setup (client):
     client.add_cog (vein4(client))
