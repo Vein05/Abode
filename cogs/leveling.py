@@ -44,7 +44,7 @@ class vein8(commands.Cog, name='leveling'):
         bot2= message.guild.get_channel(757136943149613076)
         music= message.guild.get_channel(768684108770574366)
         testing=message.guild.get_channel(757941959796195484)
-        if message.channel.id == (bot1.id) or message.channel.id == (bot2.id) :
+        if message.channel.id == bot1.id :
             return
         if message.channel.id == (music.id) or message.channel.id == (testing.id):
             return
@@ -281,7 +281,7 @@ class vein8(commands.Cog, name='leveling'):
         qurey = {"_id" : member_id}
         users = collection.find(qurey)
         total = collection.count()
-        hm = collection.find().sort("points" , -1)
+        hm = collection.find().sort("Qi" , -1)
         a = 0
         for x in hm:
 
@@ -356,7 +356,7 @@ class vein8(commands.Cog, name='leveling'):
         qurey = {"_id" : member_id}
         users = collection.find(qurey)
         total = collection.count()
-        hm = collection.find().sort("points" , -1)
+        hm = collection.find().sort("Qi" , -1)
         a = 0
         for x in hm:
 
