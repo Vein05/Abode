@@ -318,7 +318,8 @@ class vein8(commands.Cog, name='leveling'):
             embed.add_field(name=f'__Main__', value=f'**Rank** : #{int(a) +1}/{total}\n'
                                                 f'**Realm** :  {str(realm)}')
             embed.add_field(name="__Legacy__", value=f'**Path** : {str(pth)}\n'
-                                                f'**Medals** :  {str(medal)}')
+                                                f'**Medals** :  {str(medal)}\n'
+                                                f'**Daos** : {str(dao)}')
 
             embed.add_field(name='__Accomplishments__', value=f'**Qi : ** {str(qi)}\n'
                                                             f'**Points : ** {str(points)}\n'
@@ -392,7 +393,8 @@ class vein8(commands.Cog, name='leveling'):
             embed.add_field(name=f'__Main__', value=f'**Rank** : #{int(a) +1}/{total}\n'
                                                 f'**Realm** :  {str(realm)}')
             embed.add_field(name="__Legacy__", value=f'**Path** : {str(pth)}\n'
-                                                f'**Medals** :  {str(medal)}')
+                                                f'**Medals** :  {str(medal)}\n'
+                                                f'**Daos** : {str(dao)}')
 
             embed.add_field(name='__Accomplishments__', value=f'**Qi : ** {str(qi)}\n'
                                                             f'**Points : ** {str(points)}\n'
