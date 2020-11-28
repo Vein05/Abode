@@ -264,7 +264,7 @@ class vein4(commands.Cog, name= "Admin"):
         await msg.edit(embed=embed)
 
 
-    @commands.command()
+    '''@commands.command()
     @commands.guild_only()
     @commands.has_permissions(kick_members=True)
     async def count(self, ctx):
@@ -294,11 +294,12 @@ class vein4(commands.Cog, name= "Admin"):
                                                                 f'**Line count** : {ls:,} \n'
                                                                 f'**Class count** : {cl} \n'
                                                                 f'**Function count ** : {fn}\n'
-                                                                f'**Coroutine count** : {cr}\n'
+                                                                f'**Commands count** : {cr}\n'
                                                                 f'**Comments count** : {cm}')
+        #embed.set_footer(text=f'No I don\'t have {ls:,} lines of code, something to do with the hosting service I use.')
         await ctx.send(embed=embed)
         #await ctx.send(f"file: {fc}\nline: {ls:,}\nclass: {cl}\nfunction: {fn}\ncoroutine: {cr}\ncomment: {cm:,}")
-        return
+        return'''
 
 
 '''Supreme Elder role can\'t be earned for chat users unless one of the Supreme Elders is permanently inactive. Clan Leader role is only for those who contributes the most.```'''
