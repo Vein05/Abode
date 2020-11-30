@@ -38,9 +38,11 @@ class vein(commands.Cog, name= "moderation"):
         if role in user.roles:
 
             channel = ctx.guild.get_channel(780785741101137926)
+            link = ctx.message.jump_url
             embed= discord.Embed(color = color,timestamp= datetime.datetime.utcnow())
             embed.set_author(name=f"{ctx.author.name}",  icon_url=ctx.author.avatar_url)
-            embed.add_field(name="Action", value=f'{ctx.message.clean_content}')
+            embed.add_field(name="Action", value=f'{ctx.message.clean_content}\n'
+                                                f'[On here]({link})')
             embed.set_footer(text=f'ID : {ctx.message.id}')
 
             await channel.send(embed=embed)
