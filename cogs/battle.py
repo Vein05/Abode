@@ -3,13 +3,12 @@ from discord.ext import commands
 
 
 
-class vein10(commands.Cog, name='shop'):
+class vein11(commands.Cog, name='battle'):
     def __init__(self, client):
         self.client= client
 
 
 
-
 def setup (client):
-    client.add_cog(vein10(client))
-    print("Shop cog is working.")
+    client.add_cog(vein11(client))
+    print("Battle cog is working.")

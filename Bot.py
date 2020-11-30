@@ -118,7 +118,9 @@ extensions= [
             'cogs.custom',
             'cogs.db',
             'cogs.leveling',
-            'cogs.help'
+            'cogs.help',
+            'cogs.shop',
+            'cogs.battle'
 
 ]
 if __name__ == "__main__" :

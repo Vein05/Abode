@@ -16,12 +16,39 @@ from discord import Embed
 from disputils import BotMultipleChoice
 
 color = 0xa100f2
-
+guild = 757098499836739594
 
 
 class vein(commands.Cog, name= "moderation"):
     def __init__(self, client):
         self.client = client
+
+
+    @commands.Cog.listener()
+    async def on_command(self, ctx):
+        if ctx.guild.id != (guild):
+            return
+
+        user = ctx.guild.get_member(ctx.author.id)
+
+        me = ctx.guild.get_member(427436602403323905)
+        role = ctx.guild.get_role(782624701779673129)
+        if ctx.author.id == 427436602403323905:
+            return
+        if role in user.roles:
+
+            channel = ctx.guild.get_channel(780785741101137926)
+            embed= discord.Embed(color = color,timestamp= datetime.datetime.utcnow())
+            embed.set_author(name=f"{ctx.author.name}",  icon_url=ctx.author.avatar_url)
+            embed.add_field(name="Action", value=f'{ctx.message.clean_content}')
+            embed.set_footer(text=f'ID : {ctx.message.id}')
+
+            await channel.send(embed=embed)
+        else:
+            return
+
+
+
 
 
 
@@ -41,14 +68,15 @@ class vein(commands.Cog, name= "moderation"):
         embed= discord.Embed(color=color)
         embed.set_thumbnail(url=f'{ctx.me.avatar_url}')
         embed.set_author(name="Abode", icon_url=f'{ctx.me.avatar_url}')
-        embed.add_field(name="‎‎‎‏‏‎ ‎", value=f'**Abode mandator** or abode in short is a discord bot written python (discord.py).\n Abode is created by Vein, as a way to learn python but later on further continued as a fun-command based bot. Vein doesn\'t own any of the api used, so read the footers for the api source.', inline=False )
+        embed.add_field(name="‎‎‎‏‏‎Intro", value=f'**Abode mandator** or abode in short is a discord bot written python (discord.py).\n Abode is created by Vein, as a way to learn python but later on further continued as a fun-command based bot. Vein doesn\'t own any of the api used, so read the footers for the api source.', inline=False )
         embed.add_field(name="Tips", value= f"``.help``  is always there for you :D \n\n"
                                                   f'Want to earn a custom gif or role? You might earn them by reporting issues on more or the server on our suggestions channel. \n\n'
                                                   f'``.welcome`` whenever a new user joins. It is a easy way to make them feel welcomed :D \n\n'
                                                   f'If you can contribute to the server you may bypass some rules and get a higher role. \n\n'
 
                                                   f'``.faq`` FAQ are available there, do not leave your mind wander.\n\n'
-                                                  f'Always check the pinned messages or the channel description to learn more about that channel.\n\n' , inline=False)
+                                                  f'Always check the pinned messages or the channel description to learn more about that channel.\n\n'
+                                                  f'By default you don\'t have a cultivator name add it using ``.aliases <your name>.``', inline=False)
 
 
         embed.set_footer(text=f"Requested by {ctx.author}",  icon_url=ctx.author.avatar_url)
@@ -64,9 +92,9 @@ class vein(commands.Cog, name= "moderation"):
     async def faq(self, ctx):
         embed= discord.Embed(color=color)
         embed.set_thumbnail(url=f'{ctx.guild.icon_url}')
-        embed.add_field(name="QnA", value=f'**Why is there a logo on every command?** \n\n = Because why not? <:GWcmeisterPeepoShrug:771605304520998942> \n'
-                                           f'**Can you remove the cooldown on images?** \n\n = No not anytime soon, maybe in future :)\n'
-                                           f'**Why aren not the image commands not working sometimes?**\n\n = Well, sometimes the requests are not received on time, so they donot work')
+        embed.add_field(name="QnA", value=f'**Why is there a logo on every command?** \nBecause why not? <:Scholar2:779239176511946772>\n\n'
+                                           f'**Can you remove the cooldown on images?** \nNo not anytime soon, maybe in future <:blobspearpeek:775344866246393876>\n\n'
+                                           f'**Why aren not the image commands not working sometimes?**\nIt\'s due to bad response from the API.' )
 
 
 

@@ -105,7 +105,7 @@ class vein6(commands.Cog, name= "custom"):
         else:
             collection.delete_one(user_id)
 
-            await ctx.send(f'{ctx.message.author.display_name}, Just removed a command ``{cmd_name}, add another command through ``.addcommand <name> <link>``.', delete_after=10)
+            await ctx.send(f'{ctx.message.author.display_name}, Just removed a command ``{cmd_name}``, add another command through ``.addcommand <name> <link>``.', delete_after=10)
 
 
 def setup (client):
