@@ -28,13 +28,14 @@ class vein9(commands.Cog, name='Help'):
                     embed1= discord.Embed(title="Commands #1", description="Basic fun commands on the server", color=color)
                     embed1.set_thumbnail(url=f'{ctx.guild.icon_url}')
                     embed1.set_author(name="Abode",icon_url=f'{ctx.me.avatar_url}')
+                    embed1.add_field(name="helppoints", value=f'To get a help page about points.',  inline=False)
                     embed1.add_field(name="ping", value="To check Abode's latency", inline=False)
                     embed1.add_field(name="8ball", value="To ask Abode an 8ball question", inline=False)
                     embed1.add_field(name="echo", value="To make Abode repeat something \n"
                                                                     "``.hi`` To get a random gretting from over 50 languages.", inline=False)
                     embed1.add_field(name="points/p ", value="To see your contribution points for the server. ``p @Vein#8177`` to see points of a specific user.", inline=False)
 
-                    embed1.add_field(name="whois", value="To make Abode get the general info on the user", inline=False)
+                    embed1.add_field(name="userinfo", value="To make Abode get the general info on the user", inline=False)
                     embed1.add_field(name="serverinfo", value="To get the general info of the server", inline=False)
                     embed1.add_field(name="invite", value="Get invite link of Abode of Scholars.", inline=False)
                     embed1.add_field(name="complaint", value="Add an server complaint which will go into <#757110183800471572>.", inline=False)
@@ -191,6 +192,18 @@ class vein9(commands.Cog, name='Help'):
                 embeds = [embed1, embed2,embed3, embed4, embed5, embed6]
                 paginator = BotEmbedPaginator(ctx, embeds)
                 await paginator.run()
+
+
+        @commands.command(aliases=['helpstats', 'helpp'])
+        @commands.guild_only()
+        async def helppoints(self, ctx):
+            embed1= discord.Embed(color =color)
+            embed1.add_field(name="stats", value='To see your points, stats info.', inline=False)
+
+            embeds = [embed1]
+            paginator = BotEmbedPaginator(ctx, embeds)
+            await paginator.run()
+
 
 
 
