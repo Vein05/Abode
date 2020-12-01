@@ -198,7 +198,9 @@ class vein9(commands.Cog, name='Help'):
         @commands.guild_only()
         async def helppoints(self, ctx):
             embed1= discord.Embed(color =color)
-            embed1.add_field(name="stats", value='To see your points, stats info.', inline=False)
+            embed1.add_field(name="Stats / Statsu", value='To see your points, stats info.\n'
+                                                            'To check someone\'s stats, ``.stats <userid>``', inline=False)
+            embed1.add_field(name="addcommand", value='To add your own custom command.You need ``500`` points to buy a command and you can\'t overrite an existing command.', inline=False)
 
             embeds = [embed1]
             paginator = BotEmbedPaginator(ctx, embeds)

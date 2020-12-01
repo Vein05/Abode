@@ -233,12 +233,14 @@ class vein8(commands.Cog, name='leveling'):
 
         collection= db['Levels']
 
-        users = collection.find()
+        users = collection.find().sort("Qi", -1)
         embed =discord.Embed(title="Leaderboard",color = color)
         embed.set_thumbnail(url=f'{ctx.guild.icon_url}')
         for i in users:
 
             _id= i['_id']
+
+
 
             points = i['points']
             medal = i['Leauge']
@@ -249,7 +251,7 @@ class vein8(commands.Cog, name='leveling'):
 
 
 
-            embed.add_field(name=f'<@{_id}>', value='**Points**\n'
+            embed.add_field(name=f'<@>', value='**Points**\n'
                                 f'{str(points)}\n\n'
                                 f'**Qi** \n'
                                 f'{str(qi)}\n\n'
@@ -316,7 +318,8 @@ class vein8(commands.Cog, name='leveling'):
 
             embed.set_author(name=f'{member.name} ', icon_url=f'{member.avatar_url}')
             embed.add_field(name=f'__Main__', value=f'**Rank** : #{int(a) +1}/{total}\n'
-                                                f'**Realm** :  {str(realm)}')
+                                                f'**Realm** :  {str(realm)}\n'
+                                                f'**Species** : {str(speci)}')
             embed.add_field(name="__Legacy__", value=f'**Path** : {str(pth)}\n'
                                                 f'**Medals** :  {str(medal)}\n'
                                                 f'**Daos** : {str(dao)}')
@@ -338,15 +341,15 @@ class vein8(commands.Cog, name='leveling'):
 
 
 
-    @commands.command(aliases=["puser"])
+    @commands.command(aliases=["puser", "statsu"])
     @commands.guild_only()
-    async def pu (self, ctx, member:discord.Member):
+    async def pu (self, ctx, member_id: int):
         if ctx.guild.id != (guild):
             return
 
+        member = ctx.guild.get_member(member_id)
 
-
-        member_id= str(member.id)
+        member_id= str(member_id)
         mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
 
         cluster= MongoClient(mongo_url)
@@ -391,7 +394,8 @@ class vein8(commands.Cog, name='leveling'):
 
             embed.set_author(name=f'{member.name} ', icon_url=f'{member.avatar_url}')
             embed.add_field(name=f'__Main__', value=f'**Rank** : #{int(a) +1}/{total}\n'
-                                                f'**Realm** :  {str(realm)}')
+                                                f'**Realm** :  {str(realm)}\n'
+                                                f'**Species** : {str(speci)}')
             embed.add_field(name="__Legacy__", value=f'**Path** : {str(pth)}\n'
                                                 f'**Medals** :  {str(medal)}\n'
                                                 f'**Daos** : {str(dao)}')
@@ -408,6 +412,43 @@ class vein8(commands.Cog, name='leveling'):
 
             embed.set_footer(text=f"Abode of Scholars")
             await ctx.send(embed=embed)
+
+    @commands.command(aliases=['aliases', 'cname'])
+    @commands.guild_only()
+    async def nickname(self, ctx, *,arg):
+        if ctx.guild.id != (guild):
+            return
+        mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
+        cluster= MongoClient(mongo_url)
+        db = cluster['AbodeDB']
+        collection= db['Levels1']
+
+        user_id = str(ctx.author.id)
+        name = str(arg)
+
+        if (collection.find_one({"_id": user_id})== None):
+            user_data= {"_id" : user_id, "Name": name}
+            collection.insert_one(user_data)
+            await ctx.send(f'{ctx.author.mention} Your cultivator name was sucessfully set to  {arg}. Note that you can\'t change it EVER.')
+        else:
+            return await ctx.send(f'You already have a cultivator name.')
+
+
+    '''@commands.command(aliases=['cc list'])
+    @commands.guild_only()
+    async def cc_list(self, ctx):
+        mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
+        cluster= MongoClient(mongo_url)
+        db = cluster['AbodeDB']
+        collection= db['Gifs']
+        total = collection.count()
+        hm = collection.find()
+        for gifs in hm:
+
+            print(hm)
+            embed = discord.Embed(title={}, color= color)
+            await ctx.send(embed=embed)'''
+
 
 
 
