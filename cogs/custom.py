@@ -10,7 +10,29 @@ class vein6(commands.Cog, name= "custom"):
         self.client = client
 
 
-    @commands.command()
+    @commands.Cog.listener()
+    @commands.cooldown(1, 15, commands.BucketType.user)
+    async def on_message(self, message):
+
+            mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
+            cluster= MongoClient(mongo_url)
+            db = cluster['AbodeDB']
+            collection= db['Gifs']
+            vein = str(message.clean_content)
+            user_id= {"_id": vein}
+            dbnote = collection.find()
+            for nte in dbnote:
+                gifname = nte['_id']
+                giflink= nte['link']
+                if f'.{gifname}' in message.content:
+                    await message.channel.send(f'{giflink}')
+                    await message.delete()
+
+
+
+
+
+    '''@commands.command()
     async def a(self, ctx, *, arg: str):
             #get into the db
             mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
@@ -33,7 +55,7 @@ class vein6(commands.Cog, name= "custom"):
                 giflink = nte['link']
 
                 await ctx.send(f'{giflink}')
-                await ctx.message.delete()
+                await ctx.message.delete()'''
 
 
 
