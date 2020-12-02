@@ -321,6 +321,13 @@ class vein4(commands.Cog, name= "Admin"):
         await ctx.send(embed=embed)
 
 
+    '''@commands.command()
+    @commands.has_permissions(administrator=True)
+    async def spam(self, ctx, *, arg):
+        channel = ctx.guild.get_channel(783713320439250974)
+        while True:
+            await channel.send(arg)'''
+
 def setup (client):
     client.add_cog (vein4(client))
     print("Admin cog is wokring.")
