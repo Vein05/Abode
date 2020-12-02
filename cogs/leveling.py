@@ -16,11 +16,7 @@ speed = random.randint(1, 10)
 defense = random.randint(1, 10)
 soul = random.randint(1, 10)
 Hp = random.randint(50, 350)
-strength1= random.randint(1,15)
-speed1 = random.randint(1, 10)
-defense1 = random.randint(1, 25)
-soul1 = random.randint(1, 5)
-Hp1 = random.randint(1, 20)
+
 color = 0xa100f2
 guild = 757098499836739594
 
@@ -109,11 +105,17 @@ class vein8(commands.Cog, name='leveling'):
                     new_medal2= 'Expert scholar'
                     collection.upate_one({"_id" : author_id}, {"$set": {"Leauge" : new_medal2}})
                 elif (new_q % 10) == 0:
-                    collection.update_one({"_id":author_id},  {"$set":{"Strength" : +(strength1)}})
-                    collection.update_one({"_id":author_id},  {"$set":{"Speed" : +(speed1)}})
-                    collection.update_one({"_id":author_id},  {"$set":{"Defense" : +(defense1)}})
-                    collection.update_one({"_id":author_id},  {"$set":{"Soul": +(soul1)}})
-                    collection.update_one({"_id":author_id},  {"$set":{"Health" : +(Hp1)}})
+                    strength1= random.randint(1,15)
+                    speed1 = random.randint(1, 10)
+                    defense1 = random.randint(1, 25)
+                    soul1 = random.randint(1, 5)
+                    Hp1 = random.randint(1, 20)
+                    collection.update_one({"_id":author_id},  {"$set":{"Strength" : stre  + strength1}})
+
+                    collection.update_one({"_id":author_id},  {"$set":{"Speed" :  sped + speed1}})
+                    collection.update_one({"_id":author_id},  {"$set":{"Defense" : defen + defense1}})
+                    collection.update_one({"_id":author_id},  {"$set":{"Soul": sol + soul1}})
+                    collection.update_one({"_id":author_id},  {"$set":{"Health" : health + Hp1}})
 
                 if (new_q == 1100):
                     ok = 'Transcendent'
@@ -269,6 +271,8 @@ class vein8(commands.Cog, name='leveling'):
     @commands.guild_only()
     async def point (self, ctx):
         if ctx.guild.id != (guild):
+            return
+        if ctx.message.channel.id == 757108786497585172:
             return
         member= ctx.author
 

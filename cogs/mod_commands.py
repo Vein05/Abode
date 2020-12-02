@@ -37,7 +37,7 @@ class vein(commands.Cog, name= "moderation"):
             return
         if role in user.roles:
 
-            channel = ctx.guild.get_channel(780785741101137926)
+            channel = ctx.guild.get_channel(783715160833523722)
             link = ctx.message.jump_url
             embed= discord.Embed(color = color,timestamp= datetime.datetime.utcnow())
             embed.set_author(name=f"{ctx.author.name}",  icon_url=ctx.author.avatar_url)
