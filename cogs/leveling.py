@@ -88,7 +88,7 @@ class vein8(commands.Cog, name='leveling'):
 
 
                 if (new_q % 200) == 0:
-                    await message.channel.send(f'<:Cuppedfist:757112296094040104> Congragulations! {message.author.mention}, your Qi just reached. ``{new_q}``.')
+                    await message.channel.send(f'<:Cuppedfist:757112296094040104> Congragulations! {message.author.mention}, your Qi just reached ``{new_q}``.')
                 elif (new_q % 600) == 0:
                     await message.channel.send(f'{message.author}, you now have comprehendded ``{dao}`` heavenly dao(s).')
                     collection.update_one({"_id":author_id},  {"$set":{"Daos" : +1 }})
