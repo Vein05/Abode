@@ -434,7 +434,7 @@ class vein8(commands.Cog, name='leveling'):
             return await ctx.send(f'You already have a cultivator name.')
 
 
-    '''@commands.command(aliases=['cc list'])
+    @commands.command(aliases=['cc list'])
     @commands.guild_only()
     async def cc_list(self, ctx):
         mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
@@ -442,12 +442,17 @@ class vein8(commands.Cog, name='leveling'):
         db = cluster['AbodeDB']
         collection= db['Gifs']
         total = collection.count()
-        hm = collection.find()
+        hm = collection.find().sort("_id" , 1)
+        total = collection.count()
+        gifname =[]
+        embed = discord.Embed(color=color)
         for gifs in hm:
+            name = gifs['_id']
+            gifname.append(name)
+        embed.add_field(name=f"Custom Commands ({total})", value= f' ,'.join(gifname), inline=False)
 
-            print(hm)
-            embed = discord.Embed(title={}, color= color)
-            await ctx.send(embed=embed)'''
+
+        await ctx.send(embed=embed)
 
 
 

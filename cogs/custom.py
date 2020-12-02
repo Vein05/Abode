@@ -25,7 +25,7 @@ class vein6(commands.Cog, name= "custom"):
                 gifname = nte['_id']
                 giflink= nte['link']
                 if f'.{gifname}' in message.content:
-                    await message.delete()
+
                     await message.channel.send(f'{giflink}')
 
 

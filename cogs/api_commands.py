@@ -78,7 +78,7 @@ class vein3(commands.Cog, name= "APIs"):
         await ctx.send(embed=embed)
 
 
-    @commands.command(alaises=['pmeme'])
+    @commands.command(aliases=['pmeme'])
     @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def Pmemes(self,ctx):

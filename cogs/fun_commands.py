@@ -36,7 +36,7 @@ class vein2(commands.Cog, name= "fun"):
 
 
 
-    @commands.command(description='Show\'s mentioned users profile picture or if the user isn\'t mentioned the author\'s.')
+    @commands.command(description='Show\'s mentioned users profile picture or if the user isn\'t mentioned the author\'s.', aliases=['av'])
     async def avatar (self, ctx , member: discord.Member=None):
         member =member or ctx.author
         embed= discord.Embed(color=0x529dff)
@@ -185,7 +185,7 @@ class vein2(commands.Cog, name= "fun"):
     async def welcome(self,ctx):
         await ctx.send(f'<:Cuppedfist:769143163414773760> Welcome to Abode of Scholars, enjoy your stay here.')
 
-    @commands.command(alaises=['servercount','membercount'])
+    @commands.command(aliases=['servercount','membercount'])
     @commands.guild_only()
     async def members(self,ctx):
         embed=discord.Embed(color=0x529dff)
@@ -254,7 +254,7 @@ class vein2(commands.Cog, name= "fun"):
 
 
 
-    @commands.command(alaises=['serverinvite'])
+    @commands.command(aliases=['serverinvite'])
     async def invite(self,ctx):
         await ctx.send(f'https://discord.gg/tA4PDtX')
 
@@ -270,7 +270,7 @@ class vein2(commands.Cog, name= "fun"):
 
 
 
-    @commands.command(alaises=['lennyface'])
+    @commands.command(aliases=['lennyface'])
     @commands.guild_only()
 
 
@@ -281,7 +281,7 @@ class vein2(commands.Cog, name= "fun"):
         await ctx.send(random.choice(lennys))
         await ctx.message.delete()
 
-    @commands.command(alaises=['coin'])
+    @commands.command(aliases=['coin'])
     @commands.guild_only()
 
     async def flip(self,ctx):

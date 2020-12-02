@@ -30,6 +30,11 @@ async def on_ready():
     await client.change_presence(status=discord.Status.online, activity=discord.Game('.help if you are lost '))
     print("Bot is running.")
 
+'''@client.event
+async def on_ready():
+    await client.change_presence(status=discord.Status.online, activity=discord.Game(name=">help | >invite"))
+    print(f'Bot iz Ready\n................\n{client.user.name}\n................\n{client.user.id}')'''
+
 
 
 @client.event
