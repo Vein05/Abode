@@ -201,7 +201,7 @@ class vein9(commands.Cog, name='Help'):
             embed1.add_field(name="Stats / Statsu", value='To see your points, stats info.\n'
                                                             'To check someone\'s stats, ``.stats <userid>``', inline=False)
             embed1.add_field(name="addcommand", value='To add your own custom command.You need ``500`` points to buy a command and you can\'t overrite an existing command.', inline=False)
-
+            embed1.add_field(name="aliases", value='To add an aliases to your name')
             embeds = [embed1]
             paginator = BotEmbedPaginator(ctx, embeds)
             await paginator.run()

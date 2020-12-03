@@ -200,7 +200,7 @@ class vein4(commands.Cog, name= "Admin"):
         channel =ctx.guild.get_channel(757464183183769600)
         msg1 = await channel.fetch_message(782095794391613451)
 
-        print(msg.content)
+
         await msg1.edit(embed=embed)
 
 

@@ -60,9 +60,9 @@ class vein8(commands.Cog, name='leveling'):
             Realm = "Mortal"
             Path = paths
 
+            lol = "None"
 
-
-            user_data= {"_id" : author_id, "points": 1, "Leauge": leauge,"Qi": 0, "Daos": 0, "Path": Path, "Realm" : Realm , "Luck": luck, "Species" : race, "Strength": strength, "Speed": speed, "Defense" : defense, "Soul" :soul, "Health": Hp }
+            user_data= {"_id" : author_id, "points": 1, "Leauge": leauge,"Qi": 0, "Daos": 0, "Path": Path, "Realm" : Realm , "Luck": luck, "Species" : race, "Strength": strength, "Speed": speed, "Defense" : defense, "Soul" :soul, "Health": Hp, "Name": lol }
             collection.insert_one(user_data)
 
 
@@ -222,7 +222,7 @@ class vein8(commands.Cog, name='leveling'):
 
 
 
-    '''@commands.command(aliases=["lb"])
+    @commands.command(aliases=["lb"])
     @commands.guild_only()
     async def leaderboard (self, ctx):
         member = discord.Member or ctx.author
@@ -233,35 +233,35 @@ class vein8(commands.Cog, name='leveling'):
         cluster= MongoClient(mongo_url)
         db = cluster['AbodeDB']
 
-        collection= db['Levels']
 
-        users = collection.find().sort("Qi", -1)
+
+        collection= db['Levels']
+        collection2 = db['Levels1']
+
+        users = collection.find().sort("Qi", -1).limit(10)
+        names = collection2.find().sort("Name", 1)
         embed =discord.Embed(title="Leaderboard",color = color)
         embed.set_thumbnail(url=f'{ctx.guild.icon_url}')
-        for i in users:
-
-            _id= i['_id']
 
 
+        a = 0
 
-            points = i['points']
-            medal = i['Leauge']
-            qi = i['Qi']
-
-
-
-
-
-
-            embed.add_field(name=f'<@>', value='**Points**\n'
-                                f'{str(points)}\n\n'
-                                f'**Qi** \n'
-                                f'{str(qi)}\n\n'
-                                f'**Leauge** \n'
-                                f'{str(medal)} \n', inline=False)
+        for u in users:
+           user_id = u['_id']
+           qi = u['Qi']
+           pts = u['points']
+           pth =  u['Path']
+           nme = u['Name']
+           a +=1
 
 
-        await ctx.send(embed=embed)'''
+           embed.add_field(name=f"{a}", value=f'**Aliases : {nme}** \n**Qi : ** {qi}\n**Points : **  {pts}  \n**Path : **{pth}')
+        embed.set_footer(text=f'To remove the \'None\' from your name, add your Cultivator name through .aliases')
+        await ctx.send(embed=embed)
+
+
+
+
 
 
 
@@ -316,12 +316,13 @@ class vein8(commands.Cog, name='leveling'):
             realm = lvl['Realm']
             speci = lvl['Species']
             pth= lvl['Path']
+            nme = lvl['Name']
 
             embed= discord.Embed(color = color, timestamp=datetime.datetime.utcnow())
             embed.set_thumbnail(url = f'{ctx.guild.icon_url}')
 
             embed.set_author(name=f'{member.name} ', icon_url=f'{member.avatar_url}')
-            embed.add_field(name=f'__Main__', value=f'**Rank** : #{int(a) +1}/{total}\n'
+            embed.add_field(name=f'__#{int(a) +1}/{total}__', value=f'**Aliases** :{nme} \n'
                                                 f'**Realm** :  {str(realm)}\n'
                                                 f'**Species** : {str(speci)}')
             embed.add_field(name="__Legacy__", value=f'**Path** : {str(pth)}\n'
@@ -425,17 +426,16 @@ class vein8(commands.Cog, name='leveling'):
         mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
         cluster= MongoClient(mongo_url)
         db = cluster['AbodeDB']
-        collection= db['Levels1']
+        collection= db['Levels']
 
         user_id = str(ctx.author.id)
         name = str(arg)
 
-        if (collection.find_one({"_id": user_id})== None):
-            user_data= {"_id" : user_id, "Name": name}
-            collection.insert_one(user_data)
-            await ctx.send(f'{ctx.author.mention} Your cultivator name was sucessfully set to  {arg}. Note that you can\'t change it EVER.')
-        else:
-            return await ctx.send(f'You already have a cultivator name.')
+
+        name = str(arg)
+        collection.update_one({"_id": user_id}, {"$set": {"Name": name}})
+        await ctx.send(f'{ctx.author.mention} Your cultivator name was sucessfully set to  {arg}.')
+
 
 
     @commands.command(aliases=['cc list'])
