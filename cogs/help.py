@@ -197,6 +197,12 @@ class vein9(commands.Cog, name='Help'):
         @commands.command(aliases=['helpstats', 'helpp'])
         @commands.guild_only()
         async def helppoints(self, ctx):
+            ch = 781535649843904562
+
+            if ctx.channel.id != (ch):
+
+                msg = ctx.message
+                return await msg.add_reaction('<:xmark:773959363379462184>')
             embed1= discord.Embed(color =color)
             embed1.add_field(name="Stats / Statsu", value='To see your points, stats info.\n'
                                                             'To check someone\'s stats, ``.stats <userid>``', inline=False)

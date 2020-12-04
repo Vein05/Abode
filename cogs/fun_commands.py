@@ -196,6 +196,12 @@ class vein2(commands.Cog, name= "fun"):
     @commands.command(aliases=['si'])
     @commands.guild_only()
     async def serverinfo(self, ctx):
+        ch = 781535649843904562
+
+        if ctx.channel.id != (ch):
+
+            msg = ctx.message
+            return await msg.add_reaction('<:xmark:773959363379462184>')
         guild= ctx.guild
         emojis = str(len(guild.emojis))
 
@@ -408,6 +414,12 @@ class vein2(commands.Cog, name= "fun"):
     @commands.has_permissions(manage_messages=True)
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def embed(self, ctx, *, string):
+        ch = 781535649843904562
+
+        if ctx.channel.id != (ch):
+
+            msg = ctx.message
+            return await msg.add_reaction('<:xmark:773959363379462184>')
         embed=discord.Embed(description=f'{string}', color=ctx.author.color)
         await ctx.send(embed=embed)
 
