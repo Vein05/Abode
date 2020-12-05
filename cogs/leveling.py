@@ -20,7 +20,9 @@ Hp = random.randint(50, 350)
 color = 0xa100f2
 guild = 757098499836739594
 
+mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
 
+cluster= MongoClient(mongo_url)
 class vein8(commands.Cog, name='leveling'):
     def __init__(self, client):
         self.client= client
@@ -46,9 +48,7 @@ class vein8(commands.Cog, name='leveling'):
             return
         author_id= str(message.author.id)
 
-        mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
 
-        cluster= MongoClient(mongo_url)
         db = cluster['AbodeDB']
         collection= db['Levels']
         user_id = {"_id": author_id}
@@ -153,9 +153,7 @@ class vein8(commands.Cog, name='leveling'):
         if int(amount) <= 2000:
             memeber_id= str(member.id)
 
-            mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
 
-            cluster= MongoClient(mongo_url)
             db = cluster['AbodeDB']
             collection= db['Levels']
             user_id = {"_id": memeber_id}
@@ -193,9 +191,7 @@ class vein8(commands.Cog, name='leveling'):
         if int(amount) <= 2000:
             memeber_id= str(member.id)
 
-            mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
 
-            cluster= MongoClient(mongo_url)
             db = cluster['AbodeDB']
             collection= db['Levels']
             user_id = {"_id": memeber_id}
@@ -278,9 +274,7 @@ class vein8(commands.Cog, name='leveling'):
 
 
         member_id= str(member.id)
-        mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
 
-        cluster= MongoClient(mongo_url)
         db = cluster['AbodeDB']
 
         collection= db['Levels']
@@ -355,9 +349,7 @@ class vein8(commands.Cog, name='leveling'):
         member = ctx.guild.get_member(member_id)
 
         member_id= str(member_id)
-        mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
 
-        cluster= MongoClient(mongo_url)
         db = cluster['AbodeDB']
 
         collection= db['Levels']
@@ -423,8 +415,7 @@ class vein8(commands.Cog, name='leveling'):
     async def nickname(self, ctx, *,arg):
         if ctx.guild.id != (guild):
             return
-        mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
-        cluster= MongoClient(mongo_url)
+
         db = cluster['AbodeDB']
         collection= db['Levels']
 
@@ -441,8 +432,7 @@ class vein8(commands.Cog, name='leveling'):
     @commands.command(aliases=['cc list'])
     @commands.guild_only()
     async def cc_list(self, ctx):
-        mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
-        cluster= MongoClient(mongo_url)
+
         db = cluster['AbodeDB']
         collection= db['Gifs']
         total = collection.count()

@@ -1,19 +1,11 @@
 import discord
-import traceback
 from discord.ext import commands
-intents = discord.Intents.default()
-import asyncio
-import datetime
+from discord import User
 import random
-from discord import User, errors
 import typing
 import ast
-from PIL import Image
-from io import BytesIO
 import re
-from disputils import BotEmbedPaginator
-from discord import Embed
-from disputils import BotMultipleChoice
+from disputils import BotEmbedPaginator,BotMultipleChoice
 
 color = 0xa100f2
 guild = 757098499836739594

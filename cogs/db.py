@@ -1,16 +1,12 @@
 import discord
 from discord.ext import commands
-import traceback
+
 import pymongo
 from pymongo import MongoClient
-import datetime
-import asyncio
-from discord.ext import tasks
-import disputils
-from disputils import BotConfirmation
 
 
-
+mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
+cluster= MongoClient(mongo_url)
 
 class vein7(commands.Cog, name='db'):
     def __init__(self,client):
@@ -25,8 +21,7 @@ class vein7(commands.Cog, name='db'):
         author_id= str(ctx.message.author.id)
         time= datetime.datetime.utcnow()
         #time= str(ctx.message.created_at.strftime("%Y-%m-%d, %I:%M:%S UTC"))
-        mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
-        cluster= MongoClient(mongo_url)
+
         db = cluster['AbodeDB']
         collection= db['Notes']
 
@@ -59,8 +54,7 @@ class vein7(commands.Cog, name='db'):
     @commands.guild_only()
     async def note (self, ctx):
         author_id= str(ctx.message.author.id)
-        mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
-        cluster= MongoClient(mongo_url)
+
         db = cluster['AbodeDB']
         collection= db['Notes']
         user_id= {"_id": author_id}
@@ -73,7 +67,7 @@ class vein7(commands.Cog, name='db'):
 
         else:
             for nte in dbnote:
-                print(nte)
+
                 cur_note = nte['note']
                 time= nte['time']
                 embed= discord.Embed(color= ctx.author.color, timestamp= time, description= f'{cur_note}' )
@@ -129,8 +123,7 @@ class vein7(commands.Cog, name='db'):
     @commands.guild_only()
     async def removenote (self, ctx):
         author_id= str(ctx.message.author.id)
-        mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
-        cluster= MongoClient(mongo_url)
+
         db = cluster['AbodeDB']
         collection= db['Notes']
         user_id = {"_id": author_id}

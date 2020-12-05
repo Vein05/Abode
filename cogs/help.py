@@ -1,11 +1,6 @@
 import discord
 from discord.ext import commands
-import pymongo
-from pymongo import MongoClient
-import datetime
 
-import disputils
-from disputils import BotEmbedPaginator
 color = 0xa100f2
 nomasti = 'https://pbs.twimg.com/media/EUqVvbQUcAAtL1H.jpg'
 ban = 'https://cdn.discordapp.com/attachments/759796216044978239/781453844269367306/ban.gif'

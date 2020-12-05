@@ -1,17 +1,8 @@
 import discord
-import random
+
 from discord.ext import commands
-import pathlib
-intents = discord.Intents.all()
-import asyncio
-from datetime import datetime
-import sys
-import os
-import traceback
-import re
-import json
-import pymongo
-from pymongo import MongoClient
+
+
 
 
 color = 0xa100f2

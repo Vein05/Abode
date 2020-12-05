@@ -1,5 +1,4 @@
 import discord
-import json
 import praw
 from discord.ext import commands, tasks
 import datetime

@@ -1,29 +1,10 @@
 import discord
 from discord.ext import commands, tasks
-intents = discord.Intents.default()
-import asyncio
-import datetime
-import random
-import traceback
-from PIL import Image,ImageDraw,ImageFont
-from io import BytesIO
-from collections import  Counter
-import json
-from discord.ext.commands import BadArgument
-from discord.ext.commands import command, cooldown
-from random import choice, randint
-from typing import Optional
-from aiohttp import request
-from aiohttp import ClientSession
-import collections
 from discord.ext.commands import clean_content
-from random import choice as randchoice
-import pymongo
-from pymongo import MongoClient
-import requests
-from datetime import timedelta
-import ago
-from ago import human
+
+from random import choice, randint
+
+
 
 guild = 757098499836739594
 color = 0xa100f2
@@ -451,6 +432,29 @@ class vein2(commands.Cog, name= "fun"):
             await ctx.send(embed=embed)'''
 
 
+    @commands.command()
+    async def pingadv(self, ctx):
+        msg = await ctx.send("Pinging bot\'s latency...")
+        times = []
+        counter=0
+        embed = discord.Embed(title="More information:", description="Pinged 3 times and calculated the average.", color = color)
+
+
+        for _ in range(3):
+            counter += 1
+            start = time.perf_counter()
+            await msg.edit(content=f"Pinging... {counter}/3")
+            end = time.perf_counter()
+            speed = round((end - start) * 1000)
+            times.append(speed)
+            embed.add_field(name=f"Ping {counter}:", value=f"{speed}ms", inline=True)
+
+        embed.set_author(name="Pong!", icon_url= ctx.author.avatar_url)
+        embed.add_field(name="Bot latency", value=f"{round(self.client.latency * 1000)}ms", inline=True)
+        embed.add_field(name="Average speed", value=f"{round((round(sum(times)) + round(self.client.latency * 1000))/4)}ms")
+        embed.set_thumbnail(url= ctx.guild.icon_url)
+        embed.set_footer(text=f"Estimated total time elapsed: {round(sum(times))}ms")
+        await msg.edit(content=f":ping_pong: {round((round(sum(times)) + round(self.client.latency * 1000))/4)}ms", embed=embed)
 
 
 def setup (client):
