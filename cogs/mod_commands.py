@@ -17,7 +17,7 @@ class vein(commands.Cog, name= "moderation"):
         self.client = client
 
 
-    '''@commands.Cog.listener()
+    @commands.Cog.listener()
     async def on_command(self, ctx):
         if ctx.guild.id != (guild):
             return
@@ -40,21 +40,21 @@ class vein(commands.Cog, name= "moderation"):
 
             await channel.send(embed=embed)
         else:
-            return'''
+            return
 
 
 
 
 
 
-    '''@commands.Cog.listener()
+    @commands.Cog.listener()
     async def on_message(self, message):
         if message.channel.id != 757110183800471572:
             return
         msg = message
         await msg.add_reaction("<:check:773959361953267742>")
         await msg.add_reaction("<:xmark:773959363379462184>")
-        return'''
+        return
 
     @commands.command(aliases = ['Bot'],hidden=True)
     @commands.cooldown(1, 10, commands.BucketType.user)

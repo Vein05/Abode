@@ -12,14 +12,14 @@ server_invite= 'https://discord.gg/tA4PDtX'
 class vein4(commands.Cog, name= "Admin"):
     def __init__(self, client):
         self.client = client
-    '''@commands.Cog.listener()
+    @commands.Cog.listener()
     async def on_message(self, message):
         if message.channel.id != 757109995178557511:
             return
         msg = message
         await msg.add_reaction("<:check:773959361953267742>")
         await msg.add_reaction("<:xmark:773959363379462184>")
-        return'''
+        return
 
     @commands.command()
     @commands.has_permissions(administrator=True)

@@ -22,9 +22,9 @@ Hp = random.randint(50, 350)
 color = 0xa100f2
 guild = 757098499836739594
 
-#mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
+mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
 
-#cluster= MongoClient(mongo_url)
+cluster= MongoClient(mongo_url)
 class vein8(commands.Cog, name='leveling'):
     def __init__(self, client):
         self.client= client
