@@ -38,6 +38,8 @@ client.remove_command("help")
 async def on_ready():
     await client.change_presence(status=discord.Status.online, activity=discord.Game('.help if you are lost '))
     print("Bot is running.")
+    ch = client.get_channel(783715160833523722)
+    await ch.send("Let's go!")
 
 '''@client.event
 async def on_ready():
