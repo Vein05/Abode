@@ -156,4 +156,4 @@ client.load_extension("jishaku")
 
 
 
-client.run('NzU5Nzg0MDY0MzYxMjk5OTg5.X3CiDQ.f28fSsGzW98IKWeKnWQ81TPWt-c')
+client.run('NzU5Nzg0MDY0MzYxMjk5OTg5.X3CiDQ.-ey8zjqE8emrZQQfEDk_AS1IyCo')
