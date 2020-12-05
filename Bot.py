@@ -51,10 +51,10 @@ async def on_command_error(ctx, error):
     #if isinstance(error, commands.MissingRequiredArgument):
         #await ctx.send(f'{ctx.message.author.mention} <:xmark:773959363379462184> The mandator suggests sending the correct command.', delete_after=5)
     if isinstance(error, commands.MissingPermissions):
-        await ctx.send(f"{ctx.message.author.mention} <:xmark:773959363379462184> You don't meet all the requirements to use this command.", delete_after=5)
+        await ctx.send(f"{ctx.message.author.mention} <:xmark:773959363379462184> You don't meet all the requirements to use this command.")
     if isinstance(error, commands.CommandOnCooldown):
          msg = " The command is on **Cooldown!** Try again after **{:.2f}s!**".format(error.retry_after)
-         await ctx.send(f'{ctx.message.author.mention}, {msg}', delete_after = 5)
+         await ctx.send(f'{ctx.message.author.mention}, {msg}')
     '''if isinstance(error, commands.CommandNotFound):
         emojy = '❓'
         await ctx.message.add_reaction(emojy)'''
@@ -88,7 +88,7 @@ async def ping (ctx):
 
         latency = round(client.latency *1000)
         await ctx.send  ( f'{ctx.message.author.name}, Pong! ``{latency}``ms')
-        await ctx.message.delete()
+
 
 
 
@@ -100,7 +100,7 @@ async def ping (ctx):
 async def DMuser (ctx, user: discord.User, *, msg ):
     try:
      await user.send(f'**{ctx.message.author}** has a message for you, \n {msg}')
-     await ctx.message.delete()
+
 
     except:
         await ctx.send(f'The user has his/her DMs turned off.')

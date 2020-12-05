@@ -49,6 +49,7 @@ class vein3(commands.Cog, name= "APIs"):
         await ctx.send(embed=embed)
 
 
+
     @commands.command()
     @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
@@ -76,6 +77,7 @@ class vein3(commands.Cog, name= "APIs"):
         embed.set_image(url=url)
         embed.set_footer(text=f"Requested by {ctx.author}, Source: DankMemes")
         await ctx.send(embed=embed)
+        return
 
 
     @commands.command(aliases=['pmeme'])

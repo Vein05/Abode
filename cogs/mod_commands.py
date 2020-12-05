@@ -54,6 +54,7 @@ class vein(commands.Cog, name= "moderation"):
         msg = message
         await msg.add_reaction("<:check:773959361953267742>")
         await msg.add_reaction("<:xmark:773959363379462184>")
+        return
 
     @commands.command(aliases = ['Bot'],hidden=True)
     @commands.cooldown(1, 10, commands.BucketType.user)

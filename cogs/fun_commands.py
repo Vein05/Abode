@@ -128,6 +128,7 @@ class vein2(commands.Cog, name= "fun"):
                                                         f'**Activity : ** {activity}  \nㅤㅤㅤㅤ{timestamp}')
             embed.set_footer(text=f"Requested by {ctx.author.name}",  icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
+            return
 
 
 
@@ -259,7 +260,7 @@ class vein2(commands.Cog, name= "fun"):
 
     async def echo(self, ctx,*, arg):
         await ctx.send(arg)
-        await ctx.message.delete()
+
 
 
 

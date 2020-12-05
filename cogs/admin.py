@@ -19,6 +19,7 @@ class vein4(commands.Cog, name= "Admin"):
         msg = message
         await msg.add_reaction("<:check:773959361953267742>")
         await msg.add_reaction("<:xmark:773959363379462184>")
+        return
 
     @commands.command()
     @commands.has_permissions(administrator=True)
