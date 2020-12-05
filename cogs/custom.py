@@ -13,6 +13,7 @@ class vein6(commands.Cog, name= "custom"):
     @commands.Cog.listener()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def on_message(self, message):
+        try:
             if message.guild.id != 757098499836739594:
                 return
             mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
@@ -28,6 +29,8 @@ class vein6(commands.Cog, name= "custom"):
                 if f'.{gifname}' in message.content:
 
                     await message.channel.send(f'{giflink}')
+        else:
+            return
 
 
 
