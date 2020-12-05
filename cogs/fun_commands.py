@@ -9,6 +9,8 @@ from disputils import BotEmbedPaginator,BotMultipleChoice
 import time
 from ago import human
 from pymongo import MongoClient
+import random
+from random import choice, randint
 
 
 
