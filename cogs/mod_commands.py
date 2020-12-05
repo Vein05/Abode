@@ -17,7 +17,7 @@ class vein(commands.Cog, name= "moderation"):
         self.client = client
 
 
-    @commands.Cog.listener()
+    '''@commands.Cog.listener()
     async def on_command(self, ctx):
         if ctx.guild.id != (guild):
             return
@@ -40,7 +40,7 @@ class vein(commands.Cog, name= "moderation"):
 
             await channel.send(embed=embed)
         else:
-            return
+            return'''
 
 
 
