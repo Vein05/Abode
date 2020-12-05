@@ -14,14 +14,15 @@ import jishaku
 import pymongo
 from pymongo import MongoClient
 import ago
-from ago import human
+
 import time
 import random
 from random import randint
 import aiohttp
 from aiohttp import request, ClientSession
-from discord.ext.commands import command, cooldown
+
 import requests
+import disputils
 
 
 client = commands.Bot(command_prefix = commands.when_mentioned_or('.'), case_insensitive=True, intents=intents )

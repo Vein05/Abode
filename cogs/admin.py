@@ -1,6 +1,7 @@
 import discord
 
 from discord.ext import commands
+from disputils import BotEmbedPaginator,BotMultipleChoice
 
 
 

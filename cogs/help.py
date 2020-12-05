@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from disputils import BotEmbedPaginator,BotMultipleChoice
 
 color = 0xa100f2
 nomasti = 'https://pbs.twimg.com/media/EUqVvbQUcAAtL1H.jpg'

@@ -5,6 +5,8 @@ from pymongo import MongoClient
 import datetime
 import random
 from random import randint
+from disputils import BotEmbedPaginator,BotMultipleChoice
+
 
 data= ['Water', 'Air' , 'Earth', 'Fire', 'Destruction', 'Illusion' , 'Time', 'Space', 'Karma', 'Chaos']
 paths = random.choice(data)

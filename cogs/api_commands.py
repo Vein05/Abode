@@ -12,6 +12,7 @@ from PIL import Image,ImageDraw,ImageFont
 from io import BytesIO
 import requests
 import urllib
+from discord.ext.commands import command, cooldown
 
 
 
