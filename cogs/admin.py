@@ -68,7 +68,6 @@ class vein4(commands.Cog, name= "Admin"):
         embed.add_field(name='Introduction!', value= f'Adobe of Scholars is a chat-server based on the combination of various fictional worlds from their respective **Chinese Novels**. \n\n The server allows almost everthing which is within the restrictions of [Discord TOS](https://discord.com/terms). \n\nThe server doesnot have any fixed location, it is a global server which accepts all types of readers. \n\nAbode of Scholars is made for those who are fond of reading various types of chinese webnovels, to interact with each other and also to promote the fantasy genre.',inline=False )
         embed.add_field(name='Aspects!', value=
                                             f'➤ Custom bot, The Abode Mandator\n'
-
                                             f'➤ Contribution points-system \n'
                                             f'➤ Qi and stats system with alot of unique paths and species.\n'
                                             f'➤ Custom roles, commands, and more for members with enough contribution points.\n'

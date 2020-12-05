@@ -162,7 +162,7 @@ class vein2(commands.Cog, name= "fun"):
                     'My sources say no.',
                     'Outlook not so good.',
                     'Very doubtful.']
-        await ctx.send (f'{ctx.message.author.mention} The decree of mandator fortells: ** {random.choice(responses)}**')
+        await ctx.send (f'{ctx.message.author.name}, The decree of mandator fortells : **{random.choice(responses)}**')
 
 
 
