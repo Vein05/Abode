@@ -25,7 +25,7 @@ import requests
 import disputils
 
 
-bot = commands.Bot(command_prefix = commands.when_mentioned_or('&'), case_insensitive=True, intents=intents )
+bot = commands.Bot(command_prefix = commands.when_mentioned_or('.'), case_insensitive=True, intents=intents )
 
 bot.remove_command("help")
 
