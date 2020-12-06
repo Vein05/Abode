@@ -1,21 +1,7 @@
 import discord
 import random
 from discord.ext import commands
-from discord import DMChannel
-intents = discord.Intents.all()
-import asyncio
-from datetime import datetime
-import sys
-import os
-import traceback
-import re
-from PIL import Image
-from io import BytesIO
-import json
-import platform
-import contextlib
-import io
-from random import choice, randint
+from random import randint
 
 class vein5(commands.Cog, name= "games"):
     def __init__(self, client):
@@ -37,7 +23,8 @@ class vein5(commands.Cog, name= "games"):
         'Hey kid, you won but not for long.', 'I have lost this time but next time I will crush you!']
 
         t = ["rock", "paper", "scissors"]
-
+        result = None
+        tcolor = None
         computer = t[randint(0, 2)]
         player = msg.lower()
 
