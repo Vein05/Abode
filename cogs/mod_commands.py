@@ -13,8 +13,8 @@ guild = 757098499836739594
 
 
 class vein(commands.Cog, name= "moderation"):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, Bot):
+        self.Bot = Bot
 
 
     @commands.Cog.listener()
@@ -376,8 +376,8 @@ class vein(commands.Cog, name= "moderation"):
         await ctx.channel.set_permissions(hm, send_messages=True, read_messages=True)
         await ctx.send("Channel unlocked.")
 
-def setup (client):
-    client.add_cog(vein(client))
+def setup (Bot):
+    Bot.add_cog(vein(Bot))
     print("Mod cog is working.")
 
 

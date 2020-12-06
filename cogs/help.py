@@ -11,8 +11,8 @@ nickname = 'https://cdn.discordapp.com/attachments/759796216044978239/7814538478
 poll = 'https://cdn.discordapp.com/attachments/759796216044978239/781453866029154304/poll.gif'
 
 class vein9(commands.Cog, name='Help'):
-        def __init__(self, client):
-            self.client = client
+        def __init__(self, Bot):
+            self.Bot = Bot
 
         @commands.command()
         @commands.guild_only()
@@ -227,6 +227,6 @@ class vein9(commands.Cog, name='Help'):
 
 
 
-def setup(client):
-    client.add_cog (vein9(client))
+def setup(Bot):
+    Bot.add_cog (vein9(Bot))
     print("Help cog is working.")

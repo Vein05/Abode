@@ -1,5 +1,5 @@
 import discord
-from discord.ext import commands
+from discord.ext import commands, tasks
 intents = discord.Intents.all()
 import asyncio
 from datetime import datetime
@@ -25,30 +25,30 @@ import requests
 import disputils
 
 
-client = commands.Bot(command_prefix = commands.when_mentioned_or('.'), case_insensitive=True, intents=intents )
+bot = commands.Bot(command_prefix = commands.when_mentioned_or('&'), case_insensitive=True, intents=intents )
 
-client.remove_command("help")
+bot.remove_command("help")
 
 #async def create_db_pool():
-    #client.pg_con= await asyncpg.create_pool(database='db1crf5i3vgvh2', user='lkznvsbittpdyx', password='bb434c5fa9c5d40aade4d3147855b6dd31e59b9fa569a04b3af95282644435ce')
+    #bot.pg_con= await asyncpg.create_pool(database='db1crf5i3vgvh2', user='lkznvsbittpdyx', password='bb434c5fa9c5d40aade4d3147855b6dd31e59b9fa569a04b3af95282644435ce')
     #pool= await asyncpg.create_pool('postgres://lkznvsbittpdyx:bb434c5fa9c5d40aade4d3147855b6dd31e59b9fa569a04b3af95282644435ce@ec2-3-216-89-250.compute-1.amazonaws.com:5432/db1crf5i3vgvh2')
     #con= await asyncpg.connect('postgres://lkznvsbittpdyx:bb434c5fa9c5d40aade4d3147855b6dd31e59b9fa569a04b3af95282644435ce@ec2-3-216-89-250.compute-1.amazonaws.com:5432/db1crf5i3vgvh2')
 
-@client.event
+@bot.event
 async def on_ready():
-    await client.change_presence(status=discord.Status.online, activity=discord.Game('.help if you are lost '))
+    await bot.change_presence(status=discord.Status.online, activity=discord.Game('.help if you are lost '))
     print("Bot is running.")
-    ch = client.get_channel(783715160833523722)
+    ch = bot.get_channel(783715160833523722)
     await ch.send("Let's go!")
 
-'''@client.event
+'''@bot.event
 async def on_ready():
-    await client.change_presence(status=discord.Status.online, activity=discord.Game(name=">help | >invite"))
-    print(f'Bot iz Ready\n................\n{client.user.name}\n................\n{client.user.id}')'''
+    await bot.change_presence(status=discord.Status.online, activity=discord.Game(name=">help | >invite"))
+    print(f'Bot iz Ready\n................\n{bot.user.name}\n................\n{bot.user.id}')'''
 
 
 
-@client.event
+@bot.event
 async def on_command_error(ctx, error):
     #if isinstance(error, commands.MissingRequiredArgument):
         #await ctx.send(f'{ctx.message.author.mention} <:xmark:773959363379462184> The mandator suggests sending the correct command.', delete_after=5)
@@ -70,7 +70,7 @@ async def on_command_error(ctx, error):
 
 
 
-@client.command(aliases=['Hi', 'Namaste'])
+@bot.command(aliases=['Hi', 'Namaste'])
 @commands.guild_only()
 async def hello(ctx):
     greetings = ['Hello', 'Hiya', 'nĭ hăo', 'Namaste', 'Konichiwa', 'Zdravstvuyte', 'Bonjour', 'Guten tag',
@@ -84,11 +84,11 @@ async def hello(ctx):
 
 
 
-@client.command()
+@bot.command()
 @commands.guild_only()
 async def ping (ctx):
 
-        latency = round(client.latency *1000)
+        latency = round(bot.latency *1000)
         await ctx.send  ( f'{ctx.message.author.name}, Pong! ``{latency}``ms')
 
 
@@ -96,7 +96,7 @@ async def ping (ctx):
 
 
 
-@client.command(aliases= ['pmuser'])
+@bot.command(aliases= ['pmuser'])
 @commands.guild_only()
 @commands.has_permissions(manage_messages=True)
 async def DMuser (ctx, user: discord.User, *, msg ):
@@ -142,7 +142,7 @@ extensions= [
 if __name__ == "__main__" :
     for extension in extensions:
         try :
-            client.load_extension(extension)
+            bot.load_extension(extension)
         except Exception as e:
              print (f"Error loading the {extension}", file=sys.stderr)
              traceback.print_exc()
@@ -150,12 +150,12 @@ if __name__ == "__main__" :
 
 
 
-client.load_extension("jishaku")
-#client.loop.create_task(create_db_pool())
+bot.load_extension("jishaku")
+#bot.loop.create_task(create_db_pool())
 
 
 
 
 
 
-client.run('NzU5Nzg0MDY0MzYxMjk5OTg5.X3CiDQ.-ey8zjqE8emrZQQfEDk_AS1IyCo')
+bot.run('NzU5Nzg0MDY0MzYxMjk5OTg5.X3CiDQ.-ey8zjqE8emrZQQfEDk_AS1IyCo')

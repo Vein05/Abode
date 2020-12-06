@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands, tasks
 from discord.ext.commands import clean_content
+from discord.ext.tasks import loop
 import traceback
 import collections
 import datetime
@@ -8,9 +9,10 @@ from random import choice, randint
 from disputils import BotEmbedPaginator,BotMultipleChoice
 import time
 from ago import human
-from pymongo import MongoClient
+
 import random
 from random import choice, randint
+
 
 
 
@@ -18,8 +20,9 @@ guild = 757098499836739594
 color = 0xa100f2
 
 class vein2(commands.Cog, name= "fun"):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, Bot):
+        self.Bot = Bot
+
 
 
 
@@ -73,7 +76,7 @@ class vein2(commands.Cog, name= "fun"):
 
             mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
 
-            cluster= MongoClient(mongo_url)
+            cluster= MongoBot(mongo_url)
             db = cluster['AbodeDB']
 
             collection= db['Levels']
@@ -420,18 +423,18 @@ class vein2(commands.Cog, name= "fun"):
     async def addnote(self, ctx, *, note):
 
         author_id= str(ctx.message.author.id)
-        user= await self.client.pg_con.fetchrow("SELECT * FROM notes WHERE user_id= $1 ", author_id)
+        user= await self.Bot.pg_con.fetchrow("SELECT * FROM notes WHERE user_id= $1 ", author_id)
         if user is None:
-            await self.client.pg_con.execute("INSERT INTO notes (user_id, usernote) VALUES ($1, $2)", author_id, note)
+            await self.Bot.pg_con.execute("INSERT INTO notes (user_id, usernote) VALUES ($1, $2)", author_id, note)
             return await ctx.send(f'Just added a note for {ctx.message.author.display_name}')
 
-        await self.client.pg_con.execute("UPDATE notes SET usernote= $1 WHERE user_id= $2",note,author_id)
+        await self.Bot.pg_con.execute("UPDATE notes SET usernote= $1 WHERE user_id= $2",note,author_id)
         return await ctx.send(f'Just updated note for {ctx.message.author.display_name}')
 
     @commands.command()
     async def note(self,ctx):
         author_id= str((ctx.message.author.id))
-        user= await self.client.pg_con.fetchrow("SELECT * FROM notes WHERE user_id = $1", author_id)
+        user= await self.Bot.pg_con.fetchrow("SELECT * FROM notes WHERE user_id = $1", author_id)
         if user is None:
             return await ctx.send('{ctx.message.author.display_name} ``.addnote`` using the following command  add a note before trying this command out.')
         else:
@@ -459,13 +462,18 @@ class vein2(commands.Cog, name= "fun"):
             embed.add_field(name=f"Ping {counter}:", value=f"{speed}ms", inline=True)
 
         embed.set_author(name="Pong!", icon_url= ctx.author.avatar_url)
-        embed.add_field(name="Bot latency", value=f"{round(self.client.latency * 1000)}ms", inline=True)
-        embed.add_field(name="Average speed", value=f"{round((round(sum(times)) + round(self.client.latency * 1000))/4)}ms")
+        embed.add_field(name="Bot latency", value=f"{round(self.Bot.latency * 1000)}ms", inline=True)
+        embed.add_field(name="Average speed", value=f"{round((round(sum(times)) + round(self.Bot.latency * 1000))/4)}ms")
         embed.set_thumbnail(url= ctx.guild.icon_url)
         embed.set_footer(text=f"Estimated total time elapsed: {round(sum(times))}ms")
-        await msg.edit(content=f":ping_pong: {round((round(sum(times)) + round(self.client.latency * 1000))/4)}ms", embed=embed)
+        await msg.edit(content=f":ping_pong: {round((round(sum(times)) + round(self.Bot.latency * 1000))/4)}ms", embed=embed)
 
 
-def setup (client):
-     client.add_cog (vein2(client))
+
+
+
+
+
+def setup (Bot):
+     Bot.add_cog (vein2(Bot))
      print("Fun cog is working.")

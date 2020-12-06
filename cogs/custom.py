@@ -6,8 +6,8 @@ from pymongo import MongoClient
 
 
 class vein6(commands.Cog, name= "custom"):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, Bot):
+        self.Bot = Bot
 
 
     '''@commands.Cog.listener()
@@ -117,7 +117,7 @@ class vein6(commands.Cog, name= "custom"):
     async def removecommand(self, ctx, *, commandname):
         author_id= str(ctx.message.author.id)
         mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
-        cluster= MongoClient(mongo_url)
+        cluster= MongoBot(mongo_url)
         db = cluster['AbodeDB']
         collection= db['Gifs']
         cmd_name = str(commandname)
@@ -131,6 +131,6 @@ class vein6(commands.Cog, name= "custom"):
             await ctx.send(f'{ctx.message.author.display_name}, Just removed a command ``{cmd_name}``, add another command through ``.addcommand <name> <link>``.', delete_after=10)
 
 
-def setup (client):
-    client.add_cog (vein6(client))
+def setup (Bot):
+    Bot.add_cog (vein6(Bot))
     print("Custom cog is working.")

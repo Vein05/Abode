@@ -10,8 +10,8 @@ color = 0xa100f2
 server_invite= 'https://discord.gg/tA4PDtX'
 
 class vein4(commands.Cog, name= "Admin"):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, Bot):
+        self.Bot = Bot
     @commands.Cog.listener()
     async def on_message(self, message):
         if message.channel.id != 757109995178557511:
@@ -225,7 +225,7 @@ class vein4(commands.Cog, name= "Admin"):
 
 
             embed.add_field(name='Links', value=f'[Invite](http://bitly.com/98K8eH)\n\n'
-                                                f'[Invite](https://discord.com/oauth2/authorize?client_id=161660517914509312&scope=bot%20identify%20guilds&response_type=code&redirect_uri=https://dyno.gg/return&permissions=2134207679) | [Commands](https://dyno.gg/commands) | [Server](https://discord.com/invite/dyno)\n\n'
+                                                f'[Invite](https://discord.com/oauth2/authorize?Bot_id=161660517914509312&scope=bot%20identify%20guilds&response_type=code&redirect_uri=https://dyno.gg/return&permissions=2134207679) | [Commands](https://dyno.gg/commands) | [Server](https://discord.com/invite/dyno)\n\n'
                                                 f'[Leaderboard](https://arcanebot.xyz/lb/757098499836739594) | [Website](https://www.arcanebot.xyz/)\n\n'
                                                 f'[Server](https://discord.gg/eY4mens) | [Disboard](https://disboard.org/)\n\n'
                                                 f'[Website](https://yagpdb.xyz/) | [Documentation](https://docs.yagpdb.xyz/)\n\n'
@@ -320,6 +320,6 @@ class vein4(commands.Cog, name= "Admin"):
         while True:
             await channel.send(arg)'''
 
-def setup (client):
-    client.add_cog (vein4(client))
+def setup (Bot):
+    Bot.add_cog (vein4(Bot))
     print("Admin cog is wokring.")

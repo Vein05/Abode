@@ -17,8 +17,8 @@ from discord.ext.commands import command, cooldown
 
 
 class vein3(commands.Cog, name= "APIs"):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, Bot):
+        self.Bot = Bot
 
     account=  praw.Reddit(client_id = "0H3JtzbIXbtZNw",
                          client_secret = "XKE_G2TxnXZY3nZQb8pOI17b10o",
@@ -373,6 +373,6 @@ class vein3(commands.Cog, name= "APIs"):
                     embed.set_image(url=data['link'])
                     embed.set_footer(text=f"Requested by {ctx.author}, source some random api", icon_url=ctx.author.avatar_url)
                     await ctx.send(embed=embed)
-def setup (client):
-    client.add_cog (vein3(client))
+def setup (Bot):
+    Bot.add_cog (vein3(Bot))
     print("APIs cog is working.")

@@ -12,8 +12,9 @@ battle = ("put battle chnl id here")
 mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
 cluster= MongoClient(mongo_url)
 class vein11(commands.Cog, name='battle'):
-    def __init__(self, client):
-        self.client= client
+    def __init__(self, Bot):
+        self.Bot= Bot
+
 
     @commands.command(aliases=['battle'])
     @commands.guild_only()
@@ -48,7 +49,7 @@ class vein11(commands.Cog, name='battle'):
         await msg.add_reaction('<:xmark:773959363379462184>')
 
 
-        reaction, user= await self.client.wait_for("reaction_add",timeout=30, check=check)
+        reaction, user= await self.Bot.wait_for("reaction_add",timeout=30, check=check)
 
 
 
@@ -95,6 +96,6 @@ class vein11(commands.Cog, name='battle'):
 
 
 
-def setup (client):
-    client.add_cog(vein11(client))
+def setup (Bot):
+    Bot.add_cog(vein11(Bot))
     print("Battle cog is working.")

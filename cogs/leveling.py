@@ -26,8 +26,8 @@ mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,a
 
 cluster= MongoClient(mongo_url)
 class vein8(commands.Cog, name='leveling'):
-    def __init__(self, client):
-        self.client= client
+    def __init__(self, Bot):
+        self.Bot= Bot
 
     @commands.Cog.listener()
     @commands.guild_only()
@@ -228,7 +228,7 @@ class vein8(commands.Cog, name='leveling'):
         memeber_id= str(member.id)
         mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
 
-        cluster= MongoClient(mongo_url)
+        cluster= MongoBot(mongo_url)
         db = cluster['AbodeDB']
 
 
@@ -454,8 +454,8 @@ class vein8(commands.Cog, name='leveling'):
 
 
 
-def setup (client):
-    client.add_cog(vein8(client))
+def setup (Bot):
+    Bot.add_cog(vein8(Bot))
     print("Leveling cog is working.")
 
 

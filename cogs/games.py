@@ -4,8 +4,8 @@ from discord.ext import commands
 from random import randint
 
 class vein5(commands.Cog, name= "games"):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, Bot):
+        self.Bot = Bot
 
 
     @commands.command()
@@ -76,6 +76,6 @@ class vein5(commands.Cog, name= "games"):
 
 
 
-def setup(client):
-    client.add_cog(vein5(client))
+def setup(Bot):
+    Bot.add_cog(vein5(Bot))
     print("Games cogs is working.")

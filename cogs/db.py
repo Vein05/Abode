@@ -10,8 +10,8 @@ mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,a
 cluster= MongoClient(mongo_url)
 
 class vein7(commands.Cog, name='db'):
-    def __init__(self,client):
-        self.client = client
+    def __init__(self,Bot):
+        self.Bot = Bot
 
 
 
@@ -98,7 +98,7 @@ class vein7(commands.Cog, name='db'):
             await msg.add_reaction('✅')
             await msg.add_reaction('❌')
 
-            reaction, user= await self.client.wait_for("reaction_add",timeout=30, check=check)
+            reaction, user= await self.Bot.wait_for("reaction_add",timeout=30, check=check)
 
 
 
@@ -145,6 +145,6 @@ class vein7(commands.Cog, name='db'):
 
 
 
-def setup (client):
-    client.add_cog (vein7(client))
+def setup (Bot):
+    Bot.add_cog (vein7(Bot))
     print("DB cogs is working.")
