@@ -339,7 +339,7 @@ class vein(commands.Cog, name= "moderation"):
     @commands.has_permissions(Administrator=True)
     async def lock(self, ctx):
         hm = discord.utils.get(ctx.guild.roles, name=f'Verified')
-        await ctx.channel.set_permissions(hm, send_messages=False, read_messages=False)
+        await ctx.channel.set_permissions(hm, send_messages=False, read_messages=True)
         await ctx.send("Channel locked.")
 
     @commands.command()
