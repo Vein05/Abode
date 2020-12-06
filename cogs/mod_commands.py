@@ -159,7 +159,33 @@ class vein(commands.Cog, name= "moderation"):
 
 
 
+    @commands.command(aliases=['rinfo'])
+    @commands.has_permissions(manage_roles=True)
+    async def roleinfo(self, ctx, *, rolename):
+        allowed= []
+        try:
+            role = discord.utils.get(ctx.message.guild.roles, name=rolename)
+            permissions = role.permissions
 
+            for name, value in permissions:
+                if value:
+                    name = name.replace('_', ' ').replace('guild', 'server').title()
+                    allowed.append(name)
+        except:
+            return await ctx.send(f"Couldn't find the role")
+        time = role.created_at
+        em = discord.Embed(description=f'', color=color, timestamp=time)
+        em.set_author(name=f'{rolename}')
+        em.set_thumbnail(url=f'{ctx.guild.icon_url}')
+        em.add_field(name='__Info__', value=f'**ID :** {str(role.id)} \n'
+                                            f'**Color :** {role.color}\n'
+                                            f'**Hoisted :** {str(role.hoist)}\n'
+                                            f'**Position :** {str(role.position)}\n'
+                                            f'**Is mentionable :** {str(role.mentionable)}\n'
+                                            f'**Members in role :** {str(len(role.members))}\n')
+        em.add_field(name='__Role permissions__', value=f', '.join(allowed), inline=False)
+        em.set_footer(text="Role created on")
+        await ctx.send(embed=em)
 
 
 
@@ -336,7 +362,7 @@ class vein(commands.Cog, name= "moderation"):
 
     @commands.command()
     @commands.guild_only()
-    @commands.has_permissions(Administrator=True)
+    @commands.has_permissions(administrator=True)
     async def lock(self, ctx):
         hm = discord.utils.get(ctx.guild.roles, name=f'Verified')
         await ctx.channel.set_permissions(hm, send_messages=False, read_messages=True)
@@ -344,7 +370,7 @@ class vein(commands.Cog, name= "moderation"):
 
     @commands.command()
     @commands.guild_only()
-    @commands.has_permissions(Administrator=True)
+    @commands.has_permissions(administrator=True)
     async def unlock(self, ctx):
         hm = discord.utils.get(ctx.guild.roles, name=f'Verified')
         await ctx.channel.set_permissions(hm, send_messages=True, read_messages=True)
