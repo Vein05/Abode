@@ -173,7 +173,7 @@ class vein2(commands.Cog, name= "fun"):
     @commands.command(aliases=['wel'])
     @commands.guild_only()
     async def welcome(self,ctx):
-        await ctx.send(f'<:Cuppedfist:769143163414773760> Welcome to {ctx.guild.name}, enjoy your stay here.')
+        await ctx.send(f'<:Cuppedfist:769143163414773760> Welcome to {ctx.guild.name}, enjoy your stay here!')
 
     @commands.command(aliases=['servercount','membercount'])
     @commands.guild_only()

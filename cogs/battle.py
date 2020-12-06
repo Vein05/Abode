@@ -2,6 +2,8 @@ import discord
 from discord.ext import commands
 import pymongo
 from pymongo import MongoClient
+import random
+from random import randint
 
 color = 0xa100f2
 guild = 757098499836739594
@@ -41,7 +43,7 @@ class vein11(commands.Cog, name='battle'):
                 return user.id == member.id and user.id != 759784064361299989
 
 
-        msg = await ctx.send(f"{member.mention} {ctx.author.mention} wants to challenge you to a duel.React with <:check:773959361953267742> to accept the battle or react with <:xmark:773959363379462184> to deny the challenge.")
+        msg = await ctx.send(f"{member.name} {ctx.author.mention} wants to challenge you to a duel. React with <:check:773959361953267742> to accept the battle or react with <:xmark:773959363379462184> to deny the challenge.")
         await msg.add_reaction('<:check:773959361953267742>')
         await msg.add_reaction('<:xmark:773959363379462184>')
 
@@ -76,8 +78,15 @@ class vein11(commands.Cog, name='battle'):
                 qi7 = lvl['Qi']
                 pth8= lvl['Path']
                 nme9= lvl['Name']
-        luck_db = luk * .5
-        await ctx.send(luck_db)
+        smthin = random.randint(1,5)
+        new_total_user = (stre + sped + defen + sol + health + (qi*2) + (luk *smthin))
+        new_total_member = (stre1 + sped2 + defen3 + sol4 + health5 + (qi7*2) + (luk6 *smthin))
+
+        print (new_total_user)
+        print(new_total_member)
+
+
+        await ctx.send(new_total_member)
 
 
 
