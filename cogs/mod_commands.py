@@ -336,7 +336,7 @@ class vein(commands.Cog, name= "moderation"):
 
     @commands.command()
     @commands.guild_only()
-    @commands.has_permissions(manage_channels=True)
+    @commands.has_permissions(Administrator=True)
     async def lock(self, ctx):
         hm = discord.utils.get(ctx.guild.roles, name=f'Verified')
         await ctx.channel.set_permissions(hm, send_messages=False, read_messages=False)
@@ -344,7 +344,7 @@ class vein(commands.Cog, name= "moderation"):
 
     @commands.command()
     @commands.guild_only()
-    @commands.has_permissions(manage_channels=True)
+    @commands.has_permissions(Administrator=True)
     async def unlock(self, ctx):
         hm = discord.utils.get(ctx.guild.roles, name=f'Verified')
         await ctx.channel.set_permissions(hm, send_messages=True, read_messages=True)

@@ -185,7 +185,7 @@ class vein9(commands.Cog, name='Help'):
                 embed6.set_footer(text=f'Tip : If your options are "yes" and "no", Abode will react with a tick and a cross.')
                 embed6.set_image(url=f'{poll}')
                 embed7 = discord.Embed(color=color)
-                embed7.add_field(name='Lock / Unlock', value=f'**Aliases : **None\n**For :** Verified role\n**Roles :** Core elder or higher. \n**Usuage :** ```.lock / .unlock```', inline=False)
+                embed7.add_field(name='Lock / Unlock', value=f'**Aliases : **None\n**For :** Verified role\n**Roles :** Supreme elder or higher. \n**Usuage :** ```.lock / .unlock```', inline=False)
                 embed7.set_footer(text=f'You earn a custom role for being an elder, don\'t forget to ask one for yourself.')
 
                 embeds = [embed1, embed2,embed3, embed4, embed5, embed6,embed7]
