@@ -43,7 +43,7 @@ class vein2(commands.Cog, name= "fun"):
     @commands.guild_only()
     async def ping (self, ctx):
 
-            latency = round(bot.latency *1000)
+            latency = round(self.Bot.latency *1000)
             await ctx.send  ( f'{ctx.message.author.name}, Pong! ``{latency}``ms')
 
 
