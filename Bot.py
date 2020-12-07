@@ -23,7 +23,7 @@ from aiohttp import request, ClientSession
 
 import requests
 import disputils
-from pretty_help import PrettyHelp, Navigation
+
 
 prefix = '.'
 
