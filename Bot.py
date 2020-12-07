@@ -23,11 +23,14 @@ from aiohttp import request, ClientSession
 
 import requests
 import disputils
+from pretty_help import PrettyHelp, Navigation
 
+prefix = '.'
 
-bot = commands.Bot(command_prefix = commands.when_mentioned_or('.'), case_insensitive=True, intents=intents )
-
+bot = commands.Bot(command_prefix = commands.when_mentioned_or(prefix), case_insensitive=True, intents=intents )
+bot.DEFAULT_PREFIX = prefix
 bot.remove_command("help")
+
 
 #async def create_db_pool():
     #bot.pg_con= await asyncpg.create_pool(database='db1crf5i3vgvh2', user='lkznvsbittpdyx', password='bb434c5fa9c5d40aade4d3147855b6dd31e59b9fa569a04b3af95282644435ce')
@@ -70,42 +73,13 @@ async def on_command_error(ctx, error):
 
 
 
-@bot.command(aliases=['Hi', 'Namaste'])
-@commands.guild_only()
-async def hello(ctx):
-    greetings = ['Hello', 'Hiya', 'nĭ hăo', 'Namaste', 'Konichiwa', 'Zdravstvuyte', 'Bonjour', 'Guten tag',
-                 'Anyoung haseyo', 'Asalaam alaikum', 'Goddag', 'Selamat siang','hola', 'marhabaan	', 'hyālō',
-                 'Sata srī akāla', 'Nggoleki', 'Vandanalu', '	Xin chào', 'Namaskār', 'Vaṇakkam', 'Salām', 'Merhaba', 'Ciao'
-                 , 'Sà-wàt-dii', 'Kaixo', 'Cześć’', 'Namaskāra', 'Prannam', 'Kamusta', 'Hallo', 'Yasou', 'Hej', 'oi', 'Wazza', 'kem cho',
-                 'Hai', 'doki-doki', 'meow meow ', 'Lí-hó', 'Vitaju' , 'Bok', 'Hej', 'Moi', 'Sveika /Sveiks ', 'God dag',
-                 'Moïen ', 'Vitayu ', 'Aloha ', 'Wassup', 'Howdy!']
-    reply = random.choice(greetings)
-    await ctx.send(f'{reply}, {ctx.message.author.mention} How is it going for you? No need to ask me, but I am mostly good.')
-
-
-
-@bot.command()
-@commands.guild_only()
-async def ping (ctx):
-
-        latency = round(bot.latency *1000)
-        await ctx.send  ( f'{ctx.message.author.name}, Pong! ``{latency}``ms')
 
 
 
 
 
 
-@bot.command(aliases= ['pmuser'])
-@commands.guild_only()
-@commands.has_permissions(manage_messages=True)
-async def DMuser (ctx, user: discord.User, *, msg ):
-    try:
-     await user.send(f'**{ctx.message.author}** has a message for you, \n {msg}')
 
-
-    except:
-        await ctx.send(f'The user has his/her DMs turned off.')
 
 
 
@@ -137,6 +111,7 @@ extensions= [
             'cogs.help',
             'cogs.shop',
             'cogs.battle'
+
 
 ]
 if __name__ == "__main__" :

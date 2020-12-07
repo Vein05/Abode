@@ -26,7 +26,7 @@ class vein6(commands.Cog, name= "custom"):
             for nte in dbnote:
                 gifname = nte['_id']
                 giflink= nte['link']
-                if f'.{gifname}' in message.content:
+                if f'{seld.Bot.DEFAULT_PREFIX}{gifname}' in message.content:
 
                     await message.channel.send(f'{giflink}')
         except:
@@ -117,7 +117,7 @@ class vein6(commands.Cog, name= "custom"):
     async def removecommand(self, ctx, *, commandname):
         author_id= str(ctx.message.author.id)
         mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
-        cluster= MongoBot(mongo_url)
+        cluster= MongoClient(mongo_url)
         db = cluster['AbodeDB']
         collection= db['Gifs']
         cmd_name = str(commandname)

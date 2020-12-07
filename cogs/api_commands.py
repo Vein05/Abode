@@ -319,7 +319,7 @@ class vein3(commands.Cog, name= "APIs"):
                 embed.set_footer(text=f'Requested by {ctx.author}, Quote from some-random-api')
                 await ctx.send(embed=embed)
 
-    @commands.command()
+    @commands.command(description='Give a headpat to someone.')
     @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def headpat(self,ctx):

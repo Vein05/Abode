@@ -1,6 +1,8 @@
 import discord
 from discord.ext import commands
 from disputils import BotEmbedPaginator,BotMultipleChoice
+from discord.ext.buttons import Paginator
+from cogs.utils import Pag
 
 color = 0xa100f2
 nomasti = 'https://pbs.twimg.com/media/EUqVvbQUcAAtL1H.jpg'
@@ -10,79 +12,202 @@ role = 'https://cdn.discordapp.com/attachments/759796216044978239/78145387346998
 nickname = 'https://cdn.discordapp.com/attachments/759796216044978239/781453847854972928/Nickname.gif'
 poll = 'https://cdn.discordapp.com/attachments/759796216044978239/781453866029154304/poll.gif'
 
+
+
+
+
+
 class vein9(commands.Cog, name='Help'):
         def __init__(self, Bot):
             self.Bot = Bot
+            self.cmds_per_page = 10
 
         @commands.command()
         @commands.guild_only()
-        async def help(self, ctx):
-                ch = 781535649843904562
-                ch1= 757136943149613076
+        async def help(self, ctx, *, entity = None):
+            if not entity:
+                    ch = 781535649843904562
+                    ch1= 757136943149613076
 
-                if ctx.channel.id == ((ch)):
-                    embed1= discord.Embed(title="Commands #1", description="Basic fun commands on the server", color=color)
-                    embed1.set_thumbnail(url=f'{ctx.guild.icon_url}')
-                    embed1.set_author(name="Abode",icon_url=f'{ctx.me.avatar_url}')
-                    embed1.add_field(name="helppoints", value=f'To get a help page about points.',  inline=False)
-                    embed1.add_field(name="ping", value="To check Abode's latency", inline=False)
-                    embed1.add_field(name="8ball", value="To ask Abode an 8ball question", inline=False)
-                    embed1.add_field(name="echo", value="To make Abode repeat something \n"
-                                                                    "``.hi`` To get a random gretting from over 50 languages.", inline=False)
-                    embed1.add_field(name="points/p ", value="To see your contribution points for the server. ``p @Vein#8177`` to see points of a specific user.", inline=False)
+                    if ctx.channel.id == ((ch)):
+                        embed1= discord.Embed( color=color)
+                        embed1.set_thumbnail(url=f'{ctx.guild.icon_url}')
+                        embed1.set_author(name="Abode",icon_url=f'{ctx.me.avatar_url}')
+                        embed1.add_field(name="helppoints", value=f'To get a help page about points.',  inline=False)
+                        embed1.add_field(name="ping", value="To check Abode's latency", inline=False)
+                        embed1.add_field(name="8ball", value="To ask Abode an 8ball question", inline=False)
+                        embed1.add_field(name="echo", value="To make Abode repeat something \n"
+                                                                        "``.hi`` To get a random gretting from over 50 languages.", inline=False)
+                        embed1.add_field(name="points/p ", value="To see your contribution points for the server. ``p @Vein#8177`` to see points of a specific user.", inline=False)
 
-                    embed1.add_field(name="userinfo", value="To make Abode get the general info on the user", inline=False)
-                    embed1.add_field(name="serverinfo", value="To get the general info of the server", inline=False)
-                    embed1.add_field(name="invite", value="Get invite link of Abode of Scholars.", inline=False)
-                    embed1.add_field(name="complaint", value="Add an server complaint which will go into <#757110183800471572>.", inline=False)
-                    embed1.set_footer(text=f"Requested by {ctx.message.author.name}" )
+                        embed1.add_field(name="userinfo", value="To make Abode get the general info on the user", inline=False)
+                        embed1.add_field(name="serverinfo", value="To get the general info of the server", inline=False)
+                        embed1.add_field(name="invite", value="Get invite link of Abode of Scholars.", inline=False)
+                        embed1.add_field(name="complaint", value="Add an server complaint which will go into <#757110183800471572>.", inline=False)
 
+                        embed1.set_footer(text=f'{self.Bot.DEFAULT_PREFIX}help <command name> for more info on commands.')
 
-                    embed2=discord.Embed(title='Commands #2', colour=color)
-                    embed2.set_author(name="Abode", icon_url=f'{ctx.me.avatar_url}')
-                    embed2.add_field(name="dankmemes", value=f' Make Abode send a meme from Dankmemes subreddit', inline=False)
-                    embed2.set_thumbnail(url=ctx.guild.icon_url)
-                    embed2.add_field(name="pmemes", value= f'Make Abode send a meme from ProgrammerHumor subreddit', inline=False)
-                    embed2.add_field(name="cat", value=  f' Make Abode send a woof picture ', inline=False)
-                    embed2.add_field(name="catfact", value=  f' A random woof fact ')
-                    embed2.add_field(name="dog", value=   f' Make Abode send a meow picture ', inline=False)
-                    embed2.add_field(name="dogfact", value=  f' A random meow fact ')
-                    embed2.add_field(name="panda ", value= f' Make Abode send cutest pandas', inline=False)
-                    embed2.add_field(name="pandafact", value=  f' A random panda fact ')
-                    embed2.add_field(name="pikachu", value= f' Make Abode send a pikachu gif or an image', inline=False)
-                    embed2.add_field(name="numberfact", value= f'Make abode send a random fact on numbers')
-                    embed2.add_field(name="yearfact", value= f' Make Abode send a random fact on a year', inline=False)
-                    embed2.add_field(name="clyde", value= f' Make clyde say something', inline=False)
-                    embed2.add_field(name="flip", value= f'Make Abode Flip a coin for you')
-                    embed2.add_field(name="lovemeter", value=f'You know it :eyes:')
-                    embed2.add_field(name="rps", value=f'Play Rock Scissors Paper with Abode', inline=False)
-                    embed2.set_footer(text=f"Requested by {ctx.message.author.name} ")
+                        embed2=discord.Embed( colour=color)
+                        embed2.set_author(name="Abode", icon_url=f'{ctx.me.avatar_url}')
+                        embed2.add_field(name="dankmemes", value=f' Make Abode send a meme from Dankmemes subreddit', inline=False)
+                        embed2.set_thumbnail(url=ctx.guild.icon_url)
+                        embed2.add_field(name="pmemes", value= f'Make Abode send a meme from ProgrammerHumor subreddit', inline=False)
+                        embed2.add_field(name="cat", value=  f' Make Abode send a woof picture ', inline=False)
+                        embed2.add_field(name="catfact", value=  f' A random woof fact ')
+                        embed2.add_field(name="dog", value=   f' Make Abode send a meow picture ', inline=False)
+                        embed2.add_field(name="dogfact", value=  f' A random meow fact ')
+                        embed2.add_field(name="panda ", value= f' Make Abode send cutest pandas', inline=False)
+                        embed2.add_field(name="pandafact", value=  f' A random panda fact ')
+                        embed2.add_field(name="pikachu", value= f' Make Abode send a pikachu gif or an image', inline=False)
+                        embed2.add_field(name="numberfact", value= f'Make abode send a random fact on numbers')
+                        embed2.add_field(name="yearfact", value= f' Make Abode send a random fact on a year', inline=False)
+                        embed2.add_field(name="clyde", value= f' Make clyde say something', inline=False)
+                        embed2.add_field(name="flip", value= f'Make Abode Flip a coin for you')
+                        embed2.add_field(name="lovemeter", value=f'You know it :eyes:')
+                        embed2.add_field(name="rps", value=f'Play Rock Scissors Paper with Abode', inline=False)
+                        embed2.set_footer(text=f'{self.Bot.DEFAULT_PREFIX}help <command name> for more info on commands.')
 
-                    embed3= discord.Embed(title='Commands #3', color=color)
-                    embed3.set_author(name="Abode", icon_url=f'{ctx.me.avatar_url}')
-                    embed3.add_field(name="aquote", value="Fetch some good anime quotes.", inline=False)
-                    embed3.add_field(name="sad, happy, angry", value=":D", inline=False )
-                    embed3.add_field(name='facepalm, wink, hug, pat', value="Anime gifs on the mentioned situations.", inline=False)
-                    embed3.add_field(name="koala", value= "koala pictures :D")
-                    embed3.add_field(name="f", value="Pay your repects, I paid mine")
-                    embed3.add_field(name='addnote',value= f'Add a note about something',inline=False)
-                    embed3.add_field(name='note', value= f'To view the added note.')
-                    embed3.add_field(name='removenote', value=f'To remove the note that you added.', inline=False)
-                    embed3.add_field(name="lenny", value="To make Abode send a lenny face", inline=False)
-                    embed3.add_field(name="welcome", value="To make Abode welcome a new user", inline=False)
-                    embed3.set_footer(text=f"Requested by {ctx.message.author.name}")
-
-
-                    embed3.set_thumbnail(url=f'{ctx.guild.icon_url}')
+                        embed3= discord.Embed( color=color)
+                        embed3.set_author(name="Abode", icon_url=f'{ctx.me.avatar_url}')
+                        embed3.add_field(name="aquote", value="Fetch some good anime quotes.", inline=False)
+                        embed3.add_field(name="sad, happy, angry", value=":D", inline=False )
+                        embed3.add_field(name='facepalm, wink, hug, pat', value="Anime gifs on the mentioned situations.", inline=False)
+                        embed3.add_field(name="koala", value= "koala pictures :D")
+                        embed3.add_field(name="f", value="Pay your repects, I paid mine")
+                        embed3.add_field(name='addnote',value= f'Add a note about something',inline=False)
+                        embed3.add_field(name='note', value= f'To view the added note.')
+                        embed3.add_field(name='removenote', value=f'To remove the note that you added.', inline=False)
+                        embed3.add_field(name="lenny", value="To make Abode send a lenny face", inline=False)
+                        embed3.add_field(name="welcome", value="To make Abode welcome a new user", inline=False)
+                        embed3.set_footer(text=f'{self.Bot.DEFAULT_PREFIX}help <command name> for more info on commands.')
 
 
+                        embed3.set_thumbnail(url=f'{ctx.guild.icon_url}')
 
-                    embeds= [embed1, embed2, embed3]
-                    paginator = BotEmbedPaginator(ctx, embeds)
-                    await paginator.run()
+
+
+                        embeds= [embed1, embed2, embed3]
+                        paginator = BotEmbedPaginator(ctx, embeds)
+                        await paginator.run()
+                    else:
+                        msg = ctx.message
+                        await msg.add_reaction('<:xmark:773959363379462184>')
+
+
+            else:
+                command = self.Bot.get_command(entity)
+                if command:
+                    await self.setup_help_pag(ctx, command, command.name)
+
                 else:
-                    msg = ctx.message
-                    await msg.add_reaction('<:xmark:773959363379462184>')
+                    await ctx.send(f"{entity} not found.")
+
+        async def return_filtered_commands(self, walkable , ctx):
+            filtered =[]
+            for c in walkable.walk_commands():
+                try:
+                    if c.hidden:
+                        continue
+                    elif c.parent:
+                        continue
+                    await c.can_run(ctx)
+                    filtered.append(c)
+                except commands.CommandError:
+                     continue
+            return self.return_sorted_commands(filtered)
+
+        def return_sorted_commands(self,commandList):
+            return sorted(commandList, key=lambda x : x.name)
+
+        def get_command_signature(self, command : commands.Command, ctx : commands.Context):
+            aliases = "| ".join(command.aliases)
+            cmd_invoke = f'[{command.name} | {command.aliases}]' if command.aliases else command.name
+            full_invoke = command.qualified_name.replace(command.name, "")
+            signature = f'{self.Bot.DEFAULT_PREFIX}{full_invoke}{cmd_invoke} {command.signature}'
+            return signature
+
+
+        async def setup_help_pag(self, ctx, entity=None , title=None):
+            entity = entity or self.Bot
+            title = title or self.Bot.description
+
+            pages = []
+
+            if isinstance(entity, commands.Command):
+                filtered_commands = (
+                    list(set(entity.all_commands.values()))
+                    if hasattr(entity, "all_commands")
+                    else []
+                    )
+                filtered_commands.insert(0, entity)
+            else:
+                filtered_commands=await self.return_filtered_commands(entity, ctx)
+
+            for i in range(0, len(filtered_commands), self.cmds_per_page):
+                next_commands = filtered_commands[i : i + self.cmds_per_page]
+                commands_entry = ""
+
+                for cmd in next_commands:
+                    desc = cmd.short_doc or cmd.description
+                    signature = self.get_command_signature(cmd, ctx)
+                    subcommands = "Has subcommands " if hasattr(cmd, "all_commands") else ""
+                    commands_entry +=(
+                        f" ```{signature}\n```\n**Description:** {desc}\n"
+                        if isinstance(entity, commands.Command)
+                        else f"**{cmd.name}**\n{desc}\n    {subcommands}\n"
+                        )
+                pages.append(commands_entry)
+            await Pag(title=title , color =color, entries = pages, length=1).start(ctx)
+
+        @commands.command()
+        async def help_default(self, ctx, *, entity = None):
+            if not entity:
+                await self.setup_help_pag(ctx)
+            else:
+                cog = self.Bot.get_cog(entity)
+                if cog:
+                    await self.setup_help_pag(ctx, cog, f"{cog.qualified_name}'s commands")
+
+                else:
+                    command = self.Bot.get_command(entity)
+                    if command:
+                        await self.setup_help_pag(ctx, command, command.name)
+
+                    else:
+                        await ctx.send(f"{entity} not found.")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -215,6 +340,8 @@ class vein9(commands.Cog, name='Help'):
             embeds = [embed1]
             paginator = BotEmbedPaginator(ctx, embeds)
             await paginator.run()
+
+
 
 
 

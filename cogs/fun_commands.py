@@ -9,7 +9,8 @@ from random import choice, randint
 from disputils import BotEmbedPaginator,BotMultipleChoice
 import time
 from ago import human
-
+import pymongo
+from pymongo import MongoClient
 import random
 from random import choice, randint
 
@@ -24,7 +25,26 @@ class vein2(commands.Cog, name= "fun"):
         self.Bot = Bot
 
 
+    @commands.command(aliases=['Hi', 'Namaste'])
+    @commands.guild_only()
+    async def hello(self,ctx):
+        greetings = ['Hello', 'Hiya', 'nĭ hăo', 'Namaste', 'Konichiwa', 'Zdravstvuyte', 'Bonjour', 'Guten tag',
+                     'Anyoung haseyo', 'Asalaam alaikum', 'Goddag', 'Selamat siang','hola', 'marhabaan  ', 'hyālō',
+                     'Sata srī akāla', 'Nggoleki', 'Vandanalu', '   Xin chào', 'Namaskār', 'Vaṇakkam', 'Salām', 'Merhaba', 'Ciao'
+                     , 'Sà-wàt-dii', 'Kaixo', 'Cześć’', 'Namaskāra', 'Prannam', 'Kamusta', 'Hallo', 'Yasou', 'Hej', 'oi', 'Wazza', 'kem cho',
+                     'Hai', 'doki-doki', 'meow meow ', 'Lí-hó', 'Vitaju' , 'Bok', 'Hej', 'Moi', 'Sveika /Sveiks ', 'God dag',
+                     'Moïen ', 'Vitayu ', 'Aloha ', 'Wassup', 'Howdy!']
+        reply = random.choice(greetings)
+        await ctx.send(f'{reply}, {ctx.message.author.mention} How is it going for you? No need to ask me, but I am mostly good.')
 
+
+
+    @commands.command()
+    @commands.guild_only()
+    async def ping (self, ctx):
+
+            latency = round(bot.latency *1000)
+            await ctx.send  ( f'{ctx.message.author.name}, Pong! ``{latency}``ms')
 
 
 
@@ -34,6 +54,7 @@ class vein2(commands.Cog, name= "fun"):
         embed= discord.Embed(color=0x529dff)
         embed.set_image(url= member.avatar_url_as(size=128))
         await ctx.send(embed=embed)
+
 
 
     @commands.command(aliases=['whois', 'ui'])
@@ -76,7 +97,7 @@ class vein2(commands.Cog, name= "fun"):
 
             mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
 
-            cluster= MongoBot(mongo_url)
+            cluster= MongoClient(mongo_url)
             db = cluster['AbodeDB']
 
             collection= db['Levels']
@@ -253,7 +274,7 @@ class vein2(commands.Cog, name= "fun"):
 
 
 
-    @commands.command(aliases=['serverinvite'])
+    @commands.command(aliases=['serverinvite'], description='Get Abode of Scholars\' invite link.')
     async def invite(self,ctx):
         await ctx.send(f'https://discord.gg/tA4PDtX')
 

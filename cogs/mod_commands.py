@@ -112,6 +112,16 @@ class vein(commands.Cog, name= "moderation"):
         else:
             await ctx.send("Please add a number smaller than 200")
 
+    @commands.command(aliases= ['pmuser'])
+    @commands.guild_only()
+    @commands.has_permissions(manage_messages=True)
+    async def DMuser (self,ctx, user: discord.User, *, msg ):
+        try:
+         await user.send(f'**{ctx.message.author}** has a message for you, \n {msg}')
+
+
+        except:
+            await ctx.send(f'The user has his/her DMs turned off.')
 
 
     @commands.command(aliases=['clearuser'])
