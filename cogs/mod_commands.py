@@ -117,7 +117,7 @@ class vein(commands.Cog, name= "moderation"):
             await ctx.send("Please add a number smaller than 200")
 
 
-    @commands.command(aliases= ['pmuser'])
+    @commands.command(aliases= ['pmuser'], hidden=True)
     @commands.guild_only()
     @commands.has_permissions(manage_messages=True)
     async def DMuser (self,ctx, user: discord.User, *, msg ):
@@ -129,7 +129,7 @@ class vein(commands.Cog, name= "moderation"):
             await ctx.send(f'The user has his/her DMs turned off.')
 
 
-    @commands.command(aliases=['clearuser'])
+    @commands.command(aliases=['clearuser'], hidden=True)
     @commands.guild_only()
     @commands.has_permissions(manage_messages=True)
     async def purgeuser(self, ctx, user: User,
@@ -174,7 +174,7 @@ class vein(commands.Cog, name= "moderation"):
 
 
 
-    @commands.command(aliases=['rinfo'])
+    @commands.command(aliases=['rinfo'], hidden=True)
     @commands.has_permissions(manage_roles=True)
     async def roleinfo(self, ctx, *, rolename):
         allowed= []
@@ -306,7 +306,7 @@ class vein(commands.Cog, name= "moderation"):
         await ctx.send(embed=embed)
 
 
-    @commands.command()
+    @commands.command( hidden=True)
     @commands.guild_only()
     @commands.cooldown(1, 21600, commands.BucketType.user)
     async def complaint(self, ctx, *,arg):
@@ -323,7 +323,7 @@ class vein(commands.Cog, name= "moderation"):
 
 
 
-    @commands.command()
+    @commands.command(hidden=True)
     @commands.guild_only()
     @commands.has_permissions(manage_messages=True)
     async def poll(self, ctx, question, *options: str):
@@ -352,7 +352,7 @@ class vein(commands.Cog, name= "moderation"):
 
 
 
-    @commands.command()
+    @commands.command(hidden=True)
     @commands.guild_only()
     @commands.has_permissions(manage_roles=True)
     async def slowmode(self, ctx , time):
@@ -375,7 +375,7 @@ class vein(commands.Cog, name= "moderation"):
 
 
 
-    @commands.command()
+    @commands.command( hidden=True)
     @commands.guild_only()
     @commands.has_permissions(administrator=True)
     async def lock(self, ctx):
@@ -383,7 +383,7 @@ class vein(commands.Cog, name= "moderation"):
         await ctx.channel.set_permissions(hm, send_messages=False, read_messages=True)
         await ctx.send("Channel locked.")
 
-    @commands.command()
+    @commands.command( hidden=True)
     @commands.guild_only()
     @commands.has_permissions(administrator=True)
     async def unlock(self, ctx):

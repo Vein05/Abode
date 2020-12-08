@@ -110,7 +110,8 @@ extensions= [
             'cogs.leveling',
             'cogs.help',
             'cogs.shop',
-            'cogs.battle'
+            'cogs.battle',
+            'cogs.cultivation'
 
 
 

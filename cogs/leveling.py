@@ -146,7 +146,7 @@ class vein8(commands.Cog, name='leveling'):
 
 
 
-    @commands.command(aliases=['apoints'])
+    @commands.command(aliases=['apoints'], hidden=True)
     @commands.guild_only()
     @commands.has_permissions(manage_roles=True)
     async def addpoints(self, ctx, member:discord.Member, *,amount):
@@ -181,7 +181,7 @@ class vein8(commands.Cog, name='leveling'):
             await ctx.send(f"<:WeirdChamp:757112297096216627> {ctx.author.name}, 2000 is the limit for now.")
 
 
-    @commands.command(aliases=['rpoints'])
+    @commands.command(aliases=['rpoints'], hidden=True)
     @commands.guild_only()
     @commands.has_permissions(manage_roles=True)
     async def removepoints(self, ctx, member:discord.Member, *,amount):
@@ -224,6 +224,7 @@ class vein8(commands.Cog, name='leveling'):
     @commands.command(aliases=["lb"])
     @commands.guild_only()
     async def leaderboard (self, ctx):
+
         member = discord.Member or ctx.author
 
         memeber_id= str(member.id)
@@ -257,7 +258,7 @@ class vein8(commands.Cog, name='leveling'):
            embed.add_field(name=f"{a}", value=f'**Aliases : {nme}** \n**Qi : ** {qi}\n**Points : **  {pts}  \n**Path : **{pth}')
         embed.set_footer(text=f'To remove the \'None\' from your name, add your Cultivator name through .aliases')
         await ctx.send(embed=embed)
-        #await Pag( color =color, length=1).start(ctx)
+
 
 
 
