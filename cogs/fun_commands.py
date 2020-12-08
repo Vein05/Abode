@@ -13,6 +13,8 @@ import pymongo
 from pymongo import MongoClient
 import random
 from random import choice, randint
+from cogs.utils import Convert
+import asyncio
 
 
 
@@ -491,6 +493,14 @@ class vein2(commands.Cog, name= "fun"):
 
 
 
+
+    @commands.command()
+    async def timer(self, ctx, time:Convert):
+        if time > 100:
+            return await ctx.send("bruh!")
+        msg = await ctx.send("Your timer has started")
+        await asyncio.sleep(time)
+        await ctx.send("Timer up.")
 
 
 
