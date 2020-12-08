@@ -17,6 +17,9 @@ class vein(commands.Cog, name= "moderation"):
         self.Bot = Bot
 
 
+
+
+
     @commands.Cog.listener()
     async def on_command(self, ctx):
         if ctx.guild.id != (guild):
@@ -109,8 +112,10 @@ class vein(commands.Cog, name= "moderation"):
             await ctx.send(f'**The higher-ups have purged some messages.**', delete_after=10)
             embed = discord.Embed(title= f'Purge' , color =color, description=f'{ctx.author.mention} cleared {amount} messages from {ctx.channel.mention}')
             await channel.send(embed=embed)
+
         else:
             await ctx.send("Please add a number smaller than 200")
+
 
     @commands.command(aliases= ['pmuser'])
     @commands.guild_only()

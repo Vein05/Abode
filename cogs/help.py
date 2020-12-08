@@ -25,14 +25,13 @@ class vein9(commands.Cog, name='Help'):
         @commands.command()
         @commands.guild_only()
         async def help(self, ctx, *, entity = None):
-            if not entity:
-                    ch = 781535649843904562
-                    ch1= 757136943149613076
+                    if ctx.channel.id == 757108786497585172:
+                        return
 
-                    if ctx.channel.id == ((ch)):
+                    if not entity:
                         embed1= discord.Embed( color=color)
+                        embed1.set_author(name=f'{self.Bot.DEFAULT_PREFIX}help <command name> for more info on commands.')
                         embed1.set_thumbnail(url=f'{ctx.guild.icon_url}')
-                        embed1.set_author(name="Abode",icon_url=f'{ctx.me.avatar_url}')
                         embed1.add_field(name="helppoints", value=f'To get a help page about points.',  inline=False)
                         embed1.add_field(name="ping", value="To check Abode's latency", inline=False)
                         embed1.add_field(name="8ball", value="To ask Abode an 8ball question", inline=False)
@@ -45,7 +44,7 @@ class vein9(commands.Cog, name='Help'):
                         embed1.add_field(name="invite", value="Get invite link of Abode of Scholars.", inline=False)
                         embed1.add_field(name="complaint", value="Add an server complaint which will go into <#757110183800471572>.", inline=False)
 
-                        embed1.set_footer(text=f'{self.Bot.DEFAULT_PREFIX}help <command name> for more info on commands.')
+
 
                         embed2=discord.Embed( colour=color)
                         embed2.set_author(name="Abode", icon_url=f'{ctx.me.avatar_url}')
@@ -82,6 +81,7 @@ class vein9(commands.Cog, name='Help'):
                         embed3.set_footer(text=f'{self.Bot.DEFAULT_PREFIX}help <command name> for more info on commands.')
 
 
+
                         embed3.set_thumbnail(url=f'{ctx.guild.icon_url}')
 
 
@@ -89,18 +89,16 @@ class vein9(commands.Cog, name='Help'):
                         embeds= [embed1, embed2, embed3]
                         paginator = BotEmbedPaginator(ctx, embeds)
                         await paginator.run()
+
+
+
                     else:
-                        msg = ctx.message
-                        await msg.add_reaction('<:xmark:773959363379462184>')
+                        command = self.Bot.get_command(entity)
+                        if command:
+                            await self.setup_help_pag(ctx, command, command.name)
 
-
-            else:
-                command = self.Bot.get_command(entity)
-                if command:
-                    await self.setup_help_pag(ctx, command, command.name)
-
-                else:
-                    await ctx.send(f"{entity} not found.")
+                        else:
+                            await ctx.send(f"{entity} not found.")
 
         async def return_filtered_commands(self, walkable , ctx):
             filtered =[]

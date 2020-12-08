@@ -6,6 +6,7 @@ import datetime
 import random
 from random import randint
 from disputils import BotEmbedPaginator,BotMultipleChoice
+from cogs.utils import Pag
 
 
 data= ['Water', 'Air' , 'Earth', 'Fire', 'Destruction', 'Illusion' , 'Time', 'Space', 'Karma', 'Chaos']
@@ -228,7 +229,7 @@ class vein8(commands.Cog, name='leveling'):
         memeber_id= str(member.id)
         mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
 
-        cluster= MongoBot(mongo_url)
+        cluster= MongoClient(mongo_url)
         db = cluster['AbodeDB']
 
 
@@ -256,6 +257,7 @@ class vein8(commands.Cog, name='leveling'):
            embed.add_field(name=f"{a}", value=f'**Aliases : {nme}** \n**Qi : ** {qi}\n**Points : **  {pts}  \n**Path : **{pth}')
         embed.set_footer(text=f'To remove the \'None\' from your name, add your Cultivator name through .aliases')
         await ctx.send(embed=embed)
+        #await Pag( color =color, length=1).start(ctx)
 
 
 

@@ -316,9 +316,9 @@ class vein4(commands.Cog, name= "Admin"):
     '''@commands.command()
     @commands.has_permissions(administrator=True)
     async def spam(self, ctx, *, arg):
-        channel = ctx.guild.get_channel(783713320439250974)
+
         while True:
-            await channel.send(arg)'''
+            await ctx.send(arg)'''
 
 def setup (Bot):
     Bot.add_cog (vein4(Bot))

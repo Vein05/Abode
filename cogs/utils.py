@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 from discord.ext.buttons import Paginator
-
+color = 0xa100f2
 class Pag(Paginator):
     async def teardown(self):
         try:
@@ -14,6 +14,4 @@ class Pag(Paginator):
 
 
 
-def setup(bot):
-    bot.add_cog(Help(bot))
-    print('Utils working')
+
