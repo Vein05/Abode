@@ -1,5 +1,7 @@
 import discord
 from discord.ext import commands
+import pymongo
+from pymongo import MongoClient
 
 
 

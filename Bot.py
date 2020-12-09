@@ -32,6 +32,7 @@ bot.DEFAULT_PREFIX = prefix
 bot.remove_command("help")
 
 
+
 #async def create_db_pool():
     #bot.pg_con= await asyncpg.create_pool(database='db1crf5i3vgvh2', user='lkznvsbittpdyx', password='bb434c5fa9c5d40aade4d3147855b6dd31e59b9fa569a04b3af95282644435ce')
     #pool= await asyncpg.create_pool('postgres://lkznvsbittpdyx:bb434c5fa9c5d40aade4d3147855b6dd31e59b9fa569a04b3af95282644435ce@ec2-3-216-89-250.compute-1.amazonaws.com:5432/db1crf5i3vgvh2')

@@ -312,13 +312,29 @@ class vein4(commands.Cog, name= "Admin"):
         embed.add_field(name='What\'s the purpose?', value=f'Ok so you got a ton of points now what to do with them? There are some things you could do with them, you could buy potions, custom commands, custom roles, custom medals, increase stats, or even change your path, species and alot more ``.shop`` should help you :)')
         await ctx.send(embed=embed)
 
-
+    #spam command
     '''@commands.command()
     @commands.has_permissions(administrator=True)
     async def spam(self, ctx, *, arg):
 
         while True:
             await ctx.send(arg)'''
+
+    '''@commands.command()
+    @commands.guild_only()
+    @commands.has_permissions(manage_messages=True)
+    async def cleartest(self, ctx, member: discord.Member=None, amount : int):
+        channel = ctx.message.channel
+        member = member or None
+        def check(msg):
+            return msg.author.id == member.id
+        if amount <= 1000:
+            await channel.purge(limit=amount+1,check=check)
+        else:
+            embed = discord.Embed(description="I can't clear more than 1000.",color=0x26fcff)'''
+            await ctx.send(embed=embed)
+
+
 
 def setup (Bot):
     Bot.add_cog (vein4(Bot))

@@ -332,7 +332,7 @@ class vein8(commands.Cog, name='leveling'):
                                                             f'**Points : ** {str(points)}\n'
                                                             f' **Luck : ** {str(luk)}', inline=False)
 
-            embed.add_field(name='__Stats__', value=f'**Stregngth :** {str(stre)}\n'
+            embed.add_field(name='__Stats__', value=f'**Strength :** {str(stre)}\n'
                                                 f'**Defense :** {str(defen)}\n'
                                                 f'**Speed** : {str(sped)}\n'
                                                 f'**Soul : **{str(sol)}\n'
@@ -406,7 +406,7 @@ class vein8(commands.Cog, name='leveling'):
                                                             f'**Points : ** {str(points)}\n'
                                                             f' **Luck : ** {str(luk)}', inline=False)
 
-            embed.add_field(name='__Stats__', value=f'**Stregngth :** {str(stre)}\n'
+            embed.add_field(name='__Stats__', value=f'**Strength :** {str(stre)}\n'
                                                 f'**Defense :** {str(defen)}\n'
                                                 f'**Speed** : {str(sped)}\n'
                                                 f'**Soul : **{str(sol)}\n'

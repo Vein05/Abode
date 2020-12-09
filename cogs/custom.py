@@ -32,7 +32,11 @@ class vein6(commands.Cog, name= "custom"):
         except:
             return'''
 
+    '''@commands.Cog.listener()
+    async def on_message(self, message):
+        if '<@!759784064361299989>'in message.content:
 
+            await message.channel.send(f'{message.author.mention}My prefix is {self.Bot.DEFAULT_PREFIX}.')'''
 
 
 

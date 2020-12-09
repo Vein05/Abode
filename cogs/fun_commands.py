@@ -13,7 +13,7 @@ import pymongo
 from pymongo import MongoClient
 import random
 from random import choice, randint
-from cogs.utils import Convert
+
 import asyncio
 
 
@@ -248,7 +248,7 @@ class vein2(commands.Cog, name= "fun"):
                                                  f'**Text channels :** {text}\n'
                                                  f'**Voice channels :** {voice}\n'
                                                  f'**Emoji count : ** {emojis}\n'
-                                                 f'**Server boosters : ** {guild.premium_subscription_count}\n')
+                                                 f'**Server boosts : ** {guild.premium_subscription_count}\n')
 
         embed.add_field(name="__Activity__", value= f'<:online:769826555073003521>{online}\n'
                                                     f'<:idle:769826555479588864>{idel}\n'
@@ -284,6 +284,8 @@ class vein2(commands.Cog, name= "fun"):
     async def echo(self, ctx,*, arg):
         embed = discord.Embed(color=color , timestamp=ctx.message.created_at)
         embed.set_author(name=f'{arg}')
+        embed.set_footer(text=f'{ctx.author.name}')
+        await ctx.send(embed=embed)
 
 
 
@@ -486,13 +488,13 @@ class vein2(commands.Cog, name= "fun"):
 
 
 
-    @commands.command(description='OWO wat is dis!')
+    '''@commands.command(description='OWO wat is dis!')
     async def timer(self, ctx, time:Convert):
         if time > 100:
             return await ctx.send("bruh!")
         msg = await ctx.send("Your timer has started")
         await asyncio.sleep(time)
-        await ctx.send("Timer up.")
+        await ctx.send("Timer up.")'''
 
 
 
