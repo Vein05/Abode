@@ -27,7 +27,7 @@ import disputils
 
 prefix = '.'
 
-bot = commands.Bot(command_prefix = commands.when_mentioned_or(prefix), case_insensitive=True, intents=intents )
+bot = commands.Bot(command_prefix = commands.when_mentioned_or(prefix), case_insensitive=True, intents=intents, owner_id=427436602403323905 )
 bot.DEFAULT_PREFIX = prefix
 bot.remove_command("help")
 
@@ -112,7 +112,8 @@ extensions= [
             'cogs.help',
             'cogs.shop',
             'cogs.battle',
-            'cogs.cultivation'
+            'cogs.cultivation',
+            'cogs.owner'
 
 
 

@@ -50,7 +50,7 @@ class vein3(commands.Cog, name= "APIs"):
 
 
 
-    @commands.command()
+    @commands.command(description='Uh... dankmemes')
     @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def dankmemes(self,ctx):
@@ -80,7 +80,7 @@ class vein3(commands.Cog, name= "APIs"):
         return
 
 
-    @commands.command(aliases=['pmeme'])
+    @commands.command(aliases=['pmeme'], description='Chad memes')
     @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def Pmemes(self,ctx):
@@ -109,7 +109,7 @@ class vein3(commands.Cog, name= "APIs"):
         await ctx.send(embed=embed)
 
 
-    @commands.command()
+    @commands.command(description='Sends a random doggo picture.')
     @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def dog(self, ctx):
@@ -130,7 +130,7 @@ class vein3(commands.Cog, name= "APIs"):
 
 
 
-    @commands.command()
+    @commands.command(description='Echos\' words from clyde')
     @commands.guild_only()
     @commands.has_permissions(manage_messages=True)
     @commands.cooldown(1, 15, commands.BucketType.user)
@@ -149,7 +149,7 @@ class vein3(commands.Cog, name= "APIs"):
                 await ctx.message.delete()
 
 
-    @commands.command()
+    @commands.command(description='Sends a random year fact.')
     @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def yearfact (self, ctx):
@@ -165,7 +165,7 @@ class vein3(commands.Cog, name= "APIs"):
                 await ctx.send(embed=embed)
 
 
-    @commands.command()
+    @commands.command(description='Sends a random panda fact :heart:')
     @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def pandafact(self, ctx):
@@ -181,7 +181,7 @@ class vein3(commands.Cog, name= "APIs"):
                     await ctx.send(embed=embed)
 
 
-    @commands.command()
+    @commands.command(description='Sends a random cat picture.')
     @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def catfact(self, ctx):
@@ -196,7 +196,7 @@ class vein3(commands.Cog, name= "APIs"):
                  await ctx.send(embed=embed)
 
 
-    @commands.command()
+    @commands.command(description='Sends a random doggo fact.')
     @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def dogfact(self, ctx):
@@ -212,7 +212,7 @@ class vein3(commands.Cog, name= "APIs"):
                  await ctx.send(embed=embed)
 
 
-    @commands.command()
+    @commands.command(description='Sends a random kitty picture.')
     @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def cat(self, ctx):
@@ -228,7 +228,7 @@ class vein3(commands.Cog, name= "APIs"):
                     await ctx.send(embed=embed)
 
 
-    @commands.command()
+    @commands.command(description='Sends a random panda picture :heart:')
     @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def panda(self, ctx):
@@ -243,7 +243,7 @@ class vein3(commands.Cog, name= "APIs"):
 
                     await ctx.send(embed=embed)
 
-    @commands.command()
+    @commands.command(description='Nevermind the koala is sleeping.')
     @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def koala(self, ctx):
@@ -260,7 +260,7 @@ class vein3(commands.Cog, name= "APIs"):
 
 
 
-    @commands.command()
+    @commands.command(description='*Pikachu open mouth*')
     @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def pikachu(self,ctx):
@@ -276,7 +276,7 @@ class vein3(commands.Cog, name= "APIs"):
 
 
 
-    @commands.command()
+    @commands.command(description='Sends a random numberfact.')
     @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def numberfact(self, ctx):
@@ -289,7 +289,7 @@ class vein3(commands.Cog, name= "APIs"):
                 await ctx.send(embed=embed)
 
 
-    @commands.command()
+    @commands.command(description='Advices for you.')
     @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def advice(self, ctx):
@@ -302,7 +302,7 @@ class vein3(commands.Cog, name= "APIs"):
 
 
 
-    @commands.command()
+    @commands.command(description='Anime quotes :)')
     @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def aquote(self, ctx):
@@ -333,7 +333,7 @@ class vein3(commands.Cog, name= "APIs"):
                     embed.set_footer(text=f"Requested by {ctx.author}, source some random api", icon_url=ctx.author.avatar_url)
                     await ctx.send(embed=embed)
 
-    @commands.command()
+    @commands.command(description=';)')
     @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def wink(self,ctx):
@@ -347,7 +347,7 @@ class vein3(commands.Cog, name= "APIs"):
                     embed.set_footer(text=f"Requested by {ctx.author}, source some random api", icon_url=ctx.author.avatar_url)
                     await ctx.send(embed=embed)
 
-    @commands.command()
+    @commands.command(description='Huggggggggggg.....')
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def hug(self,ctx):
 
@@ -360,7 +360,7 @@ class vein3(commands.Cog, name= "APIs"):
                     embed.set_footer(text=f"Requested by {ctx.author}, source some random api", icon_url=ctx.author.avatar_url)
                     await ctx.send(embed=embed)
 
-    @commands.command()
+    @commands.command(description='Palm to the face')
     @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def facepalm(self,ctx):

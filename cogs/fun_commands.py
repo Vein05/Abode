@@ -54,7 +54,7 @@ class vein2(commands.Cog, name= "fun"):
     async def avatar (self, ctx , member: discord.Member=None):
         member =member or ctx.author
         embed= discord.Embed(color=0x529dff)
-        embed.set_image(url= member.avatar_url_as(size=128))
+        embed.set_image(url= member.avatar_url_as(size=512))
         await ctx.send(embed=embed)
 
 

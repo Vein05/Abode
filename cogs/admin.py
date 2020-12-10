@@ -22,6 +22,7 @@ class vein4(commands.Cog, name= "Admin"):
         return
 
     @commands.command()
+
     @commands.has_permissions(administrator=True)
     async def ultra_purge_user(self, ctx, *,member: discord.Member):
         channel = ctx.message.channel
@@ -59,6 +60,7 @@ class vein4(commands.Cog, name= "Admin"):
     ''' Commands like load unload reload is already defined by jsk.'''
 
     @commands.command()
+    @commands.is_owner()
     @commands.has_permissions(administrator=True)
     async def intro(self,ctx ):
         color = 0xa100f2
@@ -79,6 +81,7 @@ class vein4(commands.Cog, name= "Admin"):
         await ctx.send(embed=embed)
 
     @commands.command()
+    @commands.is_owner()
     @commands.has_permissions(administrator=True)
     async def pointsystem(self, ctx):
         color = 0xa100f2
@@ -90,6 +93,7 @@ class vein4(commands.Cog, name= "Admin"):
 
 
     @commands.command()
+    @commands.is_owner()
     @commands.has_permissions(administrator=True)
     async def rules(self, ctx):
         color = 0xa100f2
@@ -117,6 +121,7 @@ class vein4(commands.Cog, name= "Admin"):
 
 
     @commands.command()
+    @commands.is_owner()
     @commands.has_permissions(administrator=True)
     async def roles(self, ctx):
         color = 0xa100f2
@@ -136,6 +141,7 @@ class vein4(commands.Cog, name= "Admin"):
         omention= oelder.name
 
         embed= discord.Embed(color=(color), title='‎‎‎‏‏‎ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ__Server Roles!__')
+        embed.set_thumbnail(url =f'{ctx.guild.icon_url}')
 
         embed.add_field(name='‎‎‎‏‏‎ ', value=f'**{admin_mention}** \nClan leader is the highest role in the server, clan leaders handle most of the supervision work, server management, etc all the major things within the server.\n\n'
                                                     f'**{smention}** \nSupreme elders are the founding  leaders of the server.\n'
@@ -146,7 +152,7 @@ class vein4(commands.Cog, name= "Admin"):
                                          f'**{emention2}** \nElder role can be obtained by users above the 40th level with the recommendation from any of the higher staffs and also through their efforts. \n\n'
                                          f'**{emention}** \nEmoji elder doesn\'t have much requirements you just need to have creation skills.\n\n'
                                          f'**{omention}** \nMembers with good moderation skills can contact any of the higher members to obatin this role.\n\n'
-                                         f'If aynone has the same question, The elder roles will only be given to users with certain requirements, they don\'t work the same as chat roles.',inline=False)
+                                         f'```fix\nIf aynone has the same question, The elder roles will only be given to users with certain requirements, they don\'t work the same as chat roles.```',inline=False)
         hinstructor= ctx.guild.get_role(757787649439432785)
         hmention= hinstructor.name
         binstructor = ctx.guild.get_role(757787658645667850)
@@ -198,6 +204,7 @@ class vein4(commands.Cog, name= "Admin"):
 
 
     @commands.command()
+    @commands.is_owner()
     @commands.has_permissions(administrator=True)
     async def bots(self, ctx):
             color = 0xa100f2
@@ -239,6 +246,7 @@ class vein4(commands.Cog, name= "Admin"):
 
 
     @commands.command()
+    @commands.is_owner()
     @commands.has_permissions(administrator=True)
     async def key(self, ctx):
         embed= discord.Embed(color = (color))
@@ -298,6 +306,7 @@ class vein4(commands.Cog, name= "Admin"):
 
 
     @commands.command(aliases=['pinfo'])
+    @commands.is_owner()
     @commands.has_permissions(administrator=True)
     async def pointsinfo(self, ctx):
         embed= discord.Embed(color= (color))
@@ -331,8 +340,8 @@ class vein4(commands.Cog, name= "Admin"):
         if amount <= 1000:
             await channel.purge(limit=amount+1,check=check)
         else:
-            embed = discord.Embed(description="I can't clear more than 1000.",color=0x26fcff)'''
-            await ctx.send(embed=embed)
+            embed = discord.Embed(description="I can't clear more than 1000.",color=0x26fcff)
+            await ctx.send(embed=embed)'''
 
 
 
