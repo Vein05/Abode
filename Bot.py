@@ -30,6 +30,7 @@ prefix = '.'
 bot = commands.Bot(command_prefix = commands.when_mentioned_or(prefix), case_insensitive=True, intents=intents, owner_id=427436602403323905 )
 bot.DEFAULT_PREFIX = prefix
 bot.remove_command("help")
+bot.color= 0xa100f2
 
 
 

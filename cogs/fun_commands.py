@@ -50,12 +50,24 @@ class vein2(commands.Cog, name= "fun"):
 
 
 
-    @commands.command(description='Show\'s mentioned users profile picture or if the user isn\'t mentioned the author\'s.', aliases=['av'])
-    async def avatar (self, ctx , member: discord.Member=None):
-        member =member or ctx.author
-        embed= discord.Embed(color=0x529dff)
-        embed.set_image(url= member.avatar_url_as(size=512))
-        await ctx.send(embed=embed)
+    @commands.command(aliases=['av'])
+    @commands.guild_only()
+    async def avatar(self, ctx,*, user: discord.Member=None):
+
+        if not user:
+            user = ctx.author
+
+        embed = discord.Embed( title=f"{user.name}'s avatar",color=self.Bot.color)
+        embed.description = f'[PNG]({user.avatar_url_as(format="png")}) | [JPEG]({user.avatar_url_as(format="jpeg")}) | [WEBP]({user.avatar_url_as(format="webp")})'
+        embed.set_image(url=str(user.avatar_url_as(format='png')))
+        embed.set_footer(text=f'Requested by {ctx.author.name}')
+
+        if user.is_avatar_animated():
+            embed.description += f' | [GIF]({user.avatar_url_as(format="gif")})'
+            embed.set_image(url=str(user.avatar_url_as(format='gif')))
+
+        return await ctx.send(embed=embed)
+
 
 
 
