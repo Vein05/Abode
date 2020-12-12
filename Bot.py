@@ -114,7 +114,8 @@ extensions= [
             'cogs.shop',
             'cogs.battle',
             'cogs.cultivation',
-            'cogs.owner'
+            'cogs.owner',
+            'misc.fist'
 
 
 

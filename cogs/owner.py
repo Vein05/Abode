@@ -30,6 +30,37 @@ class owner(commands.Cog, name='owner'):
         await channel.send(text)
 
 
+    '''@commands.command(aliases=['mc'])
+    @commands.is_owner()
+    async def messagecount(self, ctx):
+        channel = ctx.channel
+        a = 0
+        msg = ctx.message
+        await msg.add_reaction(':arrow_forward:')
+        async for msg in channel.history(limit = None):
+            a+= 1
+
+        await msg.add_reaction(":white_check_mark: ")
+        await ctx.send(f'{a} messages.')'''
+
+    @commands.command()
+    @commands.guild_only()
+    @commands.is_owner()
+    async def emojilist(self, ctx):
+        emojis = sorted([e for e in ctx.guild.emojis if len(e.roles) == 0 and e.available], key=lambda e: e.name.lower())
+        paginator = commands.Paginator(suffix='', prefix='')
+        channel = ctx.channel
+
+        for emoji in emojis:
+            paginator.add_line(f'{emoji} -- `{emoji}`')
+
+        for page in paginator.pages:
+            await channel.send(page)
+
+        await ctx.send(ctx.tick(True))
+
+
+
 def setup (Bot):
     Bot.add_cog(owner(Bot))
     print("Owner command is working.")
