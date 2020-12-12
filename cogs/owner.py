@@ -16,7 +16,11 @@ class owner(commands.Cog, name='owner'):
         seconds = elapsed.seconds
         minutes, seconds = divmod(seconds, 60)
         hours, minutes = divmod(minutes, 60)
-        await ctx.send("Abode has been running for ``{}`` days ``{}`` hours ``{}`` mminutes and ``{}`` seconds".format(elapsed.days, hours, minutes, seconds))
+        embed = discord.Embed(color = self.Bot.color,timestamp=starttime ,description=f'**Abode has been running for ``{elapsed.days}`` days ``{hours}`` hours ``{minutes}`` mminutes and ``{seconds}`` seconds**')
+        embed.set_author(name='Runtime', icon_url=ctx.me.avatar_url)
+        embed.set_footer(text=f'Last restart at ')
+
+        await ctx.send(embed=embed)
 
 
 def setup (Bot):
