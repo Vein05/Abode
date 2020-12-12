@@ -18,7 +18,7 @@ class owner(commands.Cog, name='owner'):
         hours, minutes = divmod(minutes, 60)
         embed = discord.Embed(color = self.Bot.color,timestamp=starttime ,description=f'**Abode has been running for ``{elapsed.days}`` days ``{hours}`` hours ``{minutes}`` mminutes and ``{seconds}`` seconds**')
         embed.set_author(name='Runtime', icon_url=ctx.me.avatar_url)
-        embed.set_footer(text=f'Last restart at ')
+        embed.set_footer(text=f'Last restart')
 
         await ctx.send(embed=embed)
 
