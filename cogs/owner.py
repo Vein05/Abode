@@ -8,8 +8,9 @@ class owner(commands.Cog, name='owner'):
     def __init__(self, Bot):
         self.Bot = Bot
 
-    @commands.command()
+    @commands.command(hidden=True)
     @commands.is_owner()
+
     async def runtime(self,ctx):
         now = datetime.utcnow()
         elapsed = now - starttime
@@ -21,6 +22,12 @@ class owner(commands.Cog, name='owner'):
         embed.set_footer(text=f'Last restart')
 
         await ctx.send(embed=embed)
+
+    @commands.is_owner()
+    @commands.guild_only()
+    @commands.command(hidden=True)
+    async def sayin(self, ctx, channel: discord.TextChannel, *, text: str):
+        await channel.send(text)
 
 
 def setup (Bot):
