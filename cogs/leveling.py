@@ -462,6 +462,8 @@ class vein8(commands.Cog, name='leveling'):
     @commands.command(aliases=["lb"], description='Shows the top 10 cultivators on the server.')
     @commands.guild_only()
     async def leaderboard (self, ctx):
+        if ctx.channel.id == self.Bot.scholar_chat:
+            return
 
         member = discord.Member or ctx.author
 

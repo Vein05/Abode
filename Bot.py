@@ -31,7 +31,7 @@ bot = commands.Bot(command_prefix = commands.when_mentioned_or(prefix), case_ins
 bot.DEFAULT_PREFIX = prefix
 bot.remove_command("help")
 bot.color= 0xa100f2
-
+bot.scholar_chat= 757108786497585172
 
 
 #async def create_db_pool():
