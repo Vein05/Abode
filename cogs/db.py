@@ -15,7 +15,7 @@ class vein7(commands.Cog, name='db'):
 
 
 
-    @commands.command()
+    @commands.command(description='Add a note.')
     @commands.guild_only()
     async def addnote (self, ctx, *, data):
         await ctx.message.delete()
@@ -51,7 +51,7 @@ class vein7(commands.Cog, name='db'):
 
 
 
-    @commands.command()
+    @commands.command(description='To view your note.')
     @commands.guild_only()
     async def note (self, ctx):
         author_id= str(ctx.message.author.id)
@@ -120,7 +120,7 @@ class vein7(commands.Cog, name='db'):
 
 
 
-    @commands.command()
+    @commands.command(description='Helps you remove your previous note.')
     @commands.guild_only()
     async def removenote (self, ctx):
         author_id= str(ctx.message.author.id)

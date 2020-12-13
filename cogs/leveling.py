@@ -268,7 +268,7 @@ class vein8(commands.Cog, name='leveling'):
 
 
 
-    @commands.command(aliases=["points", "qi", "p",'stats'])
+    @commands.command(aliases=["points", "qi", "p",'stats'], description=f'Show your stats and general info.')
     @commands.guild_only()
     async def point (self, ctx):
         if ctx.guild.id != (guild):
@@ -345,7 +345,7 @@ class vein8(commands.Cog, name='leveling'):
 
 
 
-    @commands.command(aliases=["puser", "statsu"])
+    @commands.command(aliases=["puser", "statsu"], description=f'Shows shats on another user, be sure to use the user id.')
     @commands.guild_only()
     async def pu (self, ctx, member_id: int):
         if ctx.guild.id != (guild):
@@ -415,7 +415,7 @@ class vein8(commands.Cog, name='leveling'):
             embed.set_footer(text=f"Abode of Scholars")
             await ctx.send(embed=embed)
 
-    @commands.command(aliases=['aliases', 'cname'])
+    @commands.command(aliases=['aliases', 'cname'], description=f'Add your cultivator name.')
     @commands.guild_only()
     async def nickname(self, ctx, *,arg):
         if ctx.guild.id != (guild):
@@ -434,7 +434,7 @@ class vein8(commands.Cog, name='leveling'):
 
 
 
-    @commands.command(aliases=['cc list'])
+    @commands.command(aliases=['cc list'], description=f'List all the available custom commands.')
     @commands.guild_only()
     async def cc_list(self, ctx):
 
@@ -455,7 +455,7 @@ class vein8(commands.Cog, name='leveling'):
 
 
 
-    @commands.command(aliases=["lb"])
+    @commands.command(aliases=["lb"], description='Shows the top 10 cultivators on the server.')
     @commands.guild_only()
     async def leaderboard (self, ctx):
 
