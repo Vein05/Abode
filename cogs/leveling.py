@@ -476,7 +476,7 @@ class vein8(commands.Cog, name='leveling'):
         collection= db['Levels']
         collection2 = db['Levels1']
 
-        users = collection.find().sort("Qi", -1).limit(20)
+        users = collection.find().sort("Qi", -1).limit(10)
         names = collection2.find().sort("Name", 1)
 
 

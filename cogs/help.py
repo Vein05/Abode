@@ -29,8 +29,8 @@ class vein9(commands.Cog, name='Help'):
                         return
 
                     if not entity:
-                        embed1= discord.Embed( color=color)
-                        embed1.set_author(name=f'{self.Bot.DEFAULT_PREFIX}help <command name> for more info on commands.')
+                        embed1= discord.Embed( color=color,
+                                                title=f'[``{self.Bot.DEFAULT_PREFIX}help <command name>``] for more info on commands.')
                         embed1.set_thumbnail(url=f'{ctx.guild.icon_url}')
 
                         embed1.add_field(name="Main commands", value=f'``helppoints`` ``stats`` ``complaint`` ``suggestions`` ``faq`` ``abode`` ``welcome``',  inline=False)
