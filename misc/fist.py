@@ -43,8 +43,8 @@ class fist(commands.Cog, name ='Fist'):
                     embed = discord.Embed(color = self.Bot.color, timestamp=datetime.utcnow())
                     embed.set_author(name=f"{message.author.name}", icon_url=f'{message.author.avatar_url}')
                     embed.set_thumbnail(url =f'{message.guild.icon_url}')
-                    embed.add_field(name= f'Fist', value=f'{count} <:Cuppedfist:787245768968241162>')
                     embed.add_field(name='Channel', value=f'{message.channel.mention}')
+                    embed.add_field(name= f'Fist', value=f'{count}ㅤ<:Cuppedfist:787245768968241162>')
                     embed.add_field(name='Message', value=f'[Jump to the exact message]({message.jump_url})', inline=False)
 
                     try:
