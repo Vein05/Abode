@@ -11,3 +11,4 @@ disputils
 pymongo
 pathlib
 buttons
+prettytable

@@ -7,6 +7,8 @@ import random
 from random import randint
 from disputils import BotEmbedPaginator,BotMultipleChoice
 from cogs.utils import Pag
+import prettytable
+from prettytable import PrettyTable
 
 
 data= ['Water', 'Air' , 'Earth', 'Fire', 'Destruction', 'Illusion' , 'Time', 'Space', 'Karma', 'Chaos']
@@ -418,6 +420,8 @@ class vein8(commands.Cog, name='leveling'):
     @commands.command(aliases=['aliases', 'cname'], description=f'Add your cultivator name.')
     @commands.guild_only()
     async def nickname(self, ctx, *,arg):
+        if len(arg) > 10:
+            return await ctx.send('Bruh you can\'t go over 10 characthers.' )
         if ctx.guild.id != (guild):
             return
 
@@ -472,37 +476,51 @@ class vein8(commands.Cog, name='leveling'):
         collection= db['Levels']
         collection2 = db['Levels1']
 
-        users = collection.find().sort("Qi", -1).limit(10)
+        users = collection.find().sort("Qi", -1).limit(20)
         names = collection2.find().sort("Name", 1)
-        embed =discord.Embed(title="Leaderboard",color = color)
-        embed.set_thumbnail(url=f'{ctx.guild.icon_url}')
 
 
-        a = 0
+
+        a2 = []
         nme1= []
         name2=[]
         pts1=[]
         pth1=[]
+        table = PrettyTable()
+        a= 0
+        table.field_names= ["Rank", "Aliases", "Qi" ,"Points"]
+        table.align = "c"
         for u in users:
-           user_id = u['_id']
-           qi = u['Qi']
-           pts = u['points']
-           pth =  u['Path']
-           nme = u['Name']
-           a +=1
-           hm= str(pts)
-           hm1= str(qi)
-           pts1.append(hm)
-           nme1.append(nme)
-           name2.append(hm1)
-           pth1.append(pth)
 
-        embed.add_field(name='Aliases', value=f"\n\n".join(nme1))
-        embed.add_field(name='Qi', value="\n\n".join(name2))
-        embed.add_field(name="Points", value=" \n\n ".join(pts1))
+               user_id = u['_id']
+               qi = u['Qi']
+               pts = u['points']
+               pth =  u['Path']
+               nme = u['Name']
 
-        #embed.add_field(name=f"{a}", value=f'**Aliases : {nme}** \n**Qi : ** {qi}\n**Points : **  {pts}  \n**Path : **{pth}')
-        embed.set_footer(text=f'To remove the \'None\' from your name, add your Cultivator name through .aliases')
+               a+=1
+               hm= str(pts)
+               hm1= str(qi)
+               pts1.append(hm)
+               nme1.append(nme)
+               name2.append(hm1)
+               pth1.append(pth)
+
+               '''embed.add_field(name='Aliases', value=f"\n\n".join(nme1))
+                embed.add_field(name='Qi', value="\n\n".join(name2))
+                embed.add_field(name="Points", value=" \n\n ".join(pts1))
+
+                #embed.add_field(name=f"{a}", value=f'**Aliases : {nme}** \n**Qi : ** {qi}\n**Points : **  {pts}  \n**Path : **{pth}')
+                embed.set_footer(text=f'To remove the \'None\' from your name, add your Cultivator name through .aliases')
+                await ctx.send(embed=embed)'''
+
+               haha= str(name2)
+
+               table.add_row([a, f'{nme}', qi,pts] )
+        embed =discord.Embed(title="Leaderboard \n``You can add your aliases by [.aliases <yourname>]``",color = color, description= f'```prolog\n{table}```')
+        embed.set_thumbnail(url=f'{ctx.guild.icon_url}')
+        embed.set_footer(text=f'Requested by {ctx.author.name}')
+        #await ctx.send(f'```prolog\n{table}```')
         await ctx.send(embed=embed)
 
 def setup (Bot):

@@ -27,7 +27,8 @@ class owner(commands.Cog, name='owner'):
     @commands.guild_only()
     @commands.command(hidden=True)
     async def sayin(self, ctx, channel: discord.TextChannel, *, text: str):
-        await channel.send(text)
+        x = await channel.send(text)
+        await x.add_reaction('<:phoCheck:786720919845994526>')
 
 
     '''@commands.command(aliases=['mc'])
