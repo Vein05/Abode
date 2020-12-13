@@ -3,6 +3,7 @@ from discord.ext import commands
 from datetime import datetime
 import pymongo
 from pymongo import MongoClient
+from discord.utils import get
 mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
 cluster= MongoClient(mongo_url)
 
@@ -19,8 +20,17 @@ class fist(commands.Cog, name ='Fist'):
 
         db = cluster['AbodeDB']
         collection= db['starboard']
-        if payLoad.emoji.id == "787245768968241162":
+        emoji_id = 787245768968241162
+        count = 2
+
+        if payLoad.emoji.id == emoji_id:
+            channel = self.fistboard
             message = await self.Bot.get_channel(payLoad.channel_id).fetch_message(payLoad.message_id)
+            reaction = get(message.reactions, emoji=payLoad.emoji)
+            if not reaction.count >= count:
+                return
+
+
 
             if payLoad.member.id != message.author.id:
 
@@ -33,7 +43,7 @@ class fist(commands.Cog, name ='Fist'):
                     embed = discord.Embed(color = self.Bot.color, timestamp=datetime.utcnow())
                     embed.set_author(name=f"{message.author.name}", icon_url=f'{message.author.avatar_url}')
                     embed.set_thumbnail(url =f'{message.guild.icon_url}')
-                    embed.add_field(name= f'Fist', value='1 <:Cuppedfist:787245768968241162>')
+                    embed.add_field(name= f'Fist', value=f'{count} <:Cuppedfist:787245768968241162>')
                     embed.add_field(name='Channel', value=f'{message.channel.mention}')
                     embed.add_field(name='Message', value=f'[Jump to the exact message]({message.jump_url})', inline=False)
 
