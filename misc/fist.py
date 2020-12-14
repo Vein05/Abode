@@ -18,19 +18,23 @@ class fist(commands.Cog, name ='Fist'):
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payLoad):
 
+            emoji_id = 787245768968241162
+            if payLoad.emoji.id != emoji_id:
+                return
+
             db = cluster['AbodeDB']
             collection= db['starboard']
-            emoji_id = 787245768968241162
             count = 2
             message = await self.Bot.get_channel(payLoad.channel_id).fetch_message(payLoad.message_id)
+            if payLoad.emoji.id == emoji_id:
+                channel = self.fistboard
+
+                reaction = get(message.reactions, emoji=payLoad.emoji)
+                if not reaction.count >= count:
+                    return
 
             if payLoad.member.id != message.author.id:
-                if payLoad.emoji.id == emoji_id:
-                    channel = self.fistboard
 
-                    reaction = get(message.reactions, emoji=payLoad.emoji)
-                    if not reaction.count >= count:
-                        return
 
 
                 message_id = int(message.id)
@@ -42,23 +46,30 @@ class fist(commands.Cog, name ='Fist'):
                     embed.set_author(name=f"{message.author.name}", icon_url=f'{message.author.avatar_url}')
                     embed.set_thumbnail(url =f'{message.guild.icon_url}')
                     embed.add_field(name='Channel', value=f'{message.channel.mention}')
-                    embed.add_field(name= f'Fist', value=f'{count}ㅤ<:Cuppedfist:787245768968241162>')
+                    embed.add_field(name= f'Fist', value=f'{count}<:Cuppedfist:787245768968241162>')
                     embed.add_field(name='Message', value=f'[Jump to the exact message]({message.jump_url})', inline=False)
 
                     try:
                         embed.set_image(url=message.attachments[0].url)
 
                     except:
+
+
                         if (len(str(message.clean_content)) > 1024):
                             x = message.clean_content
                             embed.add_field(name='Content', value=x[:1023],  inline=False)
 
-                        else:
+
+                        if (len(message.clean_content)) > 1:
                             embed.add_field(name="Content", value=f'{message.clean_content} ',inline=False)
-                    x = await self.fistboard.send(embed=embed)
+
+                        else :
+                            embed.add_field(name="Content", value=f'Error loading content.',inline=False)
 
 
-                    thing = {"_id": message_id, "stars" : 1, "starmsg" : x.id }
+                    x1 = await self.fistboard.send(embed=embed)
+
+                    thing = {"_id": message_id, "stars" : 1, "starmsg" : x1.id }
                     collection.insert_one(thing)
 
                 else:
