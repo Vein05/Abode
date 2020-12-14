@@ -18,21 +18,19 @@ class fist(commands.Cog, name ='Fist'):
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payLoad):
 
-        db = cluster['AbodeDB']
-        collection= db['starboard']
-        emoji_id = 787245768968241162
-        count = 2
-
-        if payLoad.emoji.id == emoji_id:
-            channel = self.fistboard
+            db = cluster['AbodeDB']
+            collection= db['starboard']
+            emoji_id = 787245768968241162
+            count = 2
             message = await self.Bot.get_channel(payLoad.channel_id).fetch_message(payLoad.message_id)
-            reaction = get(message.reactions, emoji=payLoad.emoji)
-            if not reaction.count >= count:
-                return
-
-
 
             if payLoad.member.id != message.author.id:
+                if payLoad.emoji.id == emoji_id:
+                    channel = self.fistboard
+
+                    reaction = get(message.reactions, emoji=payLoad.emoji)
+                    if not reaction.count >= count:
+                        return
 
 
                 message_id = int(message.id)

@@ -194,7 +194,7 @@ class vein9(commands.Cog, name='Help'):
 
                                                         "**Permission** : Manage messages\n"
                                                         "**Roles** : Elder or higher\n"
-                                                        "**Usage**\n ```.dmuser @Vein#8177 why this is a command.```\n\n")
+                                                        "**Usage**\n ```.dmuser @Vein#8177 why is this a command?```\n\n")
                 embed1.set_footer(text=f"Tip : All the command names are case insensitive.")
 
 

@@ -18,6 +18,8 @@ class vein7(commands.Cog, name='db'):
     @commands.command(description='Add a note.')
     @commands.guild_only()
     async def addnote (self, ctx, *, data):
+        if len(data) >= 500:
+            return await ctx.send('Sorry, 500 characters is my limit.')
         await ctx.message.delete()
         author_id= str(ctx.message.author.id)
         time= datetime.datetime.utcnow()

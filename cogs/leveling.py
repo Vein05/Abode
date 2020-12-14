@@ -273,76 +273,78 @@ class vein8(commands.Cog, name='leveling'):
     @commands.command(aliases=["points", "qi", "p",'stats'], description=f'Show your stats and general info.')
     @commands.guild_only()
     async def point (self, ctx):
-        if ctx.guild.id != (guild):
-            return
+
         if ctx.message.channel.id == 757108786497585172:
             return
-        member= ctx.author
+        try:
+            member= ctx.author
 
 
-        member_id= str(member.id)
+            member_id= str(member.id)
 
-        db = cluster['AbodeDB']
+            db = cluster['AbodeDB']
 
-        collection= db['Levels']
-        qurey = {"_id" : member_id}
-        users = collection.find(qurey)
-        total = collection.count()
-        hm = collection.find().sort("Qi" , -1)
-        a = 0
-        for x in hm:
-
-
-            idd = x["_id"]
+            collection= db['Levels']
+            qurey = {"_id" : member_id}
+            users = collection.find(qurey)
+            total = collection.count()
+            hm = collection.find().sort("Qi" , -1)
+            a = 0
+            for x in hm:
 
 
-            if idd == member_id:
-                break
-            else:
-                a += 1
-
-        for lvl in users:
-            _id= lvl['_id']
-
-            points = lvl['points']
-            medal = lvl['Leauge']
-            dao = lvl['Daos']
-            stre = lvl['Strength']
-            sped = lvl['Speed']
-            defen = lvl['Defense']
-            sol = lvl['Soul']
-            health = lvl['Health']
-            luk = lvl['Luck']
-            qi = lvl['Qi']
-            realm = lvl['Realm']
-            speci = lvl['Species']
-            pth= lvl['Path']
-            nme = lvl['Name']
-
-            embed= discord.Embed(color = color, timestamp=datetime.datetime.utcnow())
-            embed.set_thumbnail(url = f'{ctx.guild.icon_url}')
-
-            embed.set_author(name=f'{member.name} ', icon_url=f'{member.avatar_url}')
-            embed.add_field(name=f'__#{int(a) +1}/{total}__', value=f'**Aliases** :{nme} \n'
-                                                f'**Realm** :  {str(realm)}\n'
-                                                f'**Species** : {str(speci)}')
-            embed.add_field(name="__Legacy__", value=f'**Path** : {str(pth)}\n'
-                                                f'**Medals** :  {str(medal)}\n'
-                                                f'**Daos** : {str(dao)}')
-
-            embed.add_field(name='__Accomplishments__', value=f'**Qi : ** {str(qi)}\n'
-                                                            f'**Points : ** {str(points)}\n'
-                                                            f' **Luck : ** {str(luk)}', inline=False)
-
-            embed.add_field(name='__Stats__', value=f'**Strength :** {str(stre)}\n'
-                                                f'**Defense :** {str(defen)}\n'
-                                                f'**Speed** : {str(sped)}\n'
-                                                f'**Soul : **{str(sol)}\n'
-                                                f'**Health : ** {str(health)}')
+                idd = x["_id"]
 
 
-            embed.set_footer(text=f"Abode of Scholars")
-            await ctx.send(embed=embed)
+                if idd == member_id:
+                    break
+                else:
+                    a += 1
+
+            for lvl in users:
+                _id= lvl['_id']
+
+                points = lvl['points']
+                medal = lvl['Leauge']
+                dao = lvl['Daos']
+                stre = lvl['Strength']
+                sped = lvl['Speed']
+                defen = lvl['Defense']
+                sol = lvl['Soul']
+                health = lvl['Health']
+                luk = lvl['Luck']
+                qi = lvl['Qi']
+                realm = lvl['Realm']
+                speci = lvl['Species']
+                pth= lvl['Path']
+                nme = lvl['Name']
+
+                embed= discord.Embed(color = color, timestamp=datetime.datetime.utcnow())
+                embed.set_thumbnail(url = f'{ctx.guild.icon_url}')
+
+                embed.set_author(name=f'{member.name} ', icon_url=f'{member.avatar_url}')
+                embed.add_field(name=f'__#{int(a) +1}/{total}__', value=f'**Aliases** :{nme} \n'
+                                                    f'**Realm** :  {str(realm)}\n'
+                                                    f'**Species** : {str(speci)}')
+                embed.add_field(name="__Legacy__", value=f'**Path** : {str(pth)}\n'
+                                                    f'**Medals** :  {str(medal)}\n'
+                                                    f'**Daos** : {str(dao)}')
+
+                embed.add_field(name='__Accomplishments__', value=f'**Qi : ** {str(qi)}\n'
+                                                                f'**Points : ** {str(points)}\n'
+                                                                f' **Luck : ** {str(luk)}', inline=False)
+
+                embed.add_field(name='__Stats__', value=f'**Strength :** {str(stre)}\n'
+                                                    f'**Defense :** {str(defen)}\n'
+                                                    f'**Speed** : {str(sped)}\n'
+                                                    f'**Soul : **{str(sol)}\n'
+                                                    f'**Health : ** {str(health)}')
+
+
+                embed.set_footer(text=f"Abode of Scholars")
+                await ctx.send(embed=embed)
+        except:
+            await ctx.send(f'Your data probably isn\'nt saved on the database.')
 
 
 
