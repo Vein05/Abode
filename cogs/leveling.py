@@ -491,8 +491,10 @@ class vein8(commands.Cog, name='leveling'):
         pts1=[]
         pth1=[]
         table = PrettyTable()
+        table1 = PrettyTable()
         a= 0
-        table.field_names= ["Rank", "Aliases", "Qi" ,"Points"]
+        table.field_names= ["Rank", "Aliases", "Qi" ,"Points","Path"]
+        table1.field_names=["Rank","Aliases", "Qo", "Points"]
         table.align = "c"
         for u in users:
 
@@ -518,13 +520,16 @@ class vein8(commands.Cog, name='leveling'):
                 embed.set_footer(text=f'To remove the \'None\' from your name, add your Cultivator name through .aliases')
                 await ctx.send(embed=embed)'''
 
-               haha= str(name2)
+               table.add_row([a, f'{nme}', qi,pts, f'{pth}'])
+               table1.add_row([a, f'{nme}', qi,pts])
+        if ctx.author.is_on_mobile():
+            await ctx.send(f'```prolog\n{table}```')
 
-               table.add_row([a, f'{nme}', qi,pts] )
-        embed =discord.Embed(title="Leaderboard \n``You can add your aliases by [.aliases <yourname>]``",color = color, description= f'```prolog\n{table}```')
-        embed.set_thumbnail(url=f'{ctx.guild.icon_url}')
-        embed.set_footer(text=f'Requested by {ctx.author.name}')
-        #await ctx.send(f'```prolog\n{table}```')
+        else:
+            embed =discord.Embed(title="Leaderboard \n``You can add your aliases by [.aliases <yourname>]``",color = color, description= f'```prolog\n{table1}```')
+            embed.set_thumbnail(url=f'{ctx.guild.icon_url}')
+            embed.set_footer(text=f'Requested by {ctx.author.name}')
+
         await ctx.send(embed=embed)
 
 def setup (Bot):
