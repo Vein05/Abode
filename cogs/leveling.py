@@ -494,7 +494,7 @@ class vein8(commands.Cog, name='leveling'):
         table1 = PrettyTable()
         a= 0
         table.field_names= ["Rank", "Aliases", "Qi" ,"Points","Path"]
-        table1.field_names=["Rank","Aliases", "Qo", "Points"]
+        table1.field_names=["Rank","Aliases", "Qi", "Points"]
         table.align = "c"
         for u in users:
 
