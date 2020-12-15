@@ -223,45 +223,6 @@ class vein8(commands.Cog, name='leveling'):
 
 
 
-    '''@commands.command(aliases=["lb"])
-    @commands.guild_only()
-    async def leaderboard (self, ctx):
-
-        member = discord.Member or ctx.author
-
-        memeber_id= str(member.id)
-        mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
-
-        cluster= MongoClient(mongo_url)
-        db = cluster['AbodeDB']
-
-
-
-        collection= db['Levels']
-        collection2 = db['Levels1']
-
-        users = collection.find().sort("Qi", -1).limit(10)
-        names = collection2.find().sort("Name", 1)
-        embed =discord.Embed(title="Leaderboard",color = color)
-        embed.set_thumbnail(url=f'{ctx.guild.icon_url}')
-
-
-        a = 0
-
-        for u in users:
-           user_id = u['_id']
-           qi = u['Qi']
-           pts = u['points']
-           pth =  u['Path']
-           nme = u['Name']
-           a +=1
-
-
-           embed.add_field(name=f"{a}", value=f'**Aliases : {nme}** \n**Qi : ** {qi}\n**Points : **  {pts}  \n**Path : **{pth}')
-        embed.set_footer(text=f'To remove the \'None\' from your name, add your Cultivator name through .aliases')
-        await ctx.send(embed=embed)'''
-
-
 
 
 
