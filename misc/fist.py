@@ -3,6 +3,7 @@ from discord.ext import commands
 from datetime import datetime
 import pymongo
 from pymongo import MongoClient
+import random
 from discord.utils import get
 mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
 cluster= MongoClient(mongo_url)
@@ -32,13 +33,19 @@ class fist(commands.Cog, name ='Fist'):
             stars = fi['stars']
             stmsg = fi['starmsg']
             new_star = stars-1
+            if new_star <= 0:
+                channel = message.guild.get_channel(789009245436903474)
+
+                fetch = await channel.fetch_message(stmsg)
+                await fetch.delete()
+                collection.delete_one({"_id" : message_id})
             if new_star >= 1:
-                    embed = discord.Embed(color = self.Bot.color, timestamp=datetime.utcnow())
+                    embed = discord.Embed(color = random.choice(self.Bot.color_list), timestamp=datetime.utcnow())
                     embed.set_author(name=f"{message.author.name}", icon_url=f'{message.author.avatar_url}')
                     embed.set_thumbnail(url =f'{message.guild.icon_url}')
-                    embed.add_field(name= f'Fist', value=f'{new_star}<:Cuppedfist:787245768968241162>')
+                    #embed.add_field(name= f'Fist', value=f'{new_star}<:Cuppedfist:787245768968241162>')
                     embed.add_field(name='Channel', value=f'{message.channel.mention}')
-                    embed.add_field(name='Message', value=f'[Jump to the exact message]({message.jump_url})', inline=False)
+
 
                     try:
                         embed.set_image(url=message.attachments[0].url)
@@ -56,14 +63,11 @@ class fist(commands.Cog, name ='Fist'):
 
                         else :
                             embed.add_field(name="Content", value=f'Error loading content.',inline=False)
+                    embed.add_field(name='Message', value=f'[Jump to the exact message]({message.jump_url})', inline=False)
                     fetch = await self.fistboard.fetch_message(stmsg)
-                    await fetch.edit(embed=embed)
+                    await fetch.edit(f'{count} <:Cuppedfist:787245768968241162>ㅤㅤ``({message.id})``\n',embed=embed)
                     collection.update_one({"_id":message_id}, {"$set":{"stars": new_star}})
-            if new_star <= 0:
-                channel = message.guild.get_channel(789009245436903474)
 
-                fetch = await channel.fetch_message(stmsg)
-                await fetch.delete()
 
 
     @commands.Cog.listener()
@@ -94,12 +98,12 @@ class fist(commands.Cog, name ='Fist'):
 
                 if (collection.find_one({"_id": message_id}) == None):
 
-                    embed = discord.Embed(color = self.Bot.color, timestamp=datetime.utcnow())
+                    embed = discord.Embed(color = random.choice(self.Bot.color_list), timestamp=datetime.utcnow())
                     embed.set_author(name=f"{message.author.name}", icon_url=f'{message.author.avatar_url}')
                     embed.set_thumbnail(url =f'{message.guild.icon_url}')
-                    embed.add_field(name= f'Fist', value=f'{count}<:Cuppedfist:787245768968241162>')
+                    #embed.add_field(name= f'Fist', value=f'{count}<:Cuppedfist:787245768968241162>')
                     embed.add_field(name='Channel', value=f'{message.channel.mention}')
-                    embed.add_field(name='Message', value=f'[Jump to the exact message]({message.jump_url})', inline=False)
+
 
                     try:
                         embed.set_image(url=message.attachments[0].url)
@@ -113,13 +117,13 @@ class fist(commands.Cog, name ='Fist'):
 
 
                         if (len(message.clean_content)) > 1:
-                            embed.add_field(name="Content", value=f'{message.clean_content} ',inline=False)
+                            embed.add_field(name="Content", value=f'{message.clean_content} ', inline=False)
 
                         else :
                             embed.add_field(name="Content", value=f'Error loading content.',inline=False)
-
+                    embed.add_field(name="** **", value=f'**    **➤ [Jump to the exact message]({message.jump_url})', inline=False)
                     channel = message.guild.get_channel(789009245436903474)
-                    x1 = await channel.send(embed=embed)
+                    x1 = await channel.send(f'**{count}** <:Cuppedfist:787245768968241162>ㅤ ``({message.id})``\n',embed=embed)
 
                     thing = {"_id": message_id, "stars" : 1, "starmsg" : x1.id }
                     collection.insert_one(thing)
@@ -138,10 +142,10 @@ class fist(commands.Cog, name ='Fist'):
 
                         collection.update_one({"_id":message_id},  {"$set":{"stars": new_star}})
 
-                        embed = discord.Embed(color = self.Bot.color, timestamp=datetime.utcnow())
+                        embed = discord.Embed(color = random.choice(self.Bot.color_list), timestamp=datetime.utcnow())
                         embed.set_author(name=f"{message.author.name}", icon_url=f'{message.author.avatar_url}')
                         embed.set_thumbnail(url =f'{message.guild.icon_url}')
-                        embed.add_field(name= f'Fists', value=f'{new_star} <:Cuppedfist:787245768968241162>')
+                        #embed.add_field(name= f'Fists', value=f'{new_star} <:Cuppedfist:787245768968241162>')
                         embed.add_field(name='Channel', value=f'{message.channel.mention}')
                         embed.add_field(name='Message', value=f'[Jump to the exact message]({message.jump_url})', inline=False)
 
@@ -151,8 +155,9 @@ class fist(commands.Cog, name ='Fist'):
                         except:
                             embed.add_field(name="Content", value=f'{message.clean_content} ',inline=False)
 
-                        star_message = await self.fistboard.fetch_message(nxt_id)
-                        await star_message.edit(embed=embed)
+                    channel = message.guild.get_channel(789009245436903474)
+                    msg = channel.fetch_message(nxt_id)
+                    await msg.edit(f'{count} <:Cuppedfist:787245768968241162> ㅤ``({message.id})``\n',embed=embed)
 
             else:
 
