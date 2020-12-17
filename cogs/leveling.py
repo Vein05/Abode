@@ -1,14 +1,16 @@
 import discord
-from discord.ext import commands
+from discord.ext import commands, tasks
 import pymongo
 from pymongo import MongoClient
 import datetime
 import random
 from random import randint
 from disputils import BotEmbedPaginator,BotMultipleChoice
-from cogs.utils import Pag
+
 import prettytable
 from prettytable import PrettyTable
+
+
 
 
 data= ['Water', 'Air' , 'Earth', 'Fire', 'Destruction', 'Illusion' , 'Time', 'Space', 'Karma', 'Chaos']
@@ -31,6 +33,9 @@ cluster= MongoClient(mongo_url)
 class vein8(commands.Cog, name='leveling'):
     def __init__(self, Bot):
         self.Bot= Bot
+        #self.cultivate_over.start()
+
+
 
     @commands.Cog.listener()
     @commands.guild_only()
@@ -492,6 +497,19 @@ class vein8(commands.Cog, name='leveling'):
             embed.set_footer(text=f'Requested by {ctx.author.name}')
 
         await ctx.send(embed=embed)
+
+
+    @commands.command()
+    @commands.cooldown(1, 5, commands.BucketType.user)
+    async def cultivate(self, ctx):
+        time = 5
+        await ctx.send(f'{ctx.author.mention} Your cultivation time has started for {time}m.')
+
+    @tasks.loop(seconds=10)
+    async def cultivate_over(self):
+        channel = self.Bot.get_channel(764393920381190144)
+
+        await channel.send(f'Cultivation time over ok Qi was gained.')
 
 def setup (Bot):
     Bot.add_cog(vein8(Bot))

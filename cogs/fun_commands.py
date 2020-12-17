@@ -508,7 +508,19 @@ class vein2(commands.Cog, name= "fun"):
         await asyncio.sleep(time)
         await ctx.send("Timer up.")'''
 
-
+    @commands.command(aliases = ["calculator"])
+    @commands.guild_only()
+    @commands.cooldown(1, 15 ,commands.BucketType.user)
+    async def calc(self, ctx, *, query : str = None):
+        if query is None:
+            await ctx.send("What to evaluate?")
+        else:
+            allowed = set('0123456789+-*/()')
+            clean = ''.join(char for char in query if char in allowed)
+            try:
+                await ctx.send(f'``{query}`` ``=`` ``{eval(clean)}\n``')
+            except Exception:
+                await ctx.send('Please write valid equation.')
 
 
 def setup (Bot):
