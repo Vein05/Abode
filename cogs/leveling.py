@@ -47,7 +47,8 @@ class vein8(commands.Cog, name='leveling'):
             return
         if message.author.bot:
             return
-
+        if self.Bot.DEFAULT_PREFIX== '&':
+            return
         bot1= message.guild.get_channel(781535649843904562)
         bot2= message.guild.get_channel(757136943149613076)
         music= message.guild.get_channel(768684108770574366)
