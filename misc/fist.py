@@ -18,7 +18,7 @@ class fist(commands.Cog, name ='Fist'):
     @commands.Cog.listener()
     async def on_raw_reaction_remove(self, payLoad):
         if self.Bot.DEFAULT_PREFIX == "&":
-            return print(self.Bot.DEFAULT_PREFIX)
+            return
         emoji_id = 757112296094040104
         if payLoad.emoji.id != emoji_id:
             return
@@ -76,8 +76,8 @@ class fist(commands.Cog, name ='Fist'):
 
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payLoad):
-        if self.Bot.DEFAULT_PREFIX == "&":
-            return
+            if self.Bot.DEFAULT_PREFIX == '&':
+                return
 
             emoji_id = 757112296094040104
             if payLoad.emoji.id != emoji_id:
@@ -171,7 +171,10 @@ class fist(commands.Cog, name ='Fist'):
 
 
 
-
+    @commands.command()
+    async def ok(self, ctx):
+        if self.Bot.DEFAULT_PREFIX == '.':
+            return await ctx.send('Hello')
 
 
 
