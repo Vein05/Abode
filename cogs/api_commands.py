@@ -141,11 +141,11 @@ class vein3(commands.Cog, name= "APIs"):
 
                         if nsfw == True:
 
-                        if nsfw == False:'''
+                        if nsfw == False:
 
 
         except:
-                await ctx.send(f'Command on cooldown for some seconds.', delete_after=5)
+                await ctx.send(f'Command on cooldown for some seconds.', delete_after=5)'''
     @commands.command(description='Echos\' words from clyde')
     @commands.guild_only()
     @commands.has_permissions(manage_messages=True)

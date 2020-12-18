@@ -5,7 +5,7 @@ import pymongo
 from pymongo import MongoClient
 import random
 from discord.utils import get
-mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
+mongo_url= "mongodb://vein6969:vein6969@abodedbalt-shard-00-00.oacma.mongodb.net:27017,abodedbalt-shard-00-01.oacma.mongodb.net:27017,abodedbalt-shard-00-02.oacma.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-1158or-shard-0&authSource=admin&retryWrites=true&w=majority"
 cluster= MongoClient(mongo_url)
 
 
@@ -17,6 +17,8 @@ class fist(commands.Cog, name ='Fist'):
 
     @commands.Cog.listener()
     async def on_raw_reaction_remove(self, payLoad):
+        if self.Bot.DEFAULT_PREFIX == "&":
+            return print(self.Bot.DEFAULT_PREFIX)
         emoji_id = 757112296094040104
         if payLoad.emoji.id != emoji_id:
             return
@@ -74,6 +76,8 @@ class fist(commands.Cog, name ='Fist'):
 
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payLoad):
+        if self.Bot.DEFAULT_PREFIX == "&":
+            return
 
             emoji_id = 757112296094040104
             if payLoad.emoji.id != emoji_id:
