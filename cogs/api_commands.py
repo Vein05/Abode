@@ -128,8 +128,24 @@ class vein3(commands.Cog, name= "APIs"):
                 await ctx.send(f'Command on cooldown for some seconds.', delete_after=5)
 
 
+    '''@commands.command(description='Sends a random doggo picture.')
+    @commands.guild_only()
+    @commands.cooldown(1, 15, commands.BucketType.user)
+    async def test(self, ctx):
+        try:
+            async with ctx.channel.typing():
+                async with aiohttp.ClientSession() as cs:
+                    async with cs.get("https://memes.blademaker.tv/api?lang=en") as r:
+                        data = await r.json()
+                        nsfw = data['nsfw']
+
+                        if nsfw == True:
+
+                        if nsfw == False:'''
 
 
+        except:
+                await ctx.send(f'Command on cooldown for some seconds.', delete_after=5)
     @commands.command(description='Echos\' words from clyde')
     @commands.guild_only()
     @commands.has_permissions(manage_messages=True)

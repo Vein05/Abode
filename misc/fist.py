@@ -33,7 +33,7 @@ class fist(commands.Cog, name ='Fist'):
             stars = fi['stars']
             stmsg = fi['starmsg']
             new_star = stars-1
-            if new_star <= 0:
+            if new_star == 0:
                 channel = message.guild.get_channel(789009245436903474)
 
                 fetch = await channel.fetch_message(stmsg)
@@ -64,8 +64,10 @@ class fist(commands.Cog, name ='Fist'):
                         else :
                             embed.add_field(name="Content", value=f'Error loading content.',inline=False)
                     embed.add_field(name='Message', value=f'[Jump to the exact message]({message.jump_url})', inline=False)
+
                     fetch = await self.fistboard.fetch_message(stmsg)
-                    await fetch.edit(f'{count} <:Cuppedfist:787245768968241162>ㅤㅤ``({message.id})``\n',embed=embed)
+                    await fetch.edit(embed=embed)
+                    await fetch.edit(content=f'{new_star} <:Cuppedfist:787245768968241162>ㅤㅤ``({message.id})``\n',embed=embed)
                     collection.update_one({"_id":message_id}, {"$set":{"stars": new_star}})
 
 
@@ -156,8 +158,8 @@ class fist(commands.Cog, name ='Fist'):
                             embed.add_field(name="Content", value=f'{message.clean_content} ',inline=False)
 
                     channel = message.guild.get_channel(789009245436903474)
-                    msg = channel.fetch_message(nxt_id)
-                    await msg.edit(f'{count} <:Cuppedfist:787245768968241162> ㅤ``({message.id})``\n',embed=embed)
+                    msg = await channel.fetch_message(nxt_id)
+                    await msg.edit(content=f'{new_star} <:Cuppedfist:787245768968241162> ㅤ``({message.id})``\n',embed=embed)
 
             else:
 
