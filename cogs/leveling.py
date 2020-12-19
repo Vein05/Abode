@@ -407,24 +407,7 @@ class vein8(commands.Cog, name='leveling'):
 
 
 
-    @commands.command(aliases=['cc list'], description=f'List all the available custom commands.')
-    @commands.guild_only()
-    async def cc_list(self, ctx):
 
-        db = cluster['AbodeDB']
-        collection= db['Gifs']
-        total = collection.count()
-        hm = collection.find().sort("_id" , 1)
-        total = collection.count()
-        gifname =[]
-        embed = discord.Embed(color=color)
-        for gifs in hm:
-            name = gifs['_id']
-            gifname.append(name)
-        embed.add_field(name=f"Custom Commands ({total})", value= f' ,'.join(gifname), inline=False)
-
-
-        await ctx.send(embed=embed)
 
 
 

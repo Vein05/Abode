@@ -2,8 +2,11 @@ import discord
 from discord.ext import commands
 import pymongo
 from pymongo import MongoClient
+import random
+from datetime import datetime
 
-
+mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
+cluster= MongoClient(mongo_url)
 
 class vein6(commands.Cog, name= "custom"):
     def __init__(self, Bot):
@@ -39,13 +42,31 @@ class vein6(commands.Cog, name= "custom"):
             await message.channel.send(f'{message.author.mention}My prefix is {self.Bot.DEFAULT_PREFIX}.')'''
 
 
+    @commands.command(aliases=['cc list'], description=f'List all the available custom commands.')
+    @commands.guild_only()
+    async def cc_list(self, ctx):
 
+        db = cluster['AbodeDB']
+        collection= db['Gifs']
+        total = collection.count()
+        hm = collection.find().sort("_id" , 1)
+        total = collection.count()
+        gifname =[]
+        embed = discord.Embed(color=random.choice(self.Bot.color_list), timestamp=datetime.utcnow())
+        for gifs in hm:
+            name = gifs['_id']
+            gifname.append(name)
+        if len(gifname) >=1024:
+            embed.add_field(name=f"Custom Commands ({total})", value= f' ,'.join(gifname[:1023]), inline=False)
+        if len(gifname)< 1024:
+            embed.add_field(name=f"Custom Commands ({total})", value= f' ,'.join(gifname[:1023]), inline=False)
+
+        await ctx.send(embed=embed)
 
     @commands.command()
     async def a(self, ctx, *, arg: str):
             #get into the db
-            mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
-            cluster= MongoClient(mongo_url)
+
             db = cluster['AbodeDB']
             collection= db['Gifs']
 
