@@ -13,6 +13,11 @@ class events(commands.Cog, name='Events'):
 
 
     @commands.Cog.listener()
+    async def on_ready(self):
+         self.Bot.log_channel= self.Bot.get_channel(759583119396700180)
+
+
+    @commands.Cog.listener()
     async def on_member_join(self, member):
         if member.guild.id != self.Bot.guild_id:
             return
@@ -27,6 +32,7 @@ class events(commands.Cog, name='Events'):
         embed.description= random.choice(welcome)
         embed.set_author(name=f"{member.name}",   icon_url=member.avatar_url)
         embed.set_footer(text=f'#{member.guild.member_count} member')
+        self.Bot.scholar_chat= self.Bot.get_channel(757108786497585172)
         await self.Bot.scholar_chat.send(embed=embed)
 
     @commands.Cog.listener()
@@ -42,6 +48,7 @@ class events(commands.Cog, name='Events'):
         embed.description=(f"** {member.mention} has left the Scholars** <:FeelsSadMan:757112294856589312>")
         embed.set_author(name=f"Member left",   icon_url=member.avatar_url)
         embed.set_footer(text=f'#{member.guild.member_count} member | ID :  {member.id}')
+        self.Bot.leave = self.Bot.get_channel(760312430382809128)
         await self.Bot.leave.send(embed=embed)
 
     @commands.Cog.listener()
@@ -76,6 +83,7 @@ class events(commands.Cog, name='Events'):
     @commands.Cog.listener()
     async def on_message_edit(self,something, message):
 
+
         if message.guild.id != self.Bot.guild_id:
             return
         if self.Bot.DEFAULT_PREFIX == '&':
@@ -101,6 +109,7 @@ class events(commands.Cog, name='Events'):
 
     @commands.Cog.listener()
     async def on_message_delete(self,m):
+
         if m.guild.id != self.Bot.guild_id:
             return
         if m.channel.id == 783714539832868874:
