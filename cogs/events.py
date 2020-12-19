@@ -8,9 +8,7 @@ from discord.utils import get
 class events(commands.Cog, name='Events'):
     def __init__(self, Bot):
         self.Bot = Bot
-        self.scholar_chat= self.Bot.get_channel(757108786497585172)
-        self.leave = self.Bot.get_channel(760312430382809128)
-        self.log_channel= self.Bot.get_channel(759583119396700180)
+
 
 
 
@@ -29,7 +27,7 @@ class events(commands.Cog, name='Events'):
         embed.description= random.choice(welcome)
         embed.set_author(name=f"{member.name}",   icon_url=member.avatar_url)
         embed.set_footer(text=f'#{member.guild.member_count} member')
-        await self.scholar_chat.send(embed=embed)
+        await self.Bot.scholar_chat.send(embed=embed)
 
     @commands.Cog.listener()
     async def on_member_remove(self, member):
@@ -44,7 +42,7 @@ class events(commands.Cog, name='Events'):
         embed.description=(f"** {member.mention} has left the Scholars** <:FeelsSadMan:757112294856589312>")
         embed.set_author(name=f"Member left",   icon_url=member.avatar_url)
         embed.set_footer(text=f'#{member.guild.member_count} member | ID :  {member.id}')
-        await self.leave.send(embed=embed)
+        await self.Bot.leave.send(embed=embed)
 
     @commands.Cog.listener()
     async def on_guild_channel_create(self,channel):
@@ -57,7 +55,7 @@ class events(commands.Cog, name='Events'):
         embed.set_author(name=f"Channel create!", icon_url=channel.guild.icon_url)
         #embed.add_field(name="Created by", value=f"{member.mention}")
         embed.set_footer(text=f'ID: {channel.id}')
-        await self.log_channel.send(embed=embed)
+        await self.Bot.log_channel.send(embed=embed)
 
     @commands.Cog.listener()
     async def on_guild_channel_delete(self, channel):
@@ -69,7 +67,7 @@ class events(commands.Cog, name='Events'):
         embed= discord.Embed(color=random.choice(self.Bot.color_list), timestamp=datetime.utcnow(), description=f"**Channel name: ** {channel.name}")
         embed.set_author(name=f"Channel delete!", icon_url=channel.guild.icon_url)
         embed.set_footer(text=f'ID: {channel.id}')
-        await self.log_channel.send(embed=embed)
+        await self.Bot.log_channel.send(embed=embed)
 
 
     '''@commands.Cog.listener()
@@ -98,7 +96,7 @@ class events(commands.Cog, name='Events'):
                 embed.add_field(name="Before", value=f"``{hm}``", inline=False)
                 embed.add_field(name="After", value=f"``{hm1}``", inline=False)
             embed.set_author(name="Message edit",icon_url=message.author.avatar_url)
-            await self.log_channel.send(embed=embed)
+            await self.Bot.log_channel.send(embed=embed)
 
 
     @commands.Cog.listener()
@@ -119,7 +117,7 @@ class events(commands.Cog, name='Events'):
                 embed.add_field(name="Message Content", value=f"``{hm}``", inline=False)
             embed.set_author(name="Message delete",icon_url=m.author.avatar_url)
             embed.set_footer(text=f'ID: {m.id}')
-            await self.log_channel.send(embed=embed)
+            await self.Bot.log_channel.send(embed=embed)
 
     @commands.Cog.listener()
     async def on_member_unban(self, user):
@@ -131,7 +129,7 @@ class events(commands.Cog, name='Events'):
         embed.description=f"{user.mention} was unbanned by an elder."
         embed.set_author(name=f"Unban!", icon_url=user.avatar_url)
         embed.set_footer(text=f"{user.id}")
-        await self.log_channel.send(embed=embed)
+        await self.Bot.log_channel.send(embed=embed)
 
 
 def setup (Bot):
