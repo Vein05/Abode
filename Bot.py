@@ -33,9 +33,7 @@ bot.DEFAULT_PREFIX = prefix
 bot.remove_command("help")
 bot.color= 0xa100f2
 bot.guild_id = 757098499836739594
-bot.scholar_chat= bot.get_channel(757108786497585172)
-bot.leave = bot.get_channel(760312430382809128)
-bot.log_channel= bot.get_channel(759583119396700180)
+
 
 #async def create_db_pool():
     #bot.pg_con= await asyncpg.create_pool(database='db1crf5i3vgvh2', user='lkznvsbittpdyx', password='bb434c5fa9c5d40aade4d3147855b6dd31e59b9fa569a04b3af95282644435ce')
