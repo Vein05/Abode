@@ -33,7 +33,7 @@ class owner(commands.Cog, name='owner'):
     @commands.command(hidden=True)
     async def sayin(self, ctx, channel: discord.TextChannel, *, text: str):
         x = await channel.send(text)
-        await x.add_reaction('<:phoCheck:786720919845994526>')
+        await ctx.message.add_reaction('<:phoCheck:786720919845994526>')
 
 
     '''@commands.command(aliases=['mc'])
