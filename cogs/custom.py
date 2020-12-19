@@ -57,7 +57,7 @@ class vein6(commands.Cog, name= "custom"):
             name = gifs['_id']
             gifname.append(name)
         if len(gifname) >=1024:
-            embed.add_field(name=f"Custom Commands ({total})", value= f' ,'.join(gifname[:1023]), inline=False)
+            embed.add_field(name=f"Custom Commands ({total})", value= f' ,'.join(gifname[1023:]), inline=False)
         if len(gifname)< 1024:
             embed.add_field(name=f"Custom Commands ({total})", value= f' ,'.join(gifname[:1023]), inline=False)
 

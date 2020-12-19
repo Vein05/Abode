@@ -7,6 +7,8 @@ import typing
 import ast
 import re
 from disputils import BotEmbedPaginator,BotMultipleChoice
+from discord.utils import get
+from datetime import datetime
 
 color = 0xa100f2
 guild = 757098499836739594
@@ -15,13 +17,15 @@ guild = 757098499836739594
 class vein(commands.Cog, name= "moderation"):
     def __init__(self, Bot):
         self.Bot = Bot
+        self.log_channel= self.Bot.get_channel(759583119396700180)
+
 
 
 
 
 
     @commands.Cog.listener()
-    async def on_command(self, ctx):
+    async def on_command_completion(self, ctx):
         if ctx.guild.id != (guild):
             return
 
@@ -37,7 +41,7 @@ class vein(commands.Cog, name= "moderation"):
             link = ctx.message.jump_url
             embed= discord.Embed(color = color,timestamp= datetime.datetime.utcnow())
             embed.set_author(name=f"{ctx.author.name}",  icon_url=ctx.author.avatar_url)
-            embed.add_field(name="Action", value=f'{ctx.message.clean_content}\n'
+            embed.add_field(name="Action", value=f'{ctx.message.clean_content[1:]}\n'
                                                 f'[On here]({link})')
             embed.set_footer(text=f'ID : {ctx.message.id}')
 
@@ -78,7 +82,7 @@ class vein(commands.Cog, name= "moderation"):
                                                   f'By default you don\'t have a cultivator name add it using ``.aliases <your name>.``', inline=False)
 
 
-        embed.set_footer(text=f"Requested by {ctx.author}",  icon_url=ctx.author.avatar_url)
+        embed.set_footer(text=f'Special thanks to Sap on helping me do all these stuffs.')
         embed.timestamp = datetime.datetime.utcnow()
         await ctx.send(embed=embed)
 
@@ -106,12 +110,19 @@ class vein(commands.Cog, name= "moderation"):
     @commands.guild_only()
     @commands.has_permissions(manage_messages=True)
     async def clear(self,ctx, amount=3):
-        channel = ctx.guild.get_channel(780785741101137926)
+
         if amount <= 200:
             await ctx.channel.purge(limit=amount)
             await ctx.send(f'**The higher-ups have purged some messages.**', delete_after=10)
-            embed = discord.Embed(title= f'Purge' , color =color, description=f'{ctx.author.mention} cleared {amount} messages from {ctx.channel.mention}')
-            await channel.send(embed=embed)
+            embed = discord.Embed(color = self.Bot.color, timestamp= datetime.utcnow())
+            embed.description=f"**{ctx.author.mention} purged {amount} messages on {ctx.channel.mention}.**"
+            embed.set_author(name=f"Clear command",  icon_url=ctx.author.avatar_url)
+            #embed.add_field(name=f"Purged messages", value=f'{amount}')
+            #embed.add_field(name=f"Channel", value=f"{ctx.channel.mention}" )
+            #embed.add_field(name=f"Mod's role", value=f" {ctx.author.top_role.name}", inline=False)
+            await self.log_channel.send(embed=embed)
+
+
 
         else:
             await ctx.send("Please add a number smaller than 200")
@@ -227,11 +238,15 @@ class vein(commands.Cog, name= "moderation"):
     @commands.guild_only()
     @commands.has_permissions(kick_members=True)
     async def kick(self, ctx, member: discord.Member, *, reason=None):
+        if ctx.author.top_role < member.top_role:
+            return await ctx.send("You can't kick someone higher than you.")
+        if ctx.me.top_role < member.top_role:
+            return await ctx.send("You can't kick a supreme elder can you?")
         if member is None:
             await ctx.send(f'{ctx.message.author.display_name}, Please tag an user whom you want to be kicked from the server.')
         else:
             await member.kick(reason=reason)
-            await ctx.send (f'User {member.mention} was kicked from the server for {reason}.')
+            await ctx.send (f'User {member.mention} was kicked from the server for ``{reason}.``')
 
 
 

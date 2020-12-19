@@ -23,6 +23,7 @@ from aiohttp import request, ClientSession
 
 import requests
 import disputils
+from discord.utils import get
 
 
 prefix = '.'
@@ -31,8 +32,7 @@ bot = commands.Bot(command_prefix = commands.when_mentioned_or(prefix), case_ins
 bot.DEFAULT_PREFIX = prefix
 bot.remove_command("help")
 bot.color= 0xa100f2
-bot.scholar_chat= 757108786497585172
-
+bot.guild_id = 757098499836739594
 
 #async def create_db_pool():
     #bot.pg_con= await asyncpg.create_pool(database='db1crf5i3vgvh2', user='lkznvsbittpdyx', password='bb434c5fa9c5d40aade4d3147855b6dd31e59b9fa569a04b3af95282644435ce')
@@ -137,7 +137,8 @@ extensions= [
             'cogs.battle',
             'cogs.cultivation',
             'cogs.owner',
-            'misc.fist'
+            'misc.fist',
+            'cogs.events'
 
 
 

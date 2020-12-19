@@ -85,7 +85,7 @@ class fist(commands.Cog, name ='Fist'):
 
             db = cluster['AbodeDB']
             collection= db['starboard']
-            count = 1
+            count = 2
             message = await self.Bot.get_channel(payLoad.channel_id).fetch_message(payLoad.message_id)
             guild = message.guild
             if payLoad.emoji.id == emoji_id:
@@ -171,10 +171,7 @@ class fist(commands.Cog, name ='Fist'):
 
 
 
-    @commands.command()
-    async def ok(self, ctx):
-        if self.Bot.DEFAULT_PREFIX == '.':
-            return await ctx.send('Hello')
+
 
 
 
