@@ -115,34 +115,9 @@ class events(commands.Cog, name='Events'):
 
 
 
-    @commands.Cog.listener()
-    async def on_message_edit(self,something, message):
-
-        if message.guild.id != self.Bot.guild_id:
-            return
-        self.Bot.log_channel= self.Bot.get_channel(759583119396700180)
 
 
-        if self.Bot.DEFAULT_PREFIX == '&':
-            return
 
-
-        if not message.channel.is_nsfw():
-
-            embed= discord.Embed(color=random.choice(self.Bot.color_list), timestamp=datetime.utcnow())
-            embed.description=f"Message sent by {something.author.mention} and edited in {something.channel.mention}"
-            if len(something.clean_content) < 1023:
-
-                embed.add_field(name="Before", value=f" ``{something.clean_content}``", inline=False)
-                embed.add_field(name="After", value=f"``{message.clean_content}``")
-
-            if len(something.clean_content) > 1023:
-                hm = something.clean_content[:1023]
-                hm1=message.clean_content[:1023]
-                embed.add_field(name="Before", value=f"``{hm}``", inline=False)
-                embed.add_field(name="After", value=f"``{hm1}``", inline=False)
-            embed.set_author(name="Message edit",icon_url=message.author.avatar_url)
-            await self.Bot.log_channel.send(embed=embed)
 
 
 

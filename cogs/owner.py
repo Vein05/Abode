@@ -7,6 +7,8 @@ import PIL.ImageDraw
 import PIL.ImageFont
 import PIL.ImageFilter
 from io import BytesIO
+from discord.utils import get
+import random
 
 starttime = datetime.utcnow()
 class owner(commands.Cog, name='owner'):
@@ -95,6 +97,21 @@ class owner(commands.Cog, name='owner'):
         draw.text((50, 1700), "User Joined:  {}".format(user.joined_at.strftime("%A %d, %B %Y.")), (255, 255, 255), font=font)
         img.save('img_info.png')
         await ctx.send(file=discord.File("img_info.png"))
+
+    @commands.Cog.listener()
+    async def on_message_edit(self,before, after):
+        if before.guild.id != self.Bot.guild_id:
+            return
+        if before.content != after.content:
+            log_channel= self.Bot.get_channel(759583119396700180)
+            embed = discord.Embed(color=random.choice(self.Bot.color_list), timestamp=datetime.utcnow())
+            embed.description=f"{before.author.mention} edited his/her message on {before.channel.mention}"
+            embed.add_field(name="Before", value=f"``{before.clean_content}``", inline=False)
+            embed.add_field(name="After", value=f"``{after.clean_content}``")
+            embed.set_footer(text=f'User ID: {before.id} ')
+            embed.set_author(name="Message edit!", icon_url=before.author.avatar_url)
+            await log_channel.send(embed=embed)
+
 
 
 def setup (Bot):
