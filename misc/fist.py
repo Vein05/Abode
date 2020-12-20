@@ -13,12 +13,13 @@ cluster= MongoClient(mongo_url)
 class fist(commands.Cog, name ='Fist'):
     def __init__(self, Bot):
         self.Bot = Bot
-        self.fistboard = self.Bot.get_channel(789009245436903474)
+
 
     @commands.Cog.listener()
     async def on_raw_reaction_remove(self, payLoad):
         if self.Bot.DEFAULT_PREFIX == "&":
             return
+        self.fistboard = self.Bot.get_channel(789009245436903474)
         emoji_id = 757112296094040104
         if payLoad.emoji.id != emoji_id:
             return
