@@ -210,39 +210,43 @@ class vein4(commands.Cog, name= "Admin"):
             color = 0xa100f2
             embed= discord.Embed(color= (color), title= f'ㅤㅤㅤㅤㅤㅤㅤㅤBots information!' )
             embed.add_field(name='Name',value= f'**[.] Abode**\n\n'
-                                        f'**[?] Dyno**\n\n'
+
                                         f'**[-A] Arcane** \n\n'
                                         f'**[!d] Disboard** \n\n'
                                         f'**[;] YAGPD** \n\n'
                                         f'**[-] Groovy ** \n\n'
                                         f'**[!] Rythm** \n\n'
                                         f'**[*] Carl** \n\n'
-                                        f'**[t!] Tatsu** \n\n')
+                                        )
 
 
             embed.add_field(name='ㅤㅤㅤㅤInfo', value=f'Leveling and moderation.\n\n'
-                                                f'Logs and moderation. \n\n'
+
                                                 f'Leveling and roles. \n\n'
                                                 f'Bumping server to disboard.\n\n'
                                                 f'Reaction roles. \n\n'
                                                 f'Music and lyrics bot.\n\n'
                                                 f'Music and lyrics bot. \n\n'
                                                 f'Reaction roles. \n\n'
-                                                f'Welcome and Leave messages. \n\n')
+                                                )
 
 
             embed.add_field(name='Links', value=f'[Invite](http://bitly.com/98K8eH)\n\n'
-                                                f'[Invite](https://discord.com/oauth2/authorize?Bot_id=161660517914509312&scope=bot%20identify%20guilds&response_type=code&redirect_uri=https://dyno.gg/return&permissions=2134207679) | [Commands](https://dyno.gg/commands) | [Server](https://discord.com/invite/dyno)\n\n'
+
                                                 f'[Leaderboard](https://arcanebot.xyz/lb/757098499836739594) | [Website](https://www.arcanebot.xyz/)\n\n'
                                                 f'[Server](https://discord.gg/eY4mens) | [Disboard](https://disboard.org/)\n\n'
                                                 f'[Website](https://yagpdb.xyz/) | [Documentation](https://docs.yagpdb.xyz/)\n\n'
                                                 f'[Server](https://groovy.bot/support) | [Commands](https://groovy.bot/commands)\n\n '
                                                 f'[Server](https://rythmbot.co/support) | [Commands](https://rythmbot.co/features#list) \n\n'
                                                 f'[Website](https://carl.gg/) | [Server](https://discord.com/invite/DSg744v)\n\n'
-                                                f'[Website](https://tatsu.gg/) | [Server](https://discord.com/invite/tatsu) \n\n')
+                                                )
 
             embed.set_footer(text=f"Note these bots may do different things on other servers.")
-            await ctx.send(embed=embed)
+
+            x = await ctx.send(embed=embed)
+            msg = await ctx.guild.get_channel(ctx.channel.id).fetch_message(781536472112168960)
+            await msg.edit(embed=embed)
+
 
 
     @commands.command()

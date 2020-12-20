@@ -14,14 +14,15 @@ class events(commands.Cog, name='Events'):
 
     @commands.Cog.listener()
     async def on_raw_message_delete(self,payLoad):
+
         m = payLoad.cached_message
         if m.guild.id != self.Bot.guild_id:
             return
         self.Bot.log_channel= self.Bot.get_channel(759583119396700180)
         if m.channel.id == 783714539832868874:
             return
-        if self.Bot.DEFAULT_PREFIX == '&':
-            return
+        #if self.Bot.DEFAULT_PREFIX == '&':
+            #return
         if not m.author.bot and not m.channel.is_nsfw():
 
             color = random.choice(self.Bot.color_list)
@@ -140,8 +141,8 @@ class events(commands.Cog, name='Events'):
         if before.guild.id != self.Bot.guild_id:
             return
         self.Bot.log_channel= self.Bot.get_channel(759583119396700180)
-        #if self.Bot.DEFAULT_PREFIX == '&':
-            #return
+        if self.Bot.DEFAULT_PREFIX == '&':
+            return
         if before.nick != after.nick:
 
             embed= discord.Embed(color=random.choice(self.Bot.color_list), timestamp=datetime.utcnow())

@@ -102,6 +102,8 @@ class owner(commands.Cog, name='owner'):
     async def on_message_edit(self,before, after):
         if before.guild.id != self.Bot.guild_id:
             return
+        if self.Bot.DEFAULT_PREFIX == '&':
+            return
         if before.content != after.content:
             log_channel= self.Bot.get_channel(759583119396700180)
             embed = discord.Embed(color=random.choice(self.Bot.color_list), timestamp=datetime.utcnow())

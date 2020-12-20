@@ -317,7 +317,7 @@ class vein(commands.Cog, name= "moderation"):
 
         embed.set_author(name="Abode", icon_url=f'{ctx.me.avatar_url}')
         embed.set_footer(text= f" Requested by {ctx.author}",icon_url=ctx.author.avatar_url)
-        embed.timestamp= datetime.datetime.utcnow()
+        embed.timestamp= datetime.utcnow()
         await ctx.send(embed=embed)
 
 
