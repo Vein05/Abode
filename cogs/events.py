@@ -61,7 +61,7 @@ class events(commands.Cog, name='Events'):
 
 
         ]
-
+        self.Bot.log_channel= self.Bot.get_channel(759583119396700180)
         embed= discord.Embed(color = random.choice(self.Bot.color_list), timestamp=datetime.utcnow())
         embed.description= random.choice(welcome)
         embed.set_author(name=f"{member.name}",   icon_url=member.avatar_url)
@@ -76,7 +76,7 @@ class events(commands.Cog, name='Events'):
 
         if self.Bot.DEFAULT_PREFIX == '&':
             return
-
+        self.Bot.log_channel= self.Bot.get_channel(759583119396700180)
         embed= discord.Embed(color = random.choice(self.Bot.color_list), timestamp=datetime.utcnow())
 
         embed.description=(f"** {member.mention} has left the Scholars** <:FeelsSadMan:757112294856589312>")
@@ -92,7 +92,7 @@ class events(commands.Cog, name='Events'):
 
         if self.Bot.DEFAULT_PREFIX == '&':
             return
-
+        self.Bot.log_channel= self.Bot.get_channel(759583119396700180)
         embed= discord.Embed(color=random.choice(self.Bot.color_list), timestamp=datetime.utcnow(), description=f'**Channel {channel.mention}**')
         embed.set_author(name=f"Channel create!", icon_url=channel.guild.icon_url)
         #embed.add_field(name="Created by", value=f"{member.mention}")
@@ -106,6 +106,7 @@ class events(commands.Cog, name='Events'):
 
         if self.Bot.DEFAULT_PREFIX == '&':
             return
+        self.Bot.log_channel= self.Bot.get_channel(759583119396700180)
         embed= discord.Embed(color=random.choice(self.Bot.color_list), timestamp=datetime.utcnow(), description=f"**Channel name: ** {channel.name}")
         embed.set_author(name=f"Channel delete!", icon_url=channel.guild.icon_url)
         embed.set_footer(text=f'ID: {channel.id}')
@@ -150,6 +151,7 @@ class events(commands.Cog, name='Events'):
     async def on_member_unban(self, user):
         if user.guild.id != self.Bot.guild_id:
             return
+        self.Bot.log_channel= self.Bot.get_channel(759583119396700180)
         if self.Bot.DEFAULT_PREFIX == '&':
             return
         embed = discord.Embed(color=random.choice(self.Bot.color_list), timestamp=datetime.utcnow())
@@ -162,7 +164,7 @@ class events(commands.Cog, name='Events'):
     async def on_member_update(self,before,after):
         if before.guild.id != self.Bot.guild_id:
             return
-
+        self.Bot.log_channel= self.Bot.get_channel(759583119396700180)
         #if self.Bot.DEFAULT_PREFIX == '&':
             #return
         if before.nick != after.nick:

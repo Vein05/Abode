@@ -47,8 +47,6 @@ async def on_ready():
     ch = bot.get_channel(783715160833523722)
 
     x = await ch.send("Let's go!")
-    edit = "Hello"
-    await x.edit(content=edit)
 
 
 '''@bot.event
