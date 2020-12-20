@@ -21,8 +21,8 @@ class events(commands.Cog, name='Events'):
         self.Bot.log_channel= self.Bot.get_channel(759583119396700180)
         if m.channel.id == 783714539832868874:
             return
-        #if self.Bot.DEFAULT_PREFIX == '&':
-            #return
+        if self.Bot.DEFAULT_PREFIX == '&':
+            return
         if not m.author.bot and not m.channel.is_nsfw():
 
             color = random.choice(self.Bot.color_list)

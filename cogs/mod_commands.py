@@ -83,7 +83,7 @@ class vein(commands.Cog, name= "moderation"):
 
 
         embed.set_footer(text=f'Special thanks to Sap on helping me do all these stuffs.')
-        embed.timestamp = datetime.datetime.utcnow()
+        embed.timestamp = datetime.utcnow()
         await ctx.send(embed=embed)
 
 
@@ -101,7 +101,7 @@ class vein(commands.Cog, name= "moderation"):
 
 
 
-        embed.timestamp = datetime.datetime.utcnow()
+        embed.timestamp = datetime.utcnow()
         embed.set_footer(text=f"Requested by {ctx.author}",  icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
