@@ -34,6 +34,7 @@ class vein8(commands.Cog, name='leveling'):
     def __init__(self, Bot):
         self.Bot= Bot
         #self.cultivate_over.start()
+        self.Bot.scholar_chat = self.Bot.get_channel(757108786497585172)
 
 
 
