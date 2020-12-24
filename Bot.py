@@ -45,7 +45,7 @@ async def on_ready():
     await bot.change_presence(status=discord.Status.online, activity=discord.Game('.help if you are lost '))
     print("Bot is running.")
     ch = bot.get_channel(783715160833523722)
-
+    y = 5
     x = await ch.send("Let's go!")
 
 
