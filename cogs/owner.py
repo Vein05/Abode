@@ -115,6 +115,16 @@ class owner(commands.Cog, name='owner'):
             await log_channel.send(embed=embed)
 
 
+    @commands.command()
+    @commands.is_owner()
+    async def playlist(self, ctx, *, playList):
+
+        if playList == "nepali":
+            await ctx.send("<https://www.youtube.com/playlist?list=PLssMJHK9DpegjOJBQGe8wjovLUb9ojlRT>")
+        if playList == "spotify":
+            await ctx.send("<https://open.spotify.com/playlist/3o7vSOC06Rff7NFEnheQJ4?si=4eZpAfcOT8C4s03T7svOdA>")
+        if playList == "anime":
+            await ctx.send("<https://www.youtube.com/playlist?list=PLssMJHK9DpeiYCHbMQucJzjQUCKRzNuSr>")
 
 def setup (Bot):
     Bot.add_cog(owner(Bot))
