@@ -371,21 +371,20 @@ class vein(commands.Cog, name= "moderation"):
     @commands.guild_only()
     @commands.has_permissions(manage_roles=True)
     async def slowmode(self, ctx , time):
-        channel = ctx.guild.get_channel(780785741101137926)
-        if time == 'remove':
-            await ctx.channel.edit(slowmode_delay = 0)
-            await ctx.send(f'Slowmode removed.')
-            embed = discord.Embed(title = f'Slowmode', color=color , description =f'{ctx.author.mention} removed slowmode from {ctx.channel.mention}')
-            await channel.send(embed=embed)
+            self.Bot.log_channel= self.Bot.get_channel(759583119396700180)
+            if time == 'remove':
+                await ctx.channel.edit(slowmode_delay = 0)
+                await ctx.send(f'Slowmode removed.')
+                embed = discord.Embed(title = f'Slowmode', color=color , description =f'{ctx.author.mention} removed slowmode from {ctx.channel.mention}')
+                await self.Bot.log_channel.send(embed=embed)
 
-        else:
-            try:
+            else:
+            
                 await ctx.channel.edit(slowmode_delay= time)
                 await ctx.send(f'{time}s of slowmode was set on the current channel.')
                 embed = discord.Embed(title = f'Slowmode', color=color , description =f'{ctx.author.mention} added slowmode of {time}s to {ctx.channel.mention}')
-                await channel.send(embed=embed)
-            except:
-                await ctx.send(f'{ctx.author.mention}The slowmode time should be a number(s).')
+                await self.Bot.log_channel.send(embed=embed)
+
 
 
 

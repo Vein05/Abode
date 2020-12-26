@@ -81,6 +81,7 @@ class vein8(commands.Cog, name='leveling'):
         else:
             query= {"_id": author_id}
             level = collection.find(query)
+           
 
 
             for lvl in level:
@@ -148,7 +149,8 @@ class vein8(commands.Cog, name='leveling'):
 
 
 
-
+                
+                
                 collection.update_one({"_id":author_id}, {"$set":{'points':new_p}})
                 collection.update_one({"_id":author_id},  {"$set":{"Qi": new_q}})
 

@@ -129,3 +129,6 @@ class owner(commands.Cog, name='owner'):
 def setup (Bot):
     Bot.add_cog(owner(Bot))
     print("Owner command is working.")
+
+
+
