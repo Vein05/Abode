@@ -148,7 +148,10 @@ class vein(commands.Cog, name= "moderation"):
     ):
 
         channel = ctx.message.channel
-
+        if ctx.guild.me.top_role < member.top_role:
+            return await ctx.send("Admin :(")
+        if ctx.message.author.top_role < member.top_role:
+            return await ctx.send("You  have lower roles.")  
         def check(msg):
             return msg.author.id == user.id
 
@@ -160,7 +163,12 @@ class vein(commands.Cog, name= "moderation"):
     @commands.has_permissions(manage_roles=True)
     @commands.guild_only()
     async def role(self , ctx, member: discord.Member, *,arg):
+        if ctx.guild.me.top_role < member.top_role:
+            return await ctx.send("Admin :(")
+        if ctx.message.author.top_role < member.top_role:
+            return await ctx.send("You  have lower roles.")   
         role = discord.utils.get(ctx.guild.roles, name=f"{arg}")
+        
         if role not in member.roles:
             await member.add_roles(role)
             await ctx.send(f"{member} was given role ``{arg}``.")
@@ -256,6 +264,10 @@ class vein(commands.Cog, name= "moderation"):
     @commands.guild_only()
     @commands.has_permissions(ban_members=True)
     async def ban(self, ctx, member: discord.Member = None, reason: str = "You were banned from the server for not following the rules."):
+        if ctx.author.top_role < member.top_role:
+            return await ctx.send("You can't kick someone higher than you.")
+        if ctx.me.top_role < member.top_role:
+            return await ctx.send("You can't kick a supreme elder can you?") 
         if member is not None:
             await ctx.guild.ban(member, reason=reason)
             await ctx.send(f'{member.mention} was banned from the server.')
