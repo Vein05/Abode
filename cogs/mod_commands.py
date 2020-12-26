@@ -357,7 +357,7 @@ class vein(commands.Cog, name= "moderation"):
         description = []
         for x, option in enumerate(options):
             description += f'\n\n {reactions[x]} {option}'
-        embed = discord.Embed(title=question, description=''.join(description), color=color, timestamp= datetime.datetime.utcnow())
+        embed = discord.Embed(title=question, description=''.join(description), color=color, timestamp= datetime.utcnow())
         embed.set_footer(text=f'Elder responsible for the poll : {ctx.message.author.name}')
         msg = await ctx.send(embed=embed)
         for reaction in reactions[:len(options)]:

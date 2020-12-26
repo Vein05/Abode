@@ -57,7 +57,7 @@ class events(commands.Cog, name='Events'):
         if member.guild.id != self.Bot.guild_id:
             return
 
-        welcome = [f'As the prevailing wind blows east to west, **{member.name}** joins the scholars.',
+        welcome = [f'As the prevailing wind blows from east to west, **{member.name}** joins the scholars.',
                    f'**{member.name}** joined the Scholars.'
 
 
