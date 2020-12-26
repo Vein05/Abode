@@ -363,7 +363,7 @@ class vein(commands.Cog, name= "moderation"):
         for reaction in reactions[:len(options)]:
             await msg.add_reaction(reaction)
 
-        await ctx.edit_message(react_message, embed=embed)
+        await msg.edit(react_message, embed=embed)
 
 
 
