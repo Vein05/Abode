@@ -24,7 +24,7 @@ from aiohttp import request, ClientSession
 import requests
 import disputils
 from discord.utils import get
-
+import os
 
 prefix = '.'
 
@@ -161,8 +161,7 @@ bot.load_extension("jishaku")
 #bot.loop.create_task(create_db_pool())
 
 
+#TOKEN="NzU5Nzg0MDY0MzYxMjk5OTg5.X3CiDQ.-ey8zjqE8emrZQQfEDk_AS1IyCo"
+TOKEN =os.environ.get("TOKEN")
 
-
-
-
-bot.run('NzU5Nzg0MDY0MzYxMjk5OTg5.X3CiDQ.-ey8zjqE8emrZQQfEDk_AS1IyCo')
+bot.run(f"{TOKEN}")
