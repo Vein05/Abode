@@ -103,12 +103,7 @@ class vein2(commands.Cog, name= "fun"):
             await ctx.send(embed=embed)
         elif ctx.guild.id == (guild):
             member_id= str(member.id)
-
-            mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
-
-            cluster= MongoClient(mongo_url)
-            db = cluster['AbodeDB']
-
+            db = self.Bot.cluster1['AbodeDB']
             collection= db['Levels']
             qurey = {"_id" : member_id}
             users = collection.find(qurey)

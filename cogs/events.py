@@ -21,7 +21,9 @@ class events(commands.Cog, name='Events'):
         self.Bot.log_channel= self.Bot.get_channel(759583119396700180)
         if m.channel.id == 783714539832868874:
             return
-        if self.Bot.DEFAULT_PREFIX == '&':
+        #if self.Bot.DEFAULT_PREFIX == '&':
+            #return
+        if m.clean_content.startswith(".addnote"):
             return
         if not m.author.bot and not m.channel.is_nsfw():
 

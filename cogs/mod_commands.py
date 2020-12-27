@@ -1,28 +1,18 @@
 import discord
 from discord.ext import commands
 from discord import User
-import random
 import datetime
 import typing
-import ast
-import re
-from disputils import BotEmbedPaginator,BotMultipleChoice
-from discord.utils import get
 from datetime import datetime
 
 color = 0xa100f2
 guild = 757098499836739594
 
 
-class vein(commands.Cog, name= "moderation"):
+class vein(commands.Cog, name="moderation"):
     def __init__(self, Bot):
         self.Bot = Bot
-        self.log_channel= self.Bot.get_channel(759583119396700180)
-
-
-
-
-
+        self.log_channel = self.Bot.get_channel(759583119396700180)
 
     @commands.Cog.listener()
     async def on_command_completion(self, ctx):
@@ -39,20 +29,17 @@ class vein(commands.Cog, name= "moderation"):
 
             channel = ctx.guild.get_channel(783715160833523722)
             link = ctx.message.jump_url
-            embed= discord.Embed(color = color,timestamp= datetime.datetime.utcnow())
-            embed.set_author(name=f"{ctx.author.name}",  icon_url=ctx.author.avatar_url)
+            embed = discord.Embed(
+                color=color, timestamp=datetime.datetime.utcnow())
+            embed.set_author(name=f"{ctx.author.name}",
+                             icon_url=ctx.author.avatar_url)
             embed.add_field(name="Action", value=f'{ctx.message.clean_content[1:]}\n'
-                                                f'[On here]({link})')
+                            f'[On here]({link})')
             embed.set_footer(text=f'ID : {ctx.message.id}')
 
             await channel.send(embed=embed)
         else:
             return
-
-
-
-
-
 
     @commands.Cog.listener()
     async def on_message(self, message):
@@ -63,112 +50,105 @@ class vein(commands.Cog, name= "moderation"):
         await msg.add_reaction("<:xmark:773959363379462184>")
         return
 
-    @commands.command(aliases = ['Bot'],hidden=True)
+    @commands.command(aliases=['Bot'], hidden=True)
     @commands.cooldown(1, 10, commands.BucketType.user)
     @commands.guild_only()
-    async def abode(self,ctx):
+    async def abode(self, ctx):
 
-        embed= discord.Embed(color=color)
+        embed = discord.Embed(color=color)
         embed.set_thumbnail(url=f'{ctx.me.avatar_url}')
         embed.set_author(name="Abode", icon_url=f'{ctx.me.avatar_url}')
-        embed.add_field(name="‎‎‎‏‏‎Intro", value=f'**Abode mandator** or abode in short is a discord bot written python (discord.py).\n Abode is created by Vein, as a way to learn python but later on further continued as a fun-command based bot. Vein doesn\'t own any of the api used, so read the footers for the api source.', inline=False )
-        embed.add_field(name="Tips", value= f"``.help``  is always there for you :D \n\n"
-                                                  f'Want to earn a custom gif or role? You might earn them by reporting issues on more or the server on our suggestions channel. \n\n'
-                                                  f'``.welcome`` whenever a new user joins. It is a easy way to make them feel welcomed :D \n\n'
-                                                  f'If you can contribute to the server you may bypass some rules and get a higher role. \n\n'
+        embed.add_field(name="‎‎‎‏‏‎Intro", value=f'**Abode mandator** or abode in short is a discord bot written python (discord.py).\n Abode is created by Vein, as a way to learn python but later on further continued as a fun-command based bot. Vein doesn\'t own any of the api used, so read the footers for the api source.', inline=False)
+        embed.add_field(name="Tips", value=f"``.help``  is always there for you :D \n\n"
+                        f'Want to earn a custom gif or role? You might earn them by reporting issues on more or the server on our suggestions channel. \n\n'
+                        f'``.welcome`` whenever a new user joins. It is a easy way to make them feel welcomed :D \n\n'
+                        f'If you can contribute to the server you may bypass some rules and get a higher role. \n\n'
 
-                                                  f'``.faq`` FAQ are available there, do not leave your mind wander.\n\n'
-                                                  f'Always check the pinned messages or the channel description to learn more about that channel.\n\n'
-                                                  f'By default you don\'t have a cultivator name add it using ``.aliases <your name>.``', inline=False)
+                        f'``.faq`` FAQ are available there, do not leave your mind wander.\n\n'
+                        f'Always check the pinned messages or the channel description to learn more about that channel.\n\n'
+                        f'By default you don\'t have a cultivator name add it using ``.aliases <your name>.``', inline=False)
 
-
-        embed.set_footer(text=f'Special thanks to Sap on helping me do all these stuffs.')
+        embed.set_footer(
+            text=f'Special thanks to Sap on helping me do all these stuffs.')
         embed.timestamp = datetime.utcnow()
         await ctx.send(embed=embed)
-
-
-
 
     @commands.command(aliases=['frequent_questions'],
-        hidden=True)
+                      hidden=True)
     @commands.guild_only()
     async def faq(self, ctx):
-        embed= discord.Embed(color=color)
+        embed = discord.Embed(color=color)
         embed.set_thumbnail(url=f'{ctx.guild.icon_url}')
         embed.add_field(name="QnA", value=f'**Why is there a logo on every command?** \nBecause why not? <:Scholar2:779239176511946772>\n\n'
-                                           f'**Can you remove the cooldown on images?** \nNo not anytime soon, maybe in future <:blobspearpeek:775344866246393876>\n\n'
-                                           f'**Why aren not the image commands not working sometimes?**\nIt\'s due to bad response from the API.' )
-
-
+                        f'**Can you remove the cooldown on images?** \nNo not anytime soon, maybe in future <:blobspearpeek:775344866246393876>\n\n'
+                        f'**Why aren not the image commands not working sometimes?**\nIt\'s due to bad response from the API.')
 
         embed.timestamp = datetime.utcnow()
-        embed.set_footer(text=f"Requested by {ctx.author}",  icon_url=ctx.author.avatar_url)
+        embed.set_footer(
+            text=f"Requested by {ctx.author}",  icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
-
-    @commands.command(aliases=['purge'],hidden=True)
+    @commands.command(aliases=['purge'], hidden=True)
     @commands.guild_only()
     @commands.has_permissions(manage_messages=True)
-    async def clear(self,ctx, amount=3):
+    async def clear(self, ctx, amount=3):
 
         if amount <= 200:
             await ctx.channel.purge(limit=amount)
             await ctx.send(f'**The higher-ups have purged some messages.**', delete_after=10)
-            embed = discord.Embed(color = self.Bot.color, timestamp= datetime.utcnow())
-            embed.description=f"**{ctx.author.mention} purged {amount} messages on {ctx.channel.mention}.**"
-            embed.set_author(name=f"Clear command",  icon_url=ctx.author.avatar_url)
+            embed = discord.Embed(color=self.Bot.color,
+                                  timestamp=datetime.utcnow())
+            embed.description = f"**{ctx.author.mention} purged {amount} messages on {ctx.channel.mention}.**"
+            embed.set_author(name=f"Clear command",
+                             icon_url=ctx.author.avatar_url)
             #embed.add_field(name=f"Purged messages", value=f'{amount}')
             #embed.add_field(name=f"Channel", value=f"{ctx.channel.mention}" )
             #embed.add_field(name=f"Mod's role", value=f" {ctx.author.top_role.name}", inline=False)
             await self.log_channel.send(embed=embed)
 
-
-
         else:
             await ctx.send("Please add a number smaller than 200")
 
-
-    @commands.command(aliases= ['pmuser'], hidden=True)
+    @commands.command(aliases=['pmuser'], hidden=True)
     @commands.guild_only()
     @commands.has_permissions(manage_messages=True)
-    async def DMuser (self,ctx, user: discord.User, *, msg ):
+    async def DMuser(self, ctx, user: discord.User, *, msg):
         try:
-         await user.send(f'**{ctx.message.author}** has a message for you, \n {msg}')
-
+            await user.send(f'**{ctx.message.author}** has a message for you, \n {msg}')
 
         except:
             await ctx.send(f'The user has his/her DMs turned off.')
-
 
     @commands.command(aliases=['clearuser'], hidden=True)
     @commands.guild_only()
     @commands.has_permissions(manage_messages=True)
     async def purgeuser(self, ctx, user: User,
-        num_messages: typing.Optional[int] = 100,
-    ):
+                        num_messages: typing.Optional[int] = 100,
+                        ):
 
         channel = ctx.message.channel
         if ctx.guild.me.top_role < member.top_role:
             return await ctx.send("Admin :(")
         if ctx.message.author.top_role < member.top_role:
-            return await ctx.send("You  have lower roles.")  
+            return await ctx.send("You  have lower roles.")
+
         def check(msg):
             return msg.author.id == user.id
 
         await ctx.message.delete()
         await channel.purge(limit=num_messages, check=check, before=None)
-        await ctx.send (f'**The higher-ups have purged someones messsages.**', delete_after=10)
+        await ctx.send(f'**The higher-ups have purged someones messsages.**', delete_after=10)
 
     @commands.command(hidden=True)
     @commands.has_permissions(manage_roles=True)
     @commands.guild_only()
-    async def role(self , ctx, member: discord.Member, *,arg):
+    async def role(self, ctx, member: discord.Member, *, arg):
         if ctx.guild.me.top_role < member.top_role:
             return await ctx.send("Admin :(")
         if ctx.message.author.top_role < member.top_role:
-            return await ctx.send("You  have lower roles.")   
+            return await ctx.send("You  have lower roles.")
         role = discord.utils.get(ctx.guild.roles, name=f"{arg}")
-        
+
         if role not in member.roles:
             await member.add_roles(role)
             await ctx.send(f"{member} was given role ``{arg}``.")
@@ -179,7 +159,7 @@ class vein(commands.Cog, name= "moderation"):
     @commands.command(hidden=True)
     @commands.guild_only()
     @commands.has_permissions(manage_nicknames=True)
-    async def cnick(self , ctx, member: discord.Member, *,arg):
+    async def cnick(self, ctx, member: discord.Member, *, arg):
         if ctx.guild.me.top_role < member.top_role:
             return await ctx.send("Admin :(")
         if ctx.message.author.top_role < member.top_role:
@@ -188,22 +168,18 @@ class vein(commands.Cog, name= "moderation"):
             await member.edit(nick=arg)
             await ctx.send(f'{member} nickname was changed to {arg} by {ctx.message.author}')
 
-
-
-
-
-
     @commands.command(aliases=['rinfo'], hidden=True)
     @commands.has_permissions(manage_roles=True)
     async def roleinfo(self, ctx, *, rolename):
-        allowed= []
+        allowed = []
         try:
             role = discord.utils.get(ctx.message.guild.roles, name=rolename)
             permissions = role.permissions
 
             for name, value in permissions:
                 if value:
-                    name = name.replace('_', ' ').replace('guild', 'server').title()
+                    name = name.replace('_', ' ').replace(
+                        'guild', 'server').title()
                     allowed.append(name)
         except:
             return await ctx.send(f"Couldn't find the role")
@@ -217,30 +193,16 @@ class vein(commands.Cog, name= "moderation"):
                                             f'**Position :** {str(role.position)}\n'
                                             f'**Is mentionable :** {str(role.mentionable)}\n'
                                             f'**Members in role :** {str(len(role.members))}\n')
-        em.add_field(name='__Role permissions__', value=f', '.join(allowed), inline=False)
+        em.add_field(name='__Role permissions__',
+                     value=f', '.join(allowed), inline=False)
         em.set_footer(text="Role created on")
         await ctx.send(embed=em)
 
-
-
-
-
-    @commands.command(hidden=True, aliases =['PM'])
+    @commands.command(hidden=True, aliases=['PM'])
     @commands.guild_only()
     @commands.has_permissions(manage_messages=True)
-    async def DM (self, ctx, *, arg ):
-            await ctx.message.author.send(arg)
-
-
-
-
-
-
-
-
-
-
-
+    async def DM(self, ctx, *, arg):
+        await ctx.message.author.send(arg)
 
     @commands.command(hidden=True)
     @commands.guild_only()
@@ -254,11 +216,7 @@ class vein(commands.Cog, name= "moderation"):
             await ctx.send(f'{ctx.message.author.display_name}, Please tag an user whom you want to be kicked from the server.')
         else:
             await member.kick(reason=reason)
-            await ctx.send (f'User {member.mention} was kicked from the server for ``{reason}.``')
-
-
-
-
+            await ctx.send(f'User {member.mention} was kicked from the server for ``{reason}.``')
 
     @commands.command(hidden=True)
     @commands.guild_only()
@@ -267,13 +225,12 @@ class vein(commands.Cog, name= "moderation"):
         if ctx.author.top_role < member.top_role:
             return await ctx.send("You can't kick someone higher than you.")
         if ctx.me.top_role < member.top_role:
-            return await ctx.send("You can't kick a supreme elder can you?") 
+            return await ctx.send("You can't kick a supreme elder can you?")
         if member is not None:
             await ctx.guild.ban(member, reason=reason)
             await ctx.send(f'{member.mention} was banned from the server.')
         else:
             await ctx.send("Please specify an user to ban with a reason.")
-
 
     '''
     @commands.command()
@@ -299,56 +256,52 @@ class vein(commands.Cog, name= "moderation"):
         await member.remove_roles(role)
         await ctx.send(f"{member} was unmuted.") '''
 
-
-
-
-
     @commands.command(hidden=True, aliases=['cstats'])
     @commands.guild_only()
     @commands.has_permissions(kick_members=True)
     async def channelstats(self, ctx):
         channel = ctx.channel
-        tmembers= str(len(channel.members))
-        nsfw=(ctx.channel.is_nsfw())
-        news=(ctx.channel.is_news())
-        embed= discord.Embed( color=color)
+        tmembers = str(len(channel.members))
+        nsfw = (ctx.channel.is_nsfw())
+        news = (ctx.channel.is_news())
+        embed = discord.Embed(color=color)
         embed.set_thumbnail(url=f'{ctx.guild.icon_url}')
         embed.add_field(name="__Information__", value=f'**Server name: ** {ctx.guild.name} \n'
-                                                               f'**Channel name :** {channel.name}\n'
-                                                               f'**Channel ID : ** {channel.id} \n'
-                                                               f'**Channel type : **{channel.type}\n'
-                                                               f'**Channel category : ** {channel.category}\n'
-                                                               f'**Topic : ** {channel.topic}\n'
-                                                               f'**Channel position :** {channel.position}\n'
-                                                               f'**Created at :** {channel.created_at.strftime("%a, %#d %B %Y, %I:%M %p ")}\n'
-                                                               f'**Slowmode :** {channel.slowmode_delay}\n'
-                                                               f'**Channel Permissions :** {channel.permissions_synced}\n'
-                                                               f'**Channel members :** {tmembers}\n'
-                                                               f'**Is nsfw : ** {nsfw}\n'
-                                                               f'**Is news : ** {news}', inline=False)
+                        f'**Channel name :** {channel.name}\n'
+                        f'**Channel ID : ** {channel.id} \n'
+                        f'**Channel type : **{channel.type}\n'
+                        f'**Channel category : ** {channel.category}\n'
+                        f'**Topic : ** {channel.topic}\n'
+                        f'**Channel position :** {channel.position}\n'
+                        f'**Created at :** {channel.created_at.strftime("%a, %#d %B %Y, %I:%M %p ")}\n'
+                        f'**Slowmode :** {channel.slowmode_delay}\n'
+                        f'**Channel Permissions :** {channel.permissions_synced}\n'
+                        f'**Channel members :** {tmembers}\n'
+                        f'**Is nsfw : ** {nsfw}\n'
+                        f'**Is news : ** {news}', inline=False)
 
         embed.set_author(name="Abode", icon_url=f'{ctx.me.avatar_url}')
-        embed.set_footer(text= f" Requested by {ctx.author}",icon_url=ctx.author.avatar_url)
-        embed.timestamp= datetime.utcnow()
+        embed.set_footer(
+            text=f" Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+        embed.timestamp = datetime.utcnow()
         await ctx.send(embed=embed)
 
-
-    @commands.command( hidden=True)
+    @commands.command(hidden=True)
     @commands.guild_only()
     @commands.cooldown(1, 21600, commands.BucketType.user)
-    async def complaint(self, ctx, *,arg):
+    async def complaint(self, ctx, *, arg):
         if ctx.channel.id != (757136905329442859 or 757136943149613076):
-            await ctx.send(f'{ctx.author.name}, It\'s good that you have complaints but please use this command on the Bots category.' )
+            await ctx.send(f'{ctx.author.name}, It\'s good that you have complaints but please use this command on the Bots category.')
             return
         channel = ctx.guild.get_channel(757110183800471572)
-        embed= discord.Embed(color=ctx.author.color, title= f'{arg}', timestamp= datetime.datetime.utcnow())
-        embed.set_author(name=f"{ctx.author.name}'s complaint ", icon_url=f'{ctx.author.avatar_url}')
+        embed = discord.Embed(
+            color=ctx.author.color, title=f'{arg}', timestamp=datetime.datetime.utcnow())
+        embed.set_author(
+            name=f"{ctx.author.name}'s complaint ", icon_url=f'{ctx.author.avatar_url}')
         embed.set_footer(text=f"Submitted on")
         await ctx.message.delete()
         await channel.send(embed=embed)
         await ctx.send(f'{ctx.author.name}, Sent your complaint in <#757110183800471572>.')
-
-
 
     @commands.command(hidden=True)
     @commands.guild_only()
@@ -362,46 +315,45 @@ class vein(commands.Cog, name= "moderation"):
             return
 
         if len(options) == 2 and options[0] == 'yes' and options[1] == 'no':
-            reactions = ['<:check:773959361953267742>', ' <:xmark:773959363379462184>']
+            reactions = ['<:check:773959361953267742>',
+                         ' <:xmark:773959363379462184>']
         else:
-            reactions = ['1️⃣' , '2⃣', '3⃣', '4⃣', '5⃣', '6⃣', '7⃣']
+            reactions = ['1️⃣', '2⃣', '3⃣', '4⃣', '5⃣', '6⃣', '7⃣']
 
         description = []
         for x, option in enumerate(options):
             description += f'\n\n {reactions[x]} {option}'
-        embed = discord.Embed(title=question, description=''.join(description), color=color, timestamp= datetime.utcnow())
-        embed.set_footer(text=f'Elder responsible for the poll : {ctx.message.author.name}')
+        embed = discord.Embed(title=question, description=''.join(
+            description), color=color, timestamp=datetime.utcnow())
+        embed.set_footer(
+            text=f'Elder responsible for the poll : {ctx.message.author.name}')
         msg = await ctx.send(embed=embed)
         for reaction in reactions[:len(options)]:
             await msg.add_reaction(reaction)
 
         await msg.edit(react_message, embed=embed)
 
-
-
     @commands.command(hidden=True)
     @commands.guild_only()
     @commands.has_permissions(manage_roles=True)
-    async def slowmode(self, ctx , time):
-            self.Bot.log_channel= self.Bot.get_channel(759583119396700180)
-            if time == 'remove':
-                await ctx.channel.edit(slowmode_delay = 0)
-                await ctx.send(f'Slowmode removed.')
-                embed = discord.Embed(title = f'Slowmode', color=color , description =f'{ctx.author.mention} removed slowmode from {ctx.channel.mention}')
-                await self.Bot.log_channel.send(embed=embed)
+    async def slowmode(self, ctx, time):
+        self.Bot.log_channel = self.Bot.get_channel(759583119396700180)
+        if time == 'remove':
+            await ctx.channel.edit(slowmode_delay=0)
+            await ctx.send(f'Slowmode removed.')
+            embed = discord.Embed(title=f'Slowmode', color=color,
+                                  description=f'{ctx.author.mention} removed slowmode from {ctx.channel.mention}')
+            await self.Bot.log_channel.send(embed=embed)
 
-            else:
-            
-                await ctx.channel.edit(slowmode_delay= time)
-                await ctx.send(f'{time}s of slowmode was set on the current channel.')
-                embed = discord.Embed(title = f'Slowmode', color=color , description =f'{ctx.author.mention} added slowmode of {time}s to {ctx.channel.mention}')
-                await self.Bot.log_channel.send(embed=embed)
+        else:
 
+            await ctx.channel.edit(slowmode_delay=time)
+            await ctx.send(f'{time}s of slowmode was set on the current channel.')
+            embed = discord.Embed(title=f'Slowmode', color=color,
+                                  description=f'{ctx.author.mention} added slowmode of {time}s to {ctx.channel.mention}')
+            await self.Bot.log_channel.send(embed=embed)
 
-
-
-
-    @commands.command( hidden=True)
+    @commands.command(hidden=True)
     @commands.guild_only()
     @commands.has_permissions(administrator=True)
     async def lock(self, ctx):
@@ -409,7 +361,7 @@ class vein(commands.Cog, name= "moderation"):
         await ctx.channel.set_permissions(hm, send_messages=False, read_messages=True)
         await ctx.send("Channel locked.")
 
-    @commands.command( hidden=True)
+    @commands.command(hidden=True)
     @commands.guild_only()
     @commands.has_permissions(administrator=True)
     async def unlock(self, ctx):
@@ -417,8 +369,7 @@ class vein(commands.Cog, name= "moderation"):
         await ctx.channel.set_permissions(hm, send_messages=True, read_messages=True)
         await ctx.send("Channel unlocked.")
 
-def setup (Bot):
+
+def setup(Bot):
     Bot.add_cog(vein(Bot))
     print("Mod cog is working.")
-
-

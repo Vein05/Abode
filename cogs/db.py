@@ -6,8 +6,6 @@ from pymongo import MongoClient
 import datetime
 
 
-mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
-cluster= MongoClient(mongo_url)
 
 class vein7(commands.Cog, name='db'):
     def __init__(self,Bot):
@@ -25,7 +23,7 @@ class vein7(commands.Cog, name='db'):
         time= datetime.datetime.utcnow()
         #time= str(ctx.message.created_at.strftime("%Y-%m-%d, %I:%M:%S UTC"))
 
-        db = cluster['AbodeDB']
+        db = self.Bot.cluster1['AbodeDB']
         collection= db['Notes']
 
 
@@ -58,7 +56,7 @@ class vein7(commands.Cog, name='db'):
     async def note (self, ctx):
         author_id= str(ctx.message.author.id)
 
-        db = cluster['AbodeDB']
+        db = self.Bot.cluster1['AbodeDB']
         collection= db['Notes']
         user_id= {"_id": author_id}
         dbnote = collection.find(user_id)
@@ -127,7 +125,7 @@ class vein7(commands.Cog, name='db'):
     async def removenote (self, ctx):
         author_id= str(ctx.message.author.id)
 
-        db = cluster['AbodeDB']
+        db = self.Bot.cluster1['AbodeDB']
         collection= db['Notes']
         user_id = {"_id": author_id}
         if (collection.find_one({"_id": author_id})== None):

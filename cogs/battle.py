@@ -9,8 +9,6 @@ color = 0xa100f2
 guild = 757098499836739594
 battle = ("put battle chnl id here")
 
-mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
-cluster= MongoClient(mongo_url)
 class vein11(commands.Cog, name='battle'):
     def __init__(self, Bot):
         self.Bot= Bot
@@ -32,7 +30,7 @@ class vein11(commands.Cog, name='battle'):
         author_id = str(ctx.message.author.id)
         member_id = str(member.id)
 
-        db = cluster['AbodeDB']
+        db = self.Bot.cluster1['AbodeDB']
         collection= db['Levels']
         hm1 = {"_id" : author_id}
         hm2 = {"_id" : member_id}

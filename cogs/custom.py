@@ -5,8 +5,6 @@ from pymongo import MongoClient
 import random
 from datetime import datetime
 
-mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
-cluster= MongoClient(mongo_url)
 
 class vein6(commands.Cog, name= "custom"):
     def __init__(self, Bot):
@@ -19,9 +17,7 @@ class vein6(commands.Cog, name= "custom"):
         try:
             if message.guild.id != 757098499836739594:
                 return
-            mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
-            cluster= MongoClient(mongo_url)
-            db = cluster['AbodeDB']
+            db = self.Bot.cluster1['AbodeDB']
             collection= db['Gifs']
             vein = str(message.clean_content)
             user_id= {"_id": vein}
@@ -46,7 +42,7 @@ class vein6(commands.Cog, name= "custom"):
     @commands.guild_only()
     async def cc_list(self, ctx):
 
-        db = cluster['AbodeDB']
+        db = self.Bot.cluster1['AbodeDB']
         collection= db['Gifs']
         total = collection.count()
         hm = collection.find().sort("_id" , 1)
@@ -67,7 +63,7 @@ class vein6(commands.Cog, name= "custom"):
     async def a(self, ctx, *, arg: str):
             #get into the db
 
-            db = cluster['AbodeDB']
+            db = self.Bot.cluster1['AbodeDB']
             collection= db['Gifs']
 
 
@@ -94,9 +90,7 @@ class vein6(commands.Cog, name= "custom"):
 
     async def addcommand(self, ctx, name ,*, giflink):
         author_id = str(ctx.message.author.id)
-        mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
-        cluster= MongoClient(mongo_url)
-        db = cluster['AbodeDB']
+        db = self.Bot.cluster1['AbodeDB']
         collection= db['Gifs']
         collection2 = db ['Levels']
         user_id= {"_id": name}
@@ -141,9 +135,7 @@ class vein6(commands.Cog, name= "custom"):
     #duh remove command
     async def removecommand(self, ctx, *, commandname):
         author_id= str(ctx.message.author.id)
-        mongo_url= "mongodb://Abode:vein6969@abode-shard-00-00.hkghi.mongodb.net:27017,abode-shard-00-01.hkghi.mongodb.net:27017,abode-shard-00-02.hkghi.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-l4ozdp-shard-0&authSource=admin&retryWrites=true&w=majority"
-        cluster= MongoClient(mongo_url)
-        db = cluster['AbodeDB']
+        db = self.Bot.cluster1['AbodeDB']
         collection= db['Gifs']
         cmd_name = str(commandname)
         user_id = {"_id": cmd_name}
