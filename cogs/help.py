@@ -5,11 +5,11 @@ from cogs.utils import Pag
 
 color = 0xa100f2
 nomasti = 'https://pbs.twimg.com/media/EUqVvbQUcAAtL1H.jpg'
-ban = 'https://cdn.discordapp.com/attachments/759796216044978239/781453844269367306/ban.gif'
-slowmode = 'https://cdn.discordapp.com/attachments/759796216044978239/781453902582513674/Slowmode.gif'
-role = 'https://cdn.discordapp.com/attachments/759796216044978239/781453873469980672/Role.gif'
-nickname = 'https://cdn.discordapp.com/attachments/759796216044978239/781453847854972928/Nickname.gif'
-poll = 'https://cdn.discordapp.com/attachments/759796216044978239/781453866029154304/poll.gif'
+ban = 'https://cdn.discordapp.com/attachments/782161513825042462/793136610619293726/ban_and_unban.gif'
+slowmode = 'https://cdn.discordapp.com/attachments/782161513825042462/793136512699072522/slowmode.gif'
+role = 'https://cdn.discordapp.com/attachments/782161513825042462/793136557489127464/role.gif'
+nickname = 'https://cdn.discordapp.com/attachments/782161513825042462/793136558529314876/nick.gif'
+poll = 'https://cdn.discordapp.com/attachments/764393920381190144/793138667207262289/Poll.gif'
 
 
 class vein9(commands.Cog, name='Help'):
