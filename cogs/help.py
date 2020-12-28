@@ -6,10 +6,10 @@ from cogs.utils import Pag
 color = 0xa100f2
 nomasti = 'https://pbs.twimg.com/media/EUqVvbQUcAAtL1H.jpg'
 ban = 'https://cdn.discordapp.com/attachments/759796216044978239/781453844269367306/ban.gif'
-slowmode = 'https://cdn.discordapp.com/attachments/759796216044978239/781453902582513674/Slowmode.gif'
-role = 'https://cdn.discordapp.com/attachments/759796216044978239/781453873469980672/Role.gif'
-nickname = 'https://cdn.discordapp.com/attachments/759796216044978239/781453847854972928/Nickname.gif'
-poll = 'https://cdn.discordapp.com/attachments/759796216044978239/781453866029154304/poll.gif'
+slowmode = "https://cdn.discordapp.com/attachments/782161513825042462/793127261653565450/slowmode.gif"
+role = 'https://cdn.discordapp.com/attachments/782161513825042462/793127248495771658/role.gif'
+nickname = 'https://cdn.discordapp.com/attachments/782161513825042462/793127274249060362/nick.gif'
+poll = 'https://cdn.discordapp.com/attachments/782161513825042462/793127274181427220/ban_and_unban.gif'
 
 
 class vein9(commands.Cog, name='Help'):
