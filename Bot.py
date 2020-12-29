@@ -15,6 +15,7 @@ bot.DEFAULT_PREFIX = prefix
 bot.remove_command("help")
 bot.color = 0xa100f2
 bot.guild_id = 757098499836739594
+bot.github = "https://github.com/Vein05/Abode"
 
 
 @bot.event

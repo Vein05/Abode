@@ -518,6 +518,11 @@ class vein2(commands.Cog, name= "fun"):
                 await ctx.send('Please write valid equation.')
 
 
+    @commands.command(aliases=["Code"])
+    @commands.guild_only()
+    async def github(self,ctx):
+        await ctx.send(f"<{self.Bot.github}>")
+
 def setup (Bot):
      Bot.add_cog (vein2(Bot))
      print("Fun cog is working.")
