@@ -35,7 +35,7 @@ class vein9(commands.Cog, name='Help'):
             embed1.add_field(
                 name="Fun commands", value=f'``8ball`` ``lovemeter`` ``rps`` ``sad/happy/angry`` ``aquote``',  inline=False)
             embed1.add_field(
-                name="Image commands", value=f'``cat`` ``dog`` ``panda`` ``koala`` ``pikachu`` ``dankmemes`` ``pmemes`` ``clyde`` ``facepalm`` ``wink`` ``headpat`` ``hug``', inline=False)
+                name="Image commands", value=f'``cat`` ``dog`` ``panda`` ``koala`` ``pikachu`` ``clyde`` ``facepalm`` ``wink`` ``headpat`` ``hug``', inline=False)
             embed1.add_field(
                 name="Nerd commands", value=f'``userinfo`` ``serverinfo`` ``statsu``',  inline=False)
             embed1.add_field(

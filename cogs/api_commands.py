@@ -20,11 +20,6 @@ class vein3(commands.Cog, name= "APIs"):
     def __init__(self, Bot):
         self.Bot = Bot
 
-    account=  praw.Reddit(client_id = "0H3JtzbIXbtZNw",
-                         client_secret = "XKE_G2TxnXZY3nZQb8pOI17b10o",
-                         username= "LordVein05",
-                         passowrd= "vein6969",
-                         user_agent= "Abode")
 
 
 
@@ -50,63 +45,6 @@ class vein3(commands.Cog, name= "APIs"):
 
 
 
-    @commands.command(description='Uh... dankmemes')
-    @commands.guild_only()
-    @commands.cooldown(1, 15, commands.BucketType.user)
-    async def dankmemes(self,ctx):
-
-        account=  praw.Reddit(client_id = "_AhvH0lWxXDJhg",
-                         client_secret = "n73tfGobbpfrhSrAXb4RmDoPH6U",
-                         username= "LordVein05",
-                         passowrd= "vein6969",
-                         user_agent= "Abode")
-
-        subreddit = account.subreddit("dankmemes")
-        all_subs = []
-
-        top= subreddit.top (limit=70)
-        for submission in top:
-            all_subs.append(submission)
-
-        random_sub = random.choice(all_subs)
-
-        name= random_sub.title
-        url= random_sub.url
-
-        embed= discord.Embed(title= name, colour=0x529dff)
-        embed.set_image(url=url)
-        embed.set_footer(text=f"Requested by {ctx.author}, Source: DankMemes")
-        await ctx.send(embed=embed)
-        return
-
-
-    @commands.command(aliases=['pmeme'], description='Chad memes')
-    @commands.guild_only()
-    @commands.cooldown(1, 15, commands.BucketType.user)
-    async def Pmemes(self,ctx):
-
-        account=  praw.Reddit(client_id = "_AhvH0lWxXDJhg",
-                         client_secret = "n73tfGobbpfrhSrAXb4RmDoPH6U",
-                         username= "LordVein05",
-                         passowrd= "vein6969",
-                         user_agent= "Abode")
-
-        subreddit = account.subreddit("ProgrammerHumor")
-        all_subs = []
-
-        top= subreddit.top (limit=50)
-        for submission in top:
-            all_subs.append(submission)
-
-        random_sub = random.choice(all_subs)
-
-        name= random_sub.title
-        url= random_sub.url
-
-        embed= discord.Embed(title= name, colour=0x529dff)
-        embed.set_image(url=url)
-        embed.set_footer(text=f"Requested by {ctx.author}, Source : ProgrammerHumor", icon_url=ctx.author.avatar_url)
-        await ctx.send(embed=embed)
 
 
     @commands.command(description='Sends a random doggo picture.')
