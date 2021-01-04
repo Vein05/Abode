@@ -45,6 +45,8 @@ class vein(commands.Cog, name="moderation"):
     async def ModLog(self,ctx,commandname =None ,mod= None, target = None, amount :3 =None, Reason =None,
                      channel=None, content = None, jump = None):
         guild = self.Bot.get_guild(self.Bot.guild_id)
+        if ctx.guild.id != self.Bot.guild_id:
+            return
         log_channel= self.Bot.get_channel(759583119396700180)
         embed = discord.Embed(color = random.choice(self.Bot.color_list),timestamp = datetime.utcnow())
         embed.set_author(name=f"{commandname}",icon_url=ctx.author.avatar_url)

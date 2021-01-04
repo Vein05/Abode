@@ -108,6 +108,8 @@ class owner(commands.Cog, name='owner'):
 
     @commands.Cog.listener()
     async def on_message_edit(self, before, after):
+        if isinstance(message.channel, discord.channel.DMChannel):
+            return
         if before.guild.id != self.Bot.guild_id:
             return
         if self.Bot.DEFAULT_PREFIX == '&':
