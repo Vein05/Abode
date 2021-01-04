@@ -3,6 +3,7 @@ from discord.ext import commands
 from discord import User
 import datetime
 import typing
+import random
 from datetime import datetime
 
 color = 0xa100f2
@@ -40,6 +41,34 @@ class vein(commands.Cog, name="moderation"):
             await channel.send(embed=embed)
         else:
             return
+
+    async def ModLog(self,ctx,commandname =None ,mod= None, target = None, amount :3 =None, Reason =None,
+                     channel=None, content = None, jump = None):
+        guild = self.Bot.get_guild(self.Bot.guild_id)
+        log_channel= self.Bot.get_channel(759583119396700180)
+        embed = discord.Embed(color = random.choice(self.Bot.color_list),timestamp = datetime.utcnow())
+        embed.set_author(name=f"{commandname}",icon_url=ctx.author.avatar_url)
+        if mod !=None:
+            embed.add_field(name = "Mod", value = f"{mod.display_name} | {mod.mention}")
+        if target != None:
+            embed.add_field(name = "Target", value = f"{target.display_name} | {target.mention}")
+
+        if amount != None:
+            embed.add_field(name= "Amount", value= f'{amount}') 
+        if channel!= None:
+            embed.add_field(name = "On channel", value=f"{channel}")
+        if content!= None:
+            embed.add_field(name = "Content", value= f"```css\n{content}```", inline=False)
+
+        if jump != None:
+            embed.add_field(name = "Jump", value = f"[Here]({jump})")
+        
+        if Reason !=None:
+            embed.add_field(name= "Reason ", value= f"```css\n{Reason}```", inline=False)
+        embed.set_thumbnail(url = guild.icon_url)
+        embed.set_footer(icon_url = mod.avatar_url)
+        await log_channel.send(embed=embed) 
+        return self.ModLog  
 
     @commands.Cog.listener()
     async def on_message(self, message):
@@ -95,16 +124,8 @@ class vein(commands.Cog, name="moderation"):
 
         if amount <= 200:
             await ctx.channel.purge(limit=amount)
-            await ctx.send(f'**The higher-ups have purged some messages.**', delete_after=10)
-            embed = discord.Embed(color=self.Bot.color,
-                                  timestamp=datetime.utcnow())
-            embed.description = f"**{ctx.author.mention} purged {amount} messages on {ctx.channel.mention}.**"
-            embed.set_author(name=f"Clear command",
-                             icon_url=ctx.author.avatar_url)
-            #embed.add_field(name=f"Purged messages", value=f'{amount}')
-            #embed.add_field(name=f"Channel", value=f"{ctx.channel.mention}" )
-            #embed.add_field(name=f"Mod's role", value=f" {ctx.author.top_role.name}", inline=False)
-            await self.log_channel.send(embed=embed)
+            await ctx.send(f'**The higher-ups have purged some messages.**', delete_after=10) 
+            await self.ModLog(ctx = ctx, mod= ctx.author, amount= amount, commandname="Clear", channel=ctx.channel.mention)
 
         else:
             await ctx.send("Please add a number smaller than 200")
@@ -115,6 +136,8 @@ class vein(commands.Cog, name="moderation"):
     async def DMuser(self, ctx, user: discord.User, *, msg):
         try:
             await user.send(f'**{ctx.message.author}** has a message for you, \n {msg}')
+            await self.ModLog(ctx = ctx, mod= ctx.author, target=user, commandname="Dmuser", channel=ctx.channel.mention
+                                , content=msg, jump = ctx.message.jump_url)
 
         except:
             await ctx.send(f'The user has his/her DMs turned off.')
@@ -122,14 +145,14 @@ class vein(commands.Cog, name="moderation"):
     @commands.command(aliases=['clearuser'], hidden=True)
     @commands.guild_only()
     @commands.has_permissions(manage_messages=True)
-    async def purgeuser(self, ctx, user: User,
+    async def purgeuser(self, ctx, user: discord.Member,
                         num_messages: typing.Optional[int] = 100,
                         ):
 
         channel = ctx.message.channel
-        if ctx.guild.me.top_role < member.top_role:
+        if ctx.guild.me.top_role < user.top_role:
             return await ctx.send("Admin :(")
-        if ctx.message.author.top_role < member.top_role:
+        if ctx.message.author.top_role < user.top_role:
             return await ctx.send("You  have lower roles.")
 
         def check(msg):
@@ -138,6 +161,8 @@ class vein(commands.Cog, name="moderation"):
         await ctx.message.delete()
         await channel.purge(limit=num_messages, check=check, before=None)
         await ctx.send(f'**The higher-ups have purged someones messsages.**', delete_after=10)
+        await self.ModLog(ctx = ctx, mod= ctx.author, target=user, commandname="Purgeuser", channel=ctx.channel.mention
+                            )       
 
     @commands.command(hidden=True)
     @commands.has_permissions(manage_roles=True)
@@ -217,6 +242,8 @@ class vein(commands.Cog, name="moderation"):
         else:
             await member.kick(reason=reason)
             await ctx.send(f'User {member.mention} was kicked from the server for ``{reason}.``')
+            await self.ModLog(ctx = ctx, mod= ctx.author, target=member, commandname="Kick", channel=ctx.channel.mention, jump= ctx.message.jump_url
+                                , Reason=reason)
 
     @commands.command(hidden=True)
     @commands.guild_only()
@@ -229,6 +256,8 @@ class vein(commands.Cog, name="moderation"):
         if member is not None:
             await ctx.guild.ban(member, reason=reason)
             await ctx.send(f'{member.mention} was banned from the server.')
+            await self.ModLog(ctx = ctx, mod= ctx.author, target=member, commandname="Ban", channel=ctx.channel.mention, jump= ctx.message.jump_url
+                                , Reason=reason)           
         else:
             await ctx.send("Please specify an user to ban with a reason.")
 
@@ -341,18 +370,15 @@ class vein(commands.Cog, name="moderation"):
         if time == 'remove':
             await ctx.channel.edit(slowmode_delay=0)
             await ctx.send(f'Slowmode removed.')
-            embed = discord.Embed(title=f'Slowmode', color=color,
-                                  description=f'{ctx.author.mention} removed slowmode from {ctx.channel.mention}')
-            await self.Bot.log_channel.send(embed=embed)
+
 
         else:
 
             await ctx.channel.edit(slowmode_delay=time)
             await ctx.send(f'{time}s of slowmode was set on the current channel.')
-            embed = discord.Embed(title=f'Slowmode', color=color,
-                                  description=f'{ctx.author.mention} added slowmode of {time}s to {ctx.channel.mention}')
-            await self.Bot.log_channel.send(embed=embed)
 
+            await self.ModLog(ctx = ctx, mod= ctx.author,commandname="Slowmode", channel=ctx.channel.mention, jump= ctx.message.jump_url
+                                , amount=time)
     @commands.command(hidden=True)
     @commands.guild_only()
     @commands.has_permissions(administrator=True)
@@ -368,6 +394,7 @@ class vein(commands.Cog, name="moderation"):
         hm = discord.utils.get(ctx.guild.roles, name=f'Verified')
         await ctx.channel.set_permissions(hm, send_messages=True, read_messages=True)
         await ctx.send("Channel unlocked.")
+
 
 
 def setup(Bot):

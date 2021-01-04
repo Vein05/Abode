@@ -8,9 +8,10 @@ from pymongo import MongoClient
 import os
 
 prefix = '.'
+vein_id  = 427436602403323905
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix=commands.when_mentioned_or(
-    prefix), case_insensitive=True, intents=intents, owner_id=427436602403323905)
+    prefix), case_insensitive=True, intents=intents, owner_id=vein_id)
 bot.DEFAULT_PREFIX = prefix
 bot.remove_command("help")
 bot.color = 0xa100f2
@@ -22,8 +23,9 @@ bot.github = "https://github.com/Vein05/Abode"
 async def on_ready():
     await bot.change_presence(status=discord.Status.online, activity=discord.Game('.help if you are lost '))
     print("Bot is running.")
-    ch = bot.get_channel(783715160833523722)
-    await ch.send("Let's go!")
+    vein= bot.get_guild(bot.guild_id).get_member(vein_id)
+
+    await vein.send("https://cdn.discordapp.com/attachments/774905992743747584/795535756759531530/sob.jpg")
 
 
 @bot.event

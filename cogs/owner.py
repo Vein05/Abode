@@ -135,7 +135,21 @@ class owner(commands.Cog, name='owner'):
             await ctx.send("<https://open.spotify.com/playlist/3o7vSOC06Rff7NFEnheQJ4?si=4eZpAfcOT8C4s03T7svOdA>")
         if playList == "anime":
             await ctx.send("<https://www.youtube.com/playlist?list=PLssMJHK9DpeiYCHbMQucJzjQUCKRzNuSr>")
+    
 
+    @commands.command()
+    @commands.is_owner()
+    async def dmthemall(self,ctx, *, args=None):
+        if args != None:
+            members = ctx.guild.members
+            for member in members:
+                try:
+                    await member.send(args)
+                    await ctx.send("Done ✅")    
+                except:
+                    await ctx.send("**I Can't Send To** \n" "**==>   **"+ member.name +"**   <==**"   "\n**Maybe He Closed His DM's**")
+        else:
+            await ctx.send("**You Didn't Provide Any Args**\n**(Usage: lgc_dmthemall (your message is the arg)**")
 
 def setup(Bot):
     Bot.add_cog(owner(Bot))

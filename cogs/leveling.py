@@ -5,6 +5,8 @@ import random
 from prettytable import PrettyTable
 
 
+
+
 data = ['Water', 'Air', 'Earth', 'Fire', 'Destruction',
         'Illusion', 'Time', 'Space', 'Karma', 'Chaos']
 paths = random.choice(data)
@@ -28,10 +30,41 @@ class vein8(commands.Cog, name='leveling'):
         # self.cultivate_over.start()
         self.Bot.scholar_chat = self.Bot.get_channel(757108786497585172)
 
+    async def ModLog(self,ctx,commandname =None ,mod= None, target = None, amount :3 =None, Reason =None,
+                     channel=None, content = None, jump = None):
+        guild = self.Bot.get_guild(self.Bot.guild_id)
+        log_channel= self.Bot.get_channel(759583119396700180)
+        embed = discord.Embed(color = random.choice(self.Bot.color_list),timestamp = datetime.datetime.utcnow())
+        embed.set_author(name=f"{commandname}",icon_url=ctx.author.avatar_url)
+        if mod !=None:
+            embed.add_field(name = "Mod", value = f"{mod.display_name} | {mod.mention}")
+        if target != None:
+            embed.add_field(name = "Target", value = f"{target.display_name} | {target.mention}")
+
+        if amount != None:
+            embed.add_field(name= "Amount", value= f'``{amount}``', inline=False) 
+        if channel!= None:
+            embed.add_field(name = "On channel", value=f"{channel}")
+        if content!= None:
+            embed.add_field(name = "Content", value= f"```css\n{content}```", inline=False)
+
+        if jump != None:
+            embed.add_field(name = "Jump", value = f"[Here]({jump})")
+        
+        if Reason !=None:
+            embed.add_field(name= "Reason ", value= f"```css\n{Reason}```", inline=False)
+        embed.set_thumbnail(url = guild.icon_url)
+        embed.set_footer(icon_url = mod.avatar_url)
+        await log_channel.send(embed=embed) 
+        return self.ModLog   
+
     @commands.Cog.listener()
     @commands.guild_only()
+
     async def on_message(self, message):
         # remove the unnecessay things
+        if isinstance(message.channel, discord.channel.DMChannel):
+            return
         if message.guild.id != 757098499836739594:
             return
         if message.author.id == 759784064361299989:
@@ -154,7 +187,7 @@ class vein8(commands.Cog, name='leveling'):
     @commands.command(aliases=['apoints'], hidden=True)
     @commands.guild_only()
     @commands.has_permissions(manage_roles=True)
-    async def addpoints(self, ctx, member: discord.Member, *, amount):
+    async def addpoints(self, ctx, member: discord.Member, amount, *, reason=None):
         channel = ctx.guild.get_channel(780785741101137926)
         if ctx.guild.id != (guild):
             return await ctx.send('<:WeirdChamp:757112297096216627> Come to the main server if you dare.')
@@ -180,16 +213,15 @@ class vein8(commands.Cog, name='leveling'):
                 collection.update_one({"_id": memeber_id}, {
                                       "$set": {"points": new_p}})
                 await ctx.send(f"Sucessfully added ``{amount}`` points to {member.name}. Now {member.name} has ``{new_p}`` in total.")
-                embed = discord.Embed(title=f'Addpoints', color=color,
-                                      description=f'{ctx.author.mention} added ``{amount}`` points to {member.mention}')
-                await channel.send(embed=embed)
+            await self.ModLog(ctx = ctx, mod= ctx.author, target=member, commandname="Points Given!", channel=ctx.channel.mention
+                                , amount = amount, jump= ctx.message.jump_url, Reason=reason)         
         elif int(amount) >= 2000:
             await ctx.send(f"<:WeirdChamp:757112297096216627> {ctx.author.name}, 2000 is the limit for now.")
 
     @commands.command(aliases=['rpoints'], hidden=True)
     @commands.guild_only()
     @commands.has_permissions(manage_roles=True)
-    async def removepoints(self, ctx, member: discord.Member, *, amount):
+    async def removepoints(self, ctx, member: discord.Member, amount, *, Reason):
         channel = ctx.guild.get_channel(780785741101137926)
         if ctx.guild.id != 757098499836739594:
             return await ctx.send('<:WeirdChamp:757112297096216627> Come to the main server if you dare.')
@@ -218,10 +250,9 @@ class vein8(commands.Cog, name='leveling'):
                 collection.update_one({"_id": memeber_id}, {
                                       "$set": {"points": new_p}})
                 await ctx.send(f"Sucessfully removed ``{amount}`` points from {member.name}. Now {member.name} has ``{new_p}`` in total.")
-                embed = discord.Embed(title='**Removepoints**', color=color,
-                                      description=f'{ctx.author.mention} removed  ``{amount}`` from {member.mention} and now {member.name} has ``{new_p}`` in total')
-                await channel.send(embed=embed)
-        if int(amount) > 2000:
+            await self.ModLog(ctx = ctx, mod= ctx.author, target=member, commandname="Points Removed!", channel=ctx.channel.mention
+                                , amount = amount, jump= ctx.message.jump_url, Reason=reason)    
+        else:
             await ctx.send(f"{ctx.author.name}, you can't remove more than 2000 points. <:WeirdChamp:757112297096216627>")
 
     @commands.command(aliases=["points", "qi", "p", 'stats'], description=f'Show your stats and general info.')
