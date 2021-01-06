@@ -102,11 +102,16 @@ class vein4(commands.Cog, name="Admin"):
                         '**11.** All NSFW content under TOS  are allowed, as long as they are NOT in Non-NSFW channels. This includes gifs, profile pictures, status,etc.\n\n'
                         '**12.** Self-advertising on main channels won\'t be tolerated, asking for roles, permissions, custom commands will result in warns from the moderators.', inline=False)
         embed.add_field(name='‎‎‎‏‏‎ ', value='**13.** Altough it\'s not prohibited on using Abode\'s command in chat channels, it\'s wise to not do so.\n\n\n'
-                        'Thanks to [Skyfarrow](https://discordapp.com/invite/nWU3qMK) for letting me use and mofify his rules.', inline=False)
+                        'Thanks to [Skyfarrow](https://discordapp.com/invite/nWU3qMK) for letting me use and modify his rules.', inline=False)
         emojy = '<:PepeHmm:757202636029034526>'
         embed.set_footer(text=f'Give me a hmm if you read through everything.')
         msg = await ctx.send(embed=embed)
         await msg.add_reaction(f"{emojy}")
+
+        channel = ctx.guild.get_channel(757107343522791494)
+        msg1 = await channel.fetch_message(782096359175487488)
+
+        await msg1.edit(embed=embed)
 
     @commands.command()
     @commands.is_owner()

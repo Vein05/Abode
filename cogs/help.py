@@ -263,6 +263,8 @@ class vein9(commands.Cog, name='Help'):
         await paginator.run()
 
 
+
+
 def setup(Bot):
     Bot.add_cog(vein9(Bot))
     print("Help cog is working.")

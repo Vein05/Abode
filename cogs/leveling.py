@@ -13,12 +13,7 @@ paths = random.choice(data)
 luck = random.randint(1, 100)
 data1 = ['Demon', 'Human', 'Dragon', 'Beast',
          'Phoenix', 'Spirit', 'Giant', 'Fey']
-race = random.choice(data1)
-strength = random.randint(1, 10)
-speed = random.randint(1, 10)
-defense = random.randint(1, 10)
-soul = random.randint(1, 10)
-Hp = random.randint(50, 350)
+
 
 color = 0xa100f2
 guild = 757098499836739594
@@ -32,6 +27,7 @@ class vein8(commands.Cog, name='leveling'):
 
     async def ModLog(self,ctx,commandname =None ,mod= None, target = None, amount :3 =None, Reason =None,
                      channel=None, content = None, jump = None):
+
         guild = self.Bot.get_guild(self.Bot.guild_id)
         log_channel= self.Bot.get_channel(759583119396700180)
         embed = discord.Embed(color = random.choice(self.Bot.color_list),timestamp = datetime.datetime.utcnow())
@@ -73,6 +69,12 @@ class vein8(commands.Cog, name='leveling'):
             return
         if self.Bot.DEFAULT_PREFIX == '&':
             return
+        race = random.choice(data1)
+        strength = random.randint(1, 10)
+        speed = random.randint(1, 10)
+        defense = random.randint(1, 10)
+        soul = random.randint(1, 10)
+        Hp = random.randint(50, 350)        
         bot1 = message.guild.get_channel(781535649843904562)
         bot2 = message.guild.get_channel(757136943149613076)
         music = message.guild.get_channel(768684108770574366)
