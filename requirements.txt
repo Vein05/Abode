@@ -12,3 +12,4 @@ pymongo
 pathlib
 buttons
 prettytable
+PyNaCl
