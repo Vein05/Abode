@@ -84,7 +84,9 @@ extensions = [
     'cogs.cultivation',
     'cogs.owner',
     'misc.fist',
-    'cogs.events'
+    'cogs.events',
+    'misc.update',
+    'cogs.anime'
 
 
 
