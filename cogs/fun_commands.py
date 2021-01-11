@@ -521,7 +521,36 @@ class vein2(commands.Cog, name= "fun"):
     @commands.command(aliases=["Code"])
     @commands.guild_only()
     async def github(self,ctx):
-        await ctx.send(f"<{self.Bot.github}>")
+        await ctx.send(f"<:github:768713047501963294> <{self.Bot.github}>")
+
+
+
+
+    @commands.command(aliases=["dice"])
+    @commands.guild_only()
+    async def roll(self, ctx):
+        responses = ['<:one:776678357567668225>',
+                        '<:two:776678358041755688>',
+                        '<:three:776678358380838912>',
+                        '<:four:776678357861138452>',
+                        '<:five:776678357068283905>'
+                        '<:six:776678357478670357>']
+        await ctx.send (f"The dice rolls to {random.choice(responses)}")
+
+
+    @commands.command()
+    @commands.guild_only()
+    async def howbot(self, ctx, member: discord.Member= None):
+        x = random.randint(0, 100)
+        if member!= None and not member.bot:
+            
+            await ctx.send(f"{member.name} is ``{x}%`` <:bot:773959362120646706>.")
+        if member!= None and member.bot:
+            
+            await ctx.send(f"Yo real bot!")           
+        
+        else:
+            await ctx.send(f"{ctx.author.name} is ``{x}%`` <:bot:773959362120646706>.")
 
 def setup (Bot):
      Bot.add_cog (vein2(Bot))
