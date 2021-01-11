@@ -262,8 +262,17 @@ class vein9(commands.Cog, name='Help'):
         paginator = BotEmbedPaginator(ctx, embeds)
         await paginator.run()
 
-
-
+    @commands.command()
+    async def embedtest(self, ctx):
+            embed1 = discord.Embed(title=f'Page1')
+            embed1.add_field(name="This is a page", value="Yep itsure is")
+            embed2 = discord.Embed( title=f'Page3')
+            embed2.add_field(name="This is a page", value="Yep itsure is")
+            embed3 = discord.Embed(title=f'Page3')
+            embed3.add_field(name="This is a page", value="Yep itsure is")
+            embeds = [embed1, embed2, embed3]
+            paginator = BotEmbedPaginator(ctx, embeds)
+            await paginator.run()
 
 def setup(Bot):
     Bot.add_cog(vein9(Bot))
