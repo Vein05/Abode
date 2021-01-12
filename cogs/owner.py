@@ -61,7 +61,7 @@ class owner(commands.Cog, name='owner'):
         channel = ctx.channel
 
         for emoji in emojis:
-            paginator.add_line(f'{emoji} -- `{emoji}`')
+            paginator.add_line(f'{emoji} ↳ `{emoji}`\n')
 
         for page in paginator.pages:
             await channel.send(page)
