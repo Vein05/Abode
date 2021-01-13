@@ -13,12 +13,27 @@ from io import BytesIO
 import requests
 import urllib
 from discord.ext.commands import command, cooldown
+import json
 
 
 
 class vein3(commands.Cog, name= "APIs"):
     def __init__(self, Bot):
         self.Bot = Bot
+
+    @commands.command(description='Get quick info about an API')
+    @commands.guild_only()
+    async def api(self, ctx, *, url=None):
+        if url == None:
+            return await ctx.send("Please pass in an URL")
+        else:
+            req = requests.get(f"{url}").json()
+            req_1= json.dumps(req,indent=4)
+            embed = discord.Embed(color = self.Bot.color, timestamp=datetime.datetime.utcnow())
+            embed.set_author(name="API response to ", url=f"{url}", icon_url=ctx.me.avatar_url)
+            embed.description=f"```json\n{req_1}```"
+            embed.set_footer(text=f"Requested by {ctx.author}")
+            await ctx.send(embed=embed)
 
 
 
