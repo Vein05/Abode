@@ -18,6 +18,8 @@ class anime(commands.Cog, name='anime'):
 
 
     @commands.command()
+    @commands.guild_only()
+    #@commands.cooldown(1, 15, commands.BucketType.user)
     async def anime(self,ctx, *, title):
         '''I did a steal here I'm sowwy :( 
         https://gist.github.com/noaione/58cdd25a1cc19388021deb0a77582c97 all credits here :)'''
@@ -182,6 +184,8 @@ class anime(commands.Cog, name='anime'):
 
 
     @commands.command()
+    @commands.guild_only()
+    #@commands.cooldown(1, 15, commands.BucketType.user)
     async def manga(self,ctx, *, title):
         
         

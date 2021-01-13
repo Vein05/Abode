@@ -86,7 +86,8 @@ extensions = [
     'misc.fist',
     'cogs.events',
     'misc.update',
-    'cogs.anime'
+    'cogs.anime',
+    'cogs.wuxia'
 
 
 
