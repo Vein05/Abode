@@ -30,6 +30,7 @@ class vein2(commands.Cog, name= "fun"):
     @commands.command(aliases=['Hi', 'Namaste'], description=f'Get greetings from over 60 languages.')
     @commands.guild_only()
     async def hello(self,ctx):
+        '''Nothing special just some greetings'''
         greetings = ['Hello', 'Hiya', 'nĭ hăo', 'Namaste', 'Konichiwa', 'Zdravstvuyte', 'Bonjour', 'Guten tag',
                      'Anyoung haseyo', 'Asalaam alaikum', 'Goddag', 'Selamat siang','hola', 'marhabaan  ', 'hyālō',
                      'Sata srī akāla', 'Nggoleki', 'Vandanalu', '   Xin chào', 'Namaskār', 'Vaṇakkam', 'Salām', 'Merhaba', 'Ciao'
@@ -44,6 +45,7 @@ class vein2(commands.Cog, name= "fun"):
     @commands.command(description='Show Abode\'s ping.')
     @commands.guild_only()
     async def ping (self, ctx):
+        # yay ping 
 
             latency = round(self.Bot.latency *1000)
             await ctx.send  ( f'{ctx.message.author.name}, Pong! ``{latency}``ms')
@@ -53,15 +55,15 @@ class vein2(commands.Cog, name= "fun"):
     @commands.command(aliases=['av'])
     @commands.guild_only()
     async def avatar(self, ctx,*, user: discord.Member=None):
-
+        # user as the mention
         if not user:
             user = ctx.author
-
+            # self-explainatory
         embed = discord.Embed( title=f"{user.name}'s avatar",color=self.Bot.color)
         embed.description = f'[PNG]({user.avatar_url_as(format="png")}) | [JPEG]({user.avatar_url_as(format="jpeg")}) | [WEBP]({user.avatar_url_as(format="webp")})'
         embed.set_image(url=str(user.avatar_url_as(format='png')))
         embed.set_footer(text=f'Requested by {ctx.author.name}')
-
+        # Nitro users :Eyes:
         if user.is_avatar_animated():
             embed.description += f' | [GIF]({user.avatar_url_as(format="gif")})'
             embed.set_image(url=str(user.avatar_url_as(format='gif')))
@@ -76,15 +78,17 @@ class vein2(commands.Cog, name= "fun"):
     async def userinfo(self,ctx, member: discord.Member=None):
 
         member = member or ctx.author
+        # ignore the guild check haha it's for the main server :vein_shy:
         if ctx.guild.id != (guild):
             uroles = []
+            # loops through to get the roles and slickes the @everyone role 
             for role in member.roles[1:]:
                 if role.is_default():
                     continue
                 uroles.append(role.mention)
 
                 uroles.reverse()
-
+            # would suggest the ago module like how i have 
             time = member.created_at
             time1= member.joined_at
 
@@ -170,6 +174,7 @@ class vein2(commands.Cog, name= "fun"):
 
     @commands.command(aliases= ['8ball', 'question'], description='Play 8ball game with Abode.')
     async def _8ball (self,ctx, *, question ):
+        # normal 8ball command, it's fun 
         responses = [' It is certain.',
                     'It is decidedly so.',
                     ' Without a doubt.',
@@ -202,11 +207,13 @@ class vein2(commands.Cog, name= "fun"):
     @commands.command(aliases=['wel'], description='To welcome your new firends.')
     @commands.guild_only()
     async def welcome(self,ctx):
+        # gotta welcome the new guys
         await ctx.send(f'<:Cuppedfist:769143163414773760> Welcome to {ctx.guild.name}, enjoy your stay here!')
 
     @commands.command(aliases=['servercount','membercount'], description='Count the total number of users on the server.')
     @commands.guild_only()
     async def members(self,ctx):
+        # get the total no of members of a server
         embed=discord.Embed(color=0x529dff)
         embed.add_field(name="Total members", value=f"{ctx.guild.member_count}", inline=False)
         embed.timestamp = datetime.datetime.utcnow()
@@ -214,6 +221,7 @@ class vein2(commands.Cog, name= "fun"):
 
     @commands.command(aliases=['si'], description='To get the server information.')
     @commands.guild_only()
+    # a cool server info command gets most of the basic things you would need to know about a server :)
     async def serverinfo(self, ctx):
 
 
@@ -268,6 +276,7 @@ class vein2(commands.Cog, name= "fun"):
 
 
     @serverinfo.error
+    # an example of an error hander for you :)
     async def command_name_here_error(self,ctx, e):
         tb = '\n'.join(traceback.format_exception(type(e), e, e.__traceback__))
         await ctx.send(tb[:2000])
@@ -280,6 +289,7 @@ class vein2(commands.Cog, name= "fun"):
 
     @commands.command(aliases=['serverinvite'], description='Get Abode of Scholars\' invite link.')
     async def invite(self,ctx):
+        # gives out my server's invite :seenoevil:
         await ctx.send(f'https://discord.gg/tA4PDtX')
 
 
@@ -287,7 +297,7 @@ class vein2(commands.Cog, name= "fun"):
     @commands.command()
     @commands.has_permissions(manage_messages=True)
     @commands.guild_only()
-
+    # echo hehe boi    
     async def echo(self, ctx,*, arg):
         embed = discord.Embed(color=color , timestamp=ctx.message.created_at)
         embed.set_author(name=f'{arg}')
@@ -299,7 +309,7 @@ class vein2(commands.Cog, name= "fun"):
 
     @commands.command(aliases=['lennyface'], description='Send a random lenny face.')
     @commands.guild_only()
-
+    # sends a random lenny from my collection 
 
     async def lenny( self, ctx):
         lennys= ['( ͡° ͜ʖ ͡°)', 'ಠ_ಠ', '( ͡ʘ ͜ʖ ͡ʘ)', '(▀̿Ĺ̯▀̿ ̿)', '( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)', '( ͡ᵔ ͜ʖ ͡ᵔ )',
@@ -312,6 +322,7 @@ class vein2(commands.Cog, name= "fun"):
     @commands.guild_only()
 
     async def flip(self,ctx):
+        # tails
         value=['Heads', 'Tails']
         await ctx.send (random.choice(value))
 
@@ -323,7 +334,9 @@ class vein2(commands.Cog, name= "fun"):
     @commands.command(description='Oh boy!, a meter that calculates love between two parties.')
     @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
+    # uwu sempai do you lowe mew??
     async def lovemeter(self, ctx, name1: clean_content, name2: clean_content ):
+        # clean_content is a handy thing you may need it :)
         percentage = random.randint(0, 100)
 
         if 0 <= percentage <= 10:
@@ -377,7 +390,7 @@ class vein2(commands.Cog, name= "fun"):
         else:
             shipColor = 0xee66ee
 
-
+            # ik ik my gif taste is the best no need to appriciate me 
         if percentage <= 10:
             gif =  "https://media.tenor.com/images/8eb3ea6f8b8e05115a37df84ba03144a/tenor.gif"
         if 10 < percentage <=30:
@@ -408,6 +421,7 @@ class vein2(commands.Cog, name= "fun"):
     @commands.command(description='If you\'re happy send .happy' )
     @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
+
     async def happy(self, ctx):
         await ctx.send(f'https://media1.tenor.com/images/3419ea3da202cf42d6c7ab37a7fcd44e/tenor.gif')
 
@@ -427,6 +441,7 @@ class vein2(commands.Cog, name= "fun"):
     @commands.guild_only()
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def f(self, ctx):
+        # f in the chats bois 
         await ctx.send(f'{ctx.author.display_name} paid their respects.')
 
 
@@ -435,7 +450,7 @@ class vein2(commands.Cog, name= "fun"):
     @commands.has_permissions(manage_messages=True)
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def embed(self, ctx, *, string):
-
+        # a quick embed thingy
 
         embed=discord.Embed(description=f'{string}', color=ctx.author.color)
         await ctx.send(embed=embed)
@@ -470,6 +485,7 @@ class vein2(commands.Cog, name= "fun"):
 
     @commands.command(description='Advanced ping command for the nerds out there.')
     async def pingadv(self, ctx):
+        # nerdy stufss here
         msg = await ctx.send("Pinging bot\'s latency...")
         times = []
         counter=0
@@ -503,9 +519,11 @@ class vein2(commands.Cog, name= "fun"):
         await asyncio.sleep(time)
         await ctx.send("Timer up.")'''
 
-    @commands.command(aliases = ["calculator"])
+    @commands.command(aliases = ["calculator"],description="Calculate BODMAS here :)")
     @commands.guild_only()
     @commands.cooldown(1, 15 ,commands.BucketType.user)
+    # ever doubt yourself then clac your thoughts out 
+    # this uses the in built eval of python to do things like DMAS
     async def calc(self, ctx, *, query : str = None):
         if query is None:
             await ctx.send("What to evaluate?")
@@ -520,14 +538,18 @@ class vein2(commands.Cog, name= "fun"):
 
     @commands.command(aliases=["Code"])
     @commands.guild_only()
-    async def github(self,ctx):
-        await ctx.send(f"<:github:768713047501963294> <{self.Bot.github}>")
-
+    # lemme promote my repo will you?
+    async def github(self,ctx,dir_=None ,file= None):
+        if file ==None and cog ==None:
+            await ctx.send(f"<:github:768713047501963294> <{self.Bot.github}>")
+        else:
+            await ctx.send(f"https://github.com/Vein05/Abode/blob/main/{dir_}/{file}.py")
 
 
 
     @commands.command(aliases=["dice"])
     @commands.guild_only()
+    # ludo
     async def roll(self, ctx):
         responses = ['<:one:776678357567668225>',
                         '<:two:776678358041755688>',
@@ -540,6 +562,7 @@ class vein2(commands.Cog, name= "fun"):
 
     @commands.command()
     @commands.guild_only()
+    # 69% bot boi
     async def howbot(self, ctx, member: discord.Member= None):
         x = random.randint(0, 100)
         if member!= None and not member.bot:
