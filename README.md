@@ -33,7 +33,7 @@
 ## Fun 
 <img src = "./resources/fun.png">
 
-##Anime
+## Anime
 <img src = "./resources/anime.png">
 
 ## Manga
