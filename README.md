@@ -3,6 +3,7 @@
 >The Abode Mandator as Abode is a multipurpose bot specially made for my personal discord server.
 
 <img src = "https://i.ibb.co/Z6SkT30/Abode.png" style="zoom:20%;">
+
 ## 🛠️ Abode's features
 - ⬆️ Leveling
 - 🔨Moderation 
