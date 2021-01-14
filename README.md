@@ -17,30 +17,30 @@
 - ❤️❤️An wuxia themed environment(working on it)
 - 🛒Shop,economy commands(working on it)
 
-##Note 
+## Note 
 >This bot is configured for my server, if you would like to clone it you would need to put some efforts youself :)
 
 ## Why is a bot for a private server open source?🤨
 >Well, I like opensource things, and this repo is not for you to just git-clone it and hope it would work.I'm too lazy to do stuffs like that.Just browse through the code and if you find the code helpful star the repo if not I'm sorry. 
 
-##Leveling
+## Leveling
 <img src = "./resources/leveling.png">
 <img src = "./resources/wuxia_2.png">
 
-##Leaderboard
+## Leaderboard
 <img src = "./resources/lb.png">
 
-##Fun 
+## Fun 
 <img src = "./resources/fun.png">
 
 ##Anime
 <img src = "./resources/anime.png">
 
-##Manga
+## Manga
 <img src = "./resources/manga.png">
 
-##Wuxia
+## Wuxia
 <img src = "./resources/wuxia.png">
 
-##Help
+## Help
 <img src = "./resources/help.png">
