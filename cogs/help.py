@@ -31,7 +31,7 @@ class vein9(commands.Cog, name='Help'):
             embed1.add_field(
                 name="Main commands", value=f'``helppoints`` ``stats`` ``complaint`` ``suggestions`` ``faq`` ``abode`` ``welcome``',  inline=False)
             embed1.add_field(
-                name="Handy commands", value=f'``ping`` ``invite`` ``lenny`` ``f`` ``hi`` ``flip`` ``calc``',  inline=False)
+                name="Handy commands", value=f'``ping`` ``invite`` ``lenny`` ``f`` ``hi`` ``flip`` ``calc`` ``anime`` ``manga`` ``wuxia``', inline=False)
             embed1.add_field(
                 name="Fun commands", value=f'``8ball`` ``lovemeter`` ``rps`` ``sad/happy/angry`` ``aquote``',  inline=False)
             embed1.add_field(
