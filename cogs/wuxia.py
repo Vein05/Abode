@@ -18,6 +18,7 @@ class wuxia(commands.Cog, name="wuxia"):
 		scrapper = cfscrape.create_scraper()
 		uhh = scrapper.get(url).content
 		soup = BeautifulSoup(uhh, 'lxml') 
+		print(soup)
 		
 		chapters = soup.find('div', id="editstatus").text
 		year = soup.find('div', id="edityear").text
