@@ -72,9 +72,8 @@ class vein5(commands.Cog, name= "games"):
 
         embed.set_footer(text=f'Played with {ctx.author}',icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
-
-
-
+    
+   
 
 def setup(Bot):
     Bot.add_cog(vein5(Bot))
