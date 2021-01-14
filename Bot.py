@@ -53,18 +53,22 @@ bot.colors = {
     "LUMINOUS_VIVID_PINK": 0xE91E63,
     "GOLD": 0xF1C40F,
     "ORANGE": 0xE67E22,
-    "RED": 0xE74C3C,
+    "who_even_likes_red_bruh!": 0xa5ddff,
     "NAVY": 0x34495E,
     "DARK_AQUA": 0x11806A,
-    "DARK_GREEN": 0x1F8B4C,
-    "DARK_BLUE": 0x206694,
+    "Light_blue": 0x30ffcc,
+    "ok": 0x206694,
     "DARK_PURPLE": 0x71368A,
     "DARK_VIVID_PINK": 0xAD1457,
     "DARK_GOLD": 0xC27C0E,
-    "DARK_ORANGE": 0xA84300,
-    "DARK_RED": 0x992D22,
+    "cool_color": 0x6891ff,
+    "something": 0xfc7bb2,
     "DARK_NAVY": 0xe8c02a,
-    "Hm": 0xebf54c
+    "Hm": 0xebf54c,
+    "nice_color": 0xfc00f1,
+    "nice_color2": 0x21f5fc,
+    "very_nice_color": 0x25c059,
+    "my_fav": 0xb863f2
 }
 bot.color_list = [c for c in bot.colors.values()]
 
