@@ -12,4 +12,6 @@ pymongo
 pathlib
 buttons
 prettytable
-PyNaCl
+PyNaCls
+beautifulsoup4
+cfscrape
