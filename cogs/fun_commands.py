@@ -25,6 +25,7 @@ color = 0xa100f2
 class vein2(commands.Cog, name= "fun"):
     def __init__(self, Bot):
         self.Bot = Bot
+        self.rainbowRole.start()
 
 
     @commands.command(aliases=['Hi', 'Namaste'], description=f'Get greetings from over 60 languages.')
@@ -574,6 +575,18 @@ class vein2(commands.Cog, name= "fun"):
         
         else:
             await ctx.send(f"{ctx.author.name} is ``{x}%`` <:bot:773959362120646706>.")
+
+
+
+    @tasks.loop(seconds = 60)
+    async def rainbowRole(self):
+        await self.Bot.wait_until_ready()
+        guild = self.Bot.get_guild(self.Bot.guild_id)
+        role = discord.utils.get(guild.roles, name="Rainbow")
+        await role.edit(color = random.choice(self.Bot.color_list))
+
+
+
 
 def setup (Bot):
      Bot.add_cog (vein2(Bot))
