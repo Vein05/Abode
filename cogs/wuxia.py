@@ -4,7 +4,7 @@ import random
 import requests
 import re
 from bs4 import BeautifulSoup
-import cfscrape
+import cloudscraper
 
 class wuxia(commands.Cog, name="wuxia"):
 	def __init__(self, Bot):
@@ -17,8 +17,8 @@ class wuxia(commands.Cog, name="wuxia"):
 		url = f"https://www.novelupdates.com/series/{query}"
 
 
-		scrapper = cfscrape.create_scraper()
-		uhh = scrapper.get(url).content
+		scrapper = cloudscraper.create_scraper()
+		uhh = scrapper.get(url).text
 		soup = BeautifulSoup(uhh, 'lxml') 
 		print(soup)
 		

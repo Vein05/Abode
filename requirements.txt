@@ -14,5 +14,5 @@ buttons
 prettytable
 PyNaCl
 beautifulsoup4
-cfscrape
+cloudscraper
 lxml
