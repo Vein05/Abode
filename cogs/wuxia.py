@@ -16,8 +16,8 @@ class wuxia(commands.Cog, name="wuxia"):
 	async def wuxia(self, ctx, *, name: str):
 		query = (re.sub("[ ,.]", "-", name))
 		url = f"https://www.novelupdates.com/series/{query}"
-		headers = {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0'}
-
+		headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36'}
+		
 
 		# uhh = scrapper.get(url).text
 		soup =  BeautifulSoup(requests.get(url, headers=headers).content, 'lxml')
