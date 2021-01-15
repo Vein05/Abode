@@ -22,7 +22,7 @@ guild = 757098499836739594
 class vein8(commands.Cog, name='leveling'):
     def __init__(self, Bot):
         self.Bot = Bot
-        # self.cultivate_over.start()
+        
         self.Bot.scholar_chat = self.Bot.get_channel(757108786497585172)
 
     async def ModLog(self,ctx,commandname =None ,mod= None, target = None, amount :3 =None, Reason =None,
@@ -482,17 +482,7 @@ class vein8(commands.Cog, name='leveling'):
 
         await ctx.send(embed=embed)
 
-    @commands.command()
-    @commands.cooldown(1, 5, commands.BucketType.user)
-    async def cultivate(self, ctx):
-        time = 5
-        await ctx.send(f'{ctx.author.mention} Your cultivation time has started for {time}m.')
 
-    @tasks.loop(seconds=10)
-    async def cultivate_over(self):
-        channel = self.Bot.get_channel(764393920381190144)
-
-        await channel.send(f'Cultivation time over ok Qi was gained.')
 
 
 def setup(Bot):

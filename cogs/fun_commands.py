@@ -534,7 +534,7 @@ class vein2(commands.Cog, name= "fun"):
             try:
                 await ctx.send(f'``{query}`` ``=`` ``{eval(clean)}\n``')
             except Exception:
-                await ctx.send('Please write valid equation.')
+                await ctx.send('Please a write valid equation.')
 
 
     @commands.command(aliases=["Code"])

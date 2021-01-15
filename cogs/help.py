@@ -29,7 +29,7 @@ class vein9(commands.Cog, name='Help'):
             embed1.set_thumbnail(url=f'{ctx.me.avatar_url}')
 
             embed1.add_field(
-                name="Main commands", value=f'``helppoints`` ``stats`` ``complaint`` ``suggestions`` ``faq`` ``abode`` ``welcome``',  inline=False)
+                name="Main commands", value=f'``helppoints`` ``stats`` ``complaint`` ``suggestions`` ``faq`` ``abode`` ``welcome`` ``cultivate``',  inline=False)
             embed1.add_field(
                 name="Handy commands", value=f'``ping`` ``invite`` ``lenny`` ``f`` ``hi`` ``flip`` ``calc`` ``anime`` ``manga`` ``wuxia``', inline=False)
             embed1.add_field(
