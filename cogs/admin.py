@@ -146,28 +146,22 @@ class vein4(commands.Cog, name="Admin"):
                         f'**{emention}** \nEmoji elder doesn\'t have much requirements you just need to have creation skills.\n\n'
                         f'**{omention}** \nMembers with good moderation skills can contact any of the higher members to obatin this role.\n\n'
                         f'```fix\nIf aynone has the same question, The elder roles will only be given to users with certain requirements, they don\'t work the same as chat roles.```', inline=False)
-        hinstructor = ctx.guild.get_role(757787649439432785)
-        hmention = hinstructor.name
-        binstructor = ctx.guild.get_role(757787658645667850)
-        bmention = binstructor.name
-        cinstrucotr = ctx.guild.get_role(757787658645667850)
-        cmmention = cinstrucotr.name
-        adisciple = ctx.guild.get_role(757584739141157045)
-        admnetion = adisciple.name
-        bdisciple = ctx.guild.get_role(757102633952608359)
-        bdmnetion = bdisciple.name
-        cdisciple = ctx.guild.get_role(757102570874339421)
-        cdmention = cdisciple.name
-        civilian = ctx.guild.get_role(757262459072544818)
-        cimention = civilian.name
-        embed.add_field(name='‎‎‎‏‏‎ㅤ', value=f'**{hmention}** \nLevel 61 or higher.\n\n'
-                        f'**{bmention}** \nLevel 51 to 61.\n\n'
-                        f'**{cmmention}**\nLevel 41 to 51. \n\n'
-                        f'**{admnetion}** \nLevel 31 to 41. \n\n'
-                        f'**{bdmnetion}** \nLevel 21 to 31. \n\n'
-                        f'**{cdmention}** \nLevel 11 to 21. \n\n'
-                        f'**{cimention}** \nLevel 3 to 11. \n\n')
-        gelder = ctx.guild.get_role(757587689720774746)
+        hinstructor = (ctx.guild.get_role(757787649439432785)).name
+        binstructor = (ctx.guild.get_role(757787658645667850)).name
+        cinstrucotr = (ctx.guild.get_role(757787658645667850)).name
+        adisciple = (ctx.guild.get_role(757584739141157045)).name
+        bdisciple = (ctx.guild.get_role(757102633952608359)).name
+        cdisciple = (ctx.guild.get_role(757102570874339421)).name
+        civilian = (ctx.guild.get_role(757262459072544818)).name
+
+        embed.add_field(name='‎‎‎‏‏‎ㅤ', value=f'**{hinstructor}** \nLevel 61 or higher.\n\n'
+                        f'**{binstructor}** \nLevel 51 to 61.\n\n'
+                        f'**{cinstrucotr}**\nLevel 41 to 51. \n\n'
+                        f'**{adisciple}** \nLevel 31 to 41. \n\n'
+                        f'**{bdisciple}** \nLevel 21 to 31. \n\n'
+                        f'**{cdisciple}** \nLevel 11 to 21. \n\n'
+                        f'**{civilian}** \nLevel 3 to 11. \n\n')
+        gelder = ctx.guild.get_role(799664368639148044)
         gmention = gelder.name
         ddisciple = ctx.guild.get_role(757102604873498745)
         ddmention = ddisciple.name
@@ -199,7 +193,7 @@ class vein4(commands.Cog, name="Admin"):
         embed = discord.Embed(
             color=(color), title=f'ㅤㅤㅤㅤㅤㅤㅤㅤBots information!')
         embed.add_field(name='Name', value=f'**[.] Abode**\n\n'
-                        f'**[,] Abode Music**\n\n'
+                        
                         f'**[-A] Arcane** \n\n'
                         f'**[!d] Disboard** \n\n'
                         f'**[;] YAGPD** \n\n'
@@ -208,8 +202,8 @@ class vein4(commands.Cog, name="Admin"):
                         f'**[*] Carl** \n\n'
                         )
 
-        embed.add_field(name='ㅤㅤㅤㅤInfo', value=f'Leveling and moderation.\n\n'
-                        f'Music and lyrics bot.\n\n'
+        embed.add_field(name='ㅤㅤㅤㅤInfo', value=f'Everything that a bot does.\n\n'
+                        
                         f'Leveling and roles. \n\n'
                         f'Bumping server to disboard.\n\n'
                         f'Reaction roles. \n\n'
@@ -218,7 +212,7 @@ class vein4(commands.Cog, name="Admin"):
                         )
 
         embed.add_field(name='Links', value=f'[Invite](http://bitly.com/98K8eH)\n\n'
-                                            f'[Invite](http://bitly.com/98K8eH)\n\n'
+                                            
 
                                             f'[Leaderboard](https://arcanebot.xyz/lb/757098499836739594) | [Website](https://www.arcanebot.xyz/)\n\n'
                                             f'[Server](https://discord.gg/eY4mens) | [Disboard](https://disboard.org/)\n\n'
