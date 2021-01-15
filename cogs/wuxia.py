@@ -17,7 +17,13 @@ class wuxia(commands.Cog, name="wuxia"):
 		url = f"https://www.novelupdates.com/series/{query}"
 
 
-		scrapper = cloudscraper.create_scraper()
+		scrapper = cloudscraper.create_scraper(
+			    browser={
+		        'browser': 'firefox',
+		        'platform': 'windows',
+		        'mobile': False
+		    }
+    	)
 		uhh = scrapper.get(url).text
 		soup = BeautifulSoup(uhh, 'lxml') 
 		print(soup)
