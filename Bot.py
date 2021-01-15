@@ -17,6 +17,7 @@ bot.remove_command("help")
 bot.color = 0xa100f2
 bot.guild_id = 757098499836739594
 bot.github = "https://github.com/Vein05/Abode"
+bot.cupped_fist = "<:Cuppedfist:757112296094040104>"
 
 
 @bot.event
@@ -85,13 +86,13 @@ extensions = [
     'cogs.help',
     'cogs.shop',
     'cogs.battle',
-    'cogs.cultivation',
+    'wuxia.cultivation',
     'cogs.owner',
     'misc.fist',
     'cogs.events',
     'misc.update',
     'cogs.anime',
-    'cogs.wuxia'
+    'wuxia.wuxia'
 
 
 
