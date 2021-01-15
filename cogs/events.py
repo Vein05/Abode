@@ -14,7 +14,8 @@ class events(commands.Cog, name='Events'):
 
     @commands.Cog.listener()
     async def on_raw_message_delete(self,payLoad):
-
+        if self.Bot.DEFAULT_PREFIX == '&':
+            return
         m = payLoad.cached_message
         if m.guild.id != self.Bot.guild_id:
             return
