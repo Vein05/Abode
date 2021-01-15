@@ -5,6 +5,7 @@ import requests
 import re
 from bs4 import BeautifulSoup
 import cloudscraper
+import lxml
 
 class wuxia(commands.Cog, name="wuxia"):
 	def __init__(self, Bot):
@@ -15,17 +16,12 @@ class wuxia(commands.Cog, name="wuxia"):
 	async def wuxia(self, ctx, *, name: str):
 		query = (re.sub("[ ,.]", "-", name))
 		url = f"https://www.novelupdates.com/series/{query}"
+		headers = {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0'}
 
 
-		scrapper = cloudscraper.create_scraper(
-			    browser={
-		        'browser': 'firefox',
-		        'platform': 'windows',
-		        'mobile': False
-		    }
-    	)
-		uhh = scrapper.get(url).text
-		soup = BeautifulSoup(uhh, 'lxml') 
+		# uhh = scrapper.get(url).text
+		soup =  BeautifulSoup(requests.get(url, headers=headers).content, 'lxml')
+		
 		print(soup)
 		
 		chapters = soup.find('div', id="editstatus").text
