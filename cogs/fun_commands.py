@@ -541,7 +541,7 @@ class vein2(commands.Cog, name= "fun"):
     @commands.guild_only()
     # lemme promote my repo will you?
     async def github(self,ctx,dir_=None ,file= None):
-        if file ==None and cog ==None:
+        if file ==None and dir_ ==None:
             await ctx.send(f"<:github:768713047501963294> <{self.Bot.github}>")
         else:
             await ctx.send(f"https://github.com/Vein05/Abode/blob/main/{dir_}/{file}.py")
