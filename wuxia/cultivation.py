@@ -39,7 +39,7 @@ class cultivation(commands.Cog, name="cultivation"):
 		await ctx.send("Your cultivation time has started for the next few minutes.")
 
 
-	@tasks.loop(seconds=600)
+	@tasks.loop(seconds=360)
 	async def cultivation_over(self):
 		
 		await self.Bot.wait_until_ready()
@@ -49,16 +49,21 @@ class cultivation(commands.Cog, name="cultivation"):
 		collection2 = db['Levels']
 		searchUser = collection.find()
 		channelName= None
-		userID = 'blah'
+		userID = 'None'
 		for user in searchUser:
 			try:
 				userID = user["_id"]
 				channelName = user["channelName"]
 			except:
-				userID = None
+				
+				userID = "None"
+				channelName = "None"
+		
+
+		if userID == "None":
 			
-		if userID == None:
-			return
+			return 
+
 		author_id= str(userID)
 		
 		query = {"_id": author_id}
@@ -74,15 +79,16 @@ class cultivation(commands.Cog, name="cultivation"):
 			
 			qi = user2['Qi']
 			new_q = qi + randomQi
-			collection2.update_one({"_id":userID}, {"$set": {"Qi":new_q}})
+			query = {"_id": str(userID)}
+			collection.delete_one(query)
+
+		collection2.update_one({"_id":userID}, {"$set": {"Qi":new_q}})
+			
+		cultivator =  guild.get_member(int(userID))
+		channel =  discord.utils.get(guild.channels, name = f"{channelName}")
+			
+		await channel.send(f"{cultivator.mention} {self.Bot.cupped_fist} Your cultivation time is over. Through this session you have gained ``{randomQi}``,totalling your Qi to ``{new_q}``. ")
 		
-			
-			
-			cultivator =  guild.get_member(int(userID))
-			channel =  discord.utils.get(guild.channels, name = f"{channelName}")
-			
-			await channel.send(f"{cultivator.mention} {self.Bot.cupped_fist} Your cultivation time is over. Through this session you have gained ``{randomQi}``,totalling your Qi to ``{new_q}``. ")
-			collection.delete_one({"_id" :userID})
 
 
 

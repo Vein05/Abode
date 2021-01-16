@@ -74,7 +74,9 @@ class vein8(commands.Cog, name='leveling'):
         speed = random.randint(1, 10)
         defense = random.randint(1, 10)
         soul = random.randint(1, 10)
-        Hp = random.randint(50, 350)        
+        Hp = random.randint(50, 350)
+        #My server memers ain't lower than 50, that's for sure :)   
+        wisdom = random.randit(50, 100)     
         bot1 = message.guild.get_channel(781535649843904562)
         bot2 = message.guild.get_channel(757136943149613076)
         music = message.guild.get_channel(768684108770574366)
@@ -96,10 +98,11 @@ class vein8(commands.Cog, name='leveling'):
             Realm = "Mortal"
             Path = paths
 
-            lol = "None"
+            lol = "No aliases"
 
             user_data = {"_id": author_id, "points": 1, "Leauge": leauge, "Qi": 0, "Daos": 0, "Path": Path, "Realm": Realm, "Luck": luck,
-                         "Species": race, "Strength": strength, "Speed": speed, "Defense": defense, "Soul": soul, "Health": Hp, "Name": lol}
+                         "Species": race, "Strength": strength, "Speed": speed, "Defense": defense, "Soul": soul, "Health": Hp, "Name": lol
+                         , "Wisdom": wisdom}
             collection.insert_one(user_data)
 
         else:
@@ -301,6 +304,11 @@ class vein8(commands.Cog, name='leveling'):
                 speci = lvl['Species']
                 pth = lvl['Path']
                 nme = lvl['Name']
+                print("check1")
+                try:
+                    wisdom = lvl['Wisdom']
+                except:
+                    wisdom = "Use .update to see your wisom"
 
                 embed = discord.Embed(
                     color=color, timestamp=datetime.datetime.utcnow())
@@ -314,16 +322,19 @@ class vein8(commands.Cog, name='leveling'):
                 embed.add_field(name="__Legacy__", value=f'**Path** : {str(pth)}\n'
                                 f'**Medals** :  {str(medal)}\n'
                                 f'**Daos** : {str(dao)}')
-
+                print("chcek2")
                 embed.add_field(name='__Accomplishments__', value=f'**Qi : ** {str(qi)}\n'
                                 f'**Points : ** {str(points)}\n'
-                                f' **Luck : ** {str(luk)}', inline=False)
-
+                                f' **Luck : ** {str(luk)}'
+                
+                                )
+                print("check3")
                 embed.add_field(name='__Stats__', value=f'**Strength :** {str(stre)}\n'
                                 f'**Defense :** {str(defen)}\n'
                                 f'**Speed** : {str(sped)}\n'
                                 f'**Soul : **{str(sol)}\n'
-                                f'**Health : ** {str(health)}')
+                                f'**Health : ** {str(health)}\n'
+                                f'**Wisdom : ** {str(wisdom)}')
 
                 embed.set_footer(text=f"Abode of Scholars")
                 await ctx.send(embed=embed)
@@ -373,6 +384,10 @@ class vein8(commands.Cog, name='leveling'):
             realm = lvl['Realm']
             speci = lvl['Species']
             pth = lvl['Path']
+            try:
+                wisdom = lvl['wisdom']
+            except:
+                wisdom = "Use .update to see your wisom"
 
             embed = discord.Embed(
                 color=color, timestamp=datetime.datetime.utcnow())
@@ -395,7 +410,8 @@ class vein8(commands.Cog, name='leveling'):
                             f'**Defense :** {str(defen)}\n'
                             f'**Speed** : {str(sped)}\n'
                             f'**Soul : **{str(sol)}\n'
-                            f'**Health : ** {str(health)}')
+                            f'**Health : ** {str(health)}\n'
+                            f'**Wisdom :** {str(wisdom)} ')
 
             embed.set_footer(text=f"Abode of Scholars")
             await ctx.send(embed=embed)
