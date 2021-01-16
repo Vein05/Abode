@@ -51,10 +51,13 @@ class cultivation(commands.Cog, name="cultivation"):
 		channelName= None
 		userID = 'blah'
 		for user in searchUser:
-			userID = user["_id"]
-			channelName = user["channelName"]
-
-		if channelName == None:
+			try:
+				userID = user["_id"]
+				channelName = user["channelName"]
+			except:
+				userID = None
+			
+		if userID == None:
 			return
 		author_id= str(userID)
 		
