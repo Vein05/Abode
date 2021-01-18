@@ -96,8 +96,8 @@ class vein9(commands.Cog, name='Help'):
         else:
             filtered_commands = await self.return_filtered_commands(entity, ctx)
 
-        for i in range(0, len(filtered_commands), cmds_per_page):
-            next_commands = filtered_commands[i: i + cmds_per_page]
+        for i in range(0, len(filtered_commands), self.cmds_per_page):
+            next_commands = filtered_commands[i: i + self.cmds_per_page]
             commands_entry = ""
 
             for cmd in next_commands:
