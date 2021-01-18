@@ -67,22 +67,22 @@ class update(commands.Cog, name="update"):
 			soul = sol
 			luck = luk
 			Hp = health 
-			print("chek1")
+			
 			
 				
 
 			query = {"_id": str(author_id)}
 			collection.delete_one(query)
-			print("check2")
+			
 
 			if (collection.find_one({"_id": author_id}) == None):
-				print("chc3")
+			
 
 				user_data = {"_id": author_id, "points": pointsO, "Leauge": leauge, "Qi": Qi, "Daos": daos, "Path": path, "Realm": Realm, "Luck": luck,
 								"Species": race, "Strength": strength, "Speed": speed, "Defense": defense, "Soul": soul, "Health": Hp, "Name": name
 								, "Wisdom": wisdomDB
 								}
-				print(user_data)
+
 				collection.insert_one(user_data)
 				await ctx.send("Your stats have been updated, ``.stats`` to check.")
 

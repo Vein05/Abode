@@ -304,7 +304,7 @@ class vein8(commands.Cog, name='leveling'):
                 speci = lvl['Species']
                 pth = lvl['Path']
                 nme = lvl['Name']
-                print("check1")
+                
                 try:
                     wisdom = lvl['Wisdom']
                 except:
@@ -322,13 +322,13 @@ class vein8(commands.Cog, name='leveling'):
                 embed.add_field(name="__Legacy__", value=f'**Path** : {str(pth)}\n'
                                 f'**Medals** :  {str(medal)}\n'
                                 f'**Daos** : {str(dao)}')
-                print("chcek2")
+                
                 embed.add_field(name='__Accomplishments__', value=f'**Qi : ** {str(qi)}\n'
                                 f'**Points : ** {str(points)}\n'
                                 f' **Luck : ** {str(luk)}'
                 
                                 )
-                print("check3")
+              
                 embed.add_field(name='__Stats__', value=f'**Strength :** {str(stre)}\n'
                                 f'**Defense :** {str(defen)}\n'
                                 f'**Speed** : {str(sped)}\n'

@@ -96,8 +96,8 @@ class vein9(commands.Cog, name='Help'):
         else:
             filtered_commands = await self.return_filtered_commands(entity, ctx)
 
-        for i in range(0, len(filtered_commands), self.cmds_per_page):
-            next_commands = filtered_commands[i: i + self.cmds_per_page]
+        for i in range(0, len(filtered_commands), cmds_per_page):
+            next_commands = filtered_commands[i: i + cmds_per_page]
             commands_entry = ""
 
             for cmd in next_commands:
@@ -204,7 +204,7 @@ class vein9(commands.Cog, name='Help'):
                          "**Example :** \n\n", inline=False)
         embed4.set_image(url=f'{role}')
         embed4.set_footer(
-            text='Tip : Is used on the user who already has the role the bot will remove the role.')
+            text='Tip : Is used on the user who already has the role the Bot will remove the role.')
         embed5 = discord.Embed(color=color)
         embed5.add_field(name='Channelstats', value=f"**Aliases** : cstats\n"
 

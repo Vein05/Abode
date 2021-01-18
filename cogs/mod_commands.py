@@ -123,10 +123,13 @@ class vein(commands.Cog, name="moderation"):
     @commands.guild_only()
     @commands.has_permissions(manage_messages=True)
     async def clear(self, ctx, amount=3):
-
+        if ctx.guild.id != self.Bot.guild_id:
+            return
         if amount <= 200:
             await ctx.channel.purge(limit=amount)
             await ctx.send(f'**The higher-ups have purged some messages.**', delete_after=10) 
+            if ctx.guild.id != self.Bot.guild_id:
+                return
             await self.ModLog(ctx = ctx, mod= ctx.author, amount= amount, commandname="Clear", channel=ctx.channel.mention)
 
         else:
