@@ -21,13 +21,13 @@ class wuxia(commands.Cog, name="wuxia"):
 	@commands.command()
 	@commands.guild_only()
 	async def wuxia(self, ctx, *, name: str):
-			op = webdriver.ChromeOptions()
-			op.binary_location =  os.environ.get("GOOGLE_CHROME_BIN")
-			op.add_argument("--headless")
-			op.add_argument("--no-sandbox")
-			op.add_argument("--disable-dev-sh-usuage")
-			driver = webdriver.Chrome(executable_path = os.environ.get("CHROMEDRIVER_PATH"), chrome_options = op)
-			try:
+				op = webdriver.ChromeOptions()
+				op.binary_location =  os.environ.get("GOOGLE_CHROME_BIN")
+				op.add_argument("--headless")
+				op.add_argument("--no-sandbox")
+				op.add_argument("--disable-dev-sh-usuage")
+				driver = webdriver.Chrome(executable_path = os.environ.get("CHROMEDRIVER_PATH"), chrome_options = op)
+			
 				query = (re.sub("[ ,.]", "-", name))
 				url = f"https://www.novelupdates.com/series/{query}"
 				hm = driver.get(f"{url}")
@@ -72,8 +72,7 @@ class wuxia(commands.Cog, name="wuxia"):
 				embed.set_footer(text=f"Requested by {ctx.author} || Ratings {ratings}")
 	        
 				await ctx.send(embed=embed)
-			except:
-					return print("idk")       
+			   
         
 
 def setup(Bot):
