@@ -342,6 +342,24 @@ class vein3(commands.Cog, name= "APIs"):
                     embed.set_image(url=data['link'])
                     embed.set_footer(text=f"Requested by {ctx.author}, source some random api", icon_url=ctx.author.avatar_url)
                     await ctx.send(embed=embed)
+
+    @commands.command(description='Defines most of the words out there', aliases=['meaning', 'define'])
+    @commands.guild_only()
+    @commands.cooldown(1, 15, commands.BucketType.user)
+    async def dictionary(self, ctx, word:str):
+        url = f"https://api.dictionaryapi.dev/api/v2/entries/en/{word}"
+        data = requests.get(url).json()
+        definition = (data[0]['meanings'][0]['definitions'][0]['definition'])
+        example = (data[0]['meanings'][0]['definitions'][0]['example'])
+        text = data[0]['phonetics'][0]['text']
+        audio = data[0]['phonetics'][0]['audio']
+        embed = discord.Embed(color = random.choice(self.Bot.color_list))
+        #embed.set_author(name=f"{word}")
+        #embed.add_field(name="Phonetics", value=f"Text = {text} \n[Audio]({audio})")
+        embed.add_field(name="Definition", value=f"{definition}", inline=False)
+        embed.add_field(name="Example", value = f"{example}", inline=False)
+        await ctx.send(embed=embed)
+
 def setup (Bot):
     Bot.add_cog (vein3(Bot))
     print("APIs cog is working.")

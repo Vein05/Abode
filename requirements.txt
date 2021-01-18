@@ -16,3 +16,4 @@ PyNaCl
 beautifulsoup4
 cloudscraper
 lxml
+selenium
