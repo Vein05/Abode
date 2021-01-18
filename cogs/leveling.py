@@ -76,7 +76,7 @@ class vein8(commands.Cog, name='leveling'):
         soul = random.randint(1, 10)
         Hp = random.randint(50, 350)
         #My server memers ain't lower than 50, that's for sure :)   
-        wisdom = random.randit(50, 100)     
+        wisdom = random.randint(50, 100)     
         bot1 = message.guild.get_channel(781535649843904562)
         bot2 = message.guild.get_channel(757136943149613076)
         music = message.guild.get_channel(768684108770574366)
