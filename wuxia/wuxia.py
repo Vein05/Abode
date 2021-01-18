@@ -31,8 +31,9 @@ class wuxia(commands.Cog, name="wuxia"):
 				query = (re.sub("[ ,.]", "-", name))
 				url = f"https://www.novelupdates.com/series/{query}"
 				hm = driver.get(f"{url}")
-				page = driver.page_source
+				page = hm.page_source
 				soup = BeautifulSoup(requests.get(page, 'lxml')
+				print(soup)
 				chapters = soup.find('div', id="editstatus").text
 				year = soup.find('div', id="edityear").text
 				authors = soup.find('div', id="showauthors").text
