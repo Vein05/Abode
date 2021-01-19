@@ -34,7 +34,7 @@ class wuxia(commands.Cog, name="wuxia"):
 				op.add_argument("--headless")
 				op.add_argument("--no-sandbox")
 				op.add_argument("--disable-dev-sh-usuage")
-				driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=op)
+				driver = webdriver.Chrome(executable_path=os.environ.get("FIREFOXDRIVER_PATH"), options=op)
 				query = (re.sub("[ ,.]", "-", name))
 				url = f"https://www.novelupdates.com/series/{query}"
 				driver.get(url)
