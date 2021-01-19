@@ -1,2 +1,2 @@
 worker: python Bot.py
-web: python wuxia.wuxia.py
+web: python wuxia/wuxia.py
