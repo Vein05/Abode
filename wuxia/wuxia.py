@@ -9,8 +9,6 @@ from selenium import webdriver
 import lxml.html
 import os 
 import json 
-import os
-
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait, Select
@@ -30,7 +28,7 @@ class wuxia(commands.Cog, name="wuxia"):
 	@commands.guild_only()
 	async def wuxia(self, ctx, *, name: str):
 			a = 0
-			if a == 0:
+			try:
 			
 				query = (re.sub("[ ,.]", "-", name))
 				url = f"https://www.novelupdates.com/series/{query}"
@@ -83,13 +81,13 @@ class wuxia(commands.Cog, name="wuxia"):
 				await ctx.send(embed=embed)
 				
 
-			else:
-				op = webdriver.ChromeOptions()
-				op.binary_location =  os.environ.get("GOOGLE_CHROME_BIN")
+			except:
+				op = webdriver.FirefoxOptions()
+				op.binary_location =  os.environ.get("FIREFOX_BIN")
 				op.add_argument("--headless")
 				op.add_argument("--no-sandbox")
 				op.add_argument("--disable-dev-sh-usuage")
-				driver = webdriver.Chrome(executeable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options = op)
+				driver = webdriver.Firefox(executeable_path=os.environ.get("FIREFOXDRIVER_PATH"), chrome_options = op)
 				query = (re.sub("[ ,.]", "-", name))
 				url = f"https://www.novelupdates.com/series/{query}"
 				driver.get(url)
