@@ -29,12 +29,12 @@ class wuxia(commands.Cog, name="wuxia"):
 	async def wuxia(self, ctx, *, name: str):
 			a = 0
 			try:
-				op = webdriver.FirefoxOptions()
+				op = webdriver.ChromeOptions()
 				op.binary_location =  os.environ.get("GOOGLE_CHROME_BIN")
 				op.add_argument("--headless")
 				op.add_argument("--no-sandbox")
 				op.add_argument("--disable-dev-sh-usuage")
-				driver = webdriver.Firefox(executeable_path=os.environ.get("FIREFOXDRIVER_PATH"), chrome_options = op)
+				driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=op)
 				query = (re.sub("[ ,.]", "-", name))
 				url = f"https://www.novelupdates.com/series/{query}"
 				driver.get(url)
