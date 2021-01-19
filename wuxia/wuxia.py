@@ -35,7 +35,7 @@ class wuxia(commands.Cog, name="wuxia"):
 				query = (re.sub("[ ,.]", "-", name))
 				url = f"https://www.novelupdates.com/series/{query}"
 				
-				# url = "https://www.youtube.com/"
+				
 				driver = webdriver.Chrome()
 				driver.get(url)
 				
@@ -93,7 +93,7 @@ class wuxia(commands.Cog, name="wuxia"):
 				query = (re.sub("[ ,.]", "-", name))
 				url = f"https://www.novelupdates.com/series/{query}"
 				driver.get(url)
-				
+				print(driver.page_source)
 				soup = BeautifulSoup(driver.page_source, 'lxml')
 
 			
