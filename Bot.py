@@ -7,7 +7,7 @@ import discord.utils
 from pymongo import MongoClient
 import os
 
-prefix = '&'
+prefix = '.'
 vein_id  = 427436602403323905
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix=commands.when_mentioned_or(
