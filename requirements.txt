@@ -17,3 +17,7 @@ beautifulsoup4
 cloudscraper
 lxml
 selenium
+hentai
+manganelo
+aiomangadexapi
+fundoshi

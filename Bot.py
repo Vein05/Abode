@@ -92,7 +92,8 @@ extensions = [
     'cogs.events',
     'misc.update',
     'cogs.anime',
-    'wuxia.wuxia'
+    'wuxia.wuxia',
+    'nsfw.hentaii'
 
 
 

@@ -6,7 +6,8 @@ color = 0xa100f2
 class Pag(Paginator):
     async def teardown(self):
         try:
-            await self.page.clear_reactions()
+            await self.page.delete()
+
         except discord.HTTPException:
             pass
 

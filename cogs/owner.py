@@ -114,6 +114,8 @@ class owner(commands.Cog, name='owner'):
             return
         if self.Bot.DEFAULT_PREFIX == '&':
             return
+        if before.author.bot:
+            return
         if before.content != after.content:
             log_channel = self.Bot.get_channel(759583119396700180)
             embed = discord.Embed(color=random.choice(
