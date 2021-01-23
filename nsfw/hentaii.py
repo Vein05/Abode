@@ -5,7 +5,7 @@ from hentai import Format, Hentai, Tag, Utils
 import random
 from cogs.utils import Pag
 import asyncio
-
+from disputils import BotEmbedPaginator
 class hentaii(commands.Cog, name="hentaii"):
 	def __init__(self, Bot):
 		self.Bot = Bot
@@ -70,7 +70,8 @@ class hentaii(commands.Cog, name="hentaii"):
 					reaction, user= await self.Bot.wait_for("reaction_add",timeout=30, check=check)
 					await x.remove_reaction( emoji = f"<:nh3ntai:802131455215796224>" , member = ctx.author)
 					if str(reaction.emoji) == f'<:nh3ntai:802131455215796224>':
-						try:
+						a =0 
+						if a == 0:
 							no = 0
 							pages = []
 							for images in doujin.image_urls:
@@ -80,10 +81,18 @@ class hentaii(commands.Cog, name="hentaii"):
 								pages.append(link)
 								
 							
-							y = await Pag(title=title,embed = False,timeout = 50 ,color=random.choice(self.Bot.color_list), entries=pages, length=1).start(ctx)
 							
-						except:
-							return await ctx.send("Something wrong happened.")
+							list_ = pages
+							embeds= []
+							for i in list_:
+							    e = discord.Embed(color = random.choice(self.Bot.color_list))
+
+							    e.set_image(url=i)
+							    embeds.append(e)
+
+							paginator = BotEmbedPaginator(ctx, embeds)
+							await paginator.run()
+					
 				except asyncio.TimeoutError:
 					return
 		else:
