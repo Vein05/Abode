@@ -76,7 +76,9 @@ class fetch():
                     format
                     status
                     source
+                    
                     genres
+                    popularity
                     description(asHtml:false)
                     startDate {
                         year
@@ -121,20 +123,20 @@ class fetch():
                     try:
                         data = await r.json()
                     except IndexError:
-                        return 'ERROR: Terjadi kesalahan internal'
+                        return 'ERROR: An internal error occurred'
                     if r.status != 200:
                         if r.status == 404:
-                            return "Tidak ada hasil."
+                            return "No Page on that name"
                         elif r.status == 500:
                             return "ERROR: Internal Error :/"
                     try:
                         query = data['data']['Page']['media']
                     except IndexError:
-                        return "Tidak ada hasil."
+                        return "No result."
             except aiohttp.ClientError:
-                return 'ERROR: Koneksi terputus'
-
-        # Koleksi translasi dan perubahan teks
+                return 'ERROR: Connection lost'
+            await sesi.close()
+       
         status_tl = {
             'finished': 'Finished',
             'releasing': 'Releasing',
@@ -194,9 +196,11 @@ class fetch():
                         end = '{}/{}'.format(end, end_d)
 
             title = entry['title']['romaji']
+            popularity = int(entry['popularity'])
+            
             ani_id = str(entry['id'])
             try:
-                mal_id = str(entry['idMal'])
+                mal_id = int(entry['idMal'])
             except:
                 mal_id = None
 
@@ -220,9 +224,15 @@ class fetch():
                     description = description[:1020] + '...'
 
             genres = ', '.join(entry['genres']).lower()
+            
+           
             status = entry['status'].lower()
             img = entry['coverImage']['large']
             ani_link = 'https://anilist.co/{m}/{id}'.format(m=method, id=ani_id)
+            if entry['source'] != None:
+                source = entry['source'].capitalize()
+            else:
+                source = "Original"
 
             dataset = {
                 'title': title,
@@ -233,10 +243,14 @@ class fetch():
                 'synopsis': description,
                 'status': status.capitalize(),
                 'format': entry['format'].capitalize(),
-                'source_fmt': entry['source'].capitalize(),
+                'source_fmt': source,
                 'link': ani_link,
                 'score': score_rate,
-                'footer': "ID: {} | {}".format(ani_id, genres)
+                'ani_id': int(ani_id),
+                'MALID': mal_id,
+                'genres': genres,
+                'popularity': int(popularity),
+                
             }
 
             if method == 'manga':
