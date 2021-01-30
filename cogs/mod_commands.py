@@ -400,10 +400,10 @@ class vein(commands.Cog, name="moderation"):
         await ctx.channel.set_permissions(hm, send_messages=True, read_messages=True)
         await ctx.send("Channel unlocked.")
 
-    @commands.command(aliases=['botlink', 'getbotlink'])
+    @commands.command(aliases=[ 'getbotlink'])
     @commands.guild_only()
     @commands.has_permissions(administrator=True)
-    async def botlink(self, ctx, id_: int):
+    async def createbotlink(self, ctx, id_: int):
         await ctx.send(f"https://discord.com/api/oauth2/authorize?client_id={id_}&permissions=0&scope=bot")
 
 def setup(Bot):
