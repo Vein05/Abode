@@ -16,6 +16,7 @@
 - ❤️Anime and manga commands.
 - ❤️❤️An wuxia themed environment(working on it)
 - 🛒Shop,economy commands(working on it)
+- Starboard (Fistboard)
 
 ## Note 
 >This bot is configured for my server, if you would like to clone it you would need to put some efforts youself :)
